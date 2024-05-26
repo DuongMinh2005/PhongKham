@@ -15,7 +15,7 @@ public:
     void xuat_in4();
     void dat_lich();
     void chuan_doan(string& a);
-}
+};
 void tep_khach_hang::nhap_in4(){
     cout << "Nhap ho ten: ";
     getline(cin,ten);
@@ -32,7 +32,7 @@ void tep_khach_hang::xuat_in4(){
     cout << "Tinh trang suc khoe: " << trang_thai << endl;
 }
 void tep_khach_hang::dat_lich(){
-    int a,b,c
+    int a,b,c;
     cout << "Dat lich kham: ";
     cin >> a >> b >> c;
     ngay = a; thang = b; nam = c;
@@ -42,9 +42,9 @@ back:
     cout << "Ban da chac chan chua? Y/N" ;
     cin >> c;
     switch (c){
-    case Y: case y:
+    case 'Y': case 'y':
         break;
-    case N:case n:
+    case 'N':case 'n':
         break;
     default:
         cout << "Hay an lai" << endl;
