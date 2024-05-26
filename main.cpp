@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -172,4 +173,3 @@ default://nhập sai, yêu cầu nhập lại
 }
 
 }
-
