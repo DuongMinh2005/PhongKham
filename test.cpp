@@ -5,4 +5,5 @@ int main(){
     cout << "ahihihi";
     int a;
     int c;
+    int a,b,c;
 }
