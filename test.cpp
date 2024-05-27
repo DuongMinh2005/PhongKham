@@ -1,10 +1,14 @@
 #include <iostream>
 using namespace std;
+
+int nhapluachon(){
+    int n;
+    scanf("%d", &n);
+    return n;
+}
+
 int main(){
-    cout << "Hello world";
-    cout << "ahihihi";
-    int a;
-    int c;
-    int a,b,c;
-    int e,g,f;
+    int k;
+    k=nhapluachon();
+    cout << k;
 }

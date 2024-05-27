@@ -64,13 +64,12 @@ int n, k;
 BACK1: 
 printf("Ban la ai: \nVui long nhap chinh xac theo yeu cau: \nNha si: nhap 1\nBenh nhan: nhap 2\n");
 k=nhapluachon();
-if(k!=1&&k!=2){
+    if(k!=1 && k!=2){
         printf("vui long nhap lai:\n");
         goto BACK1;
 
 
-switch (k)
-{
+switch (k){
 case 1://bạn là nha sĩ
     //option 2: bạn muốn thực hiện điềus gì
     BACK2:
