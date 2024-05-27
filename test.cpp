@@ -33,12 +33,9 @@ bool check_id(int ch){
 		}
 		return false;
 };
-class doctor
-{
+class doctor{
 	public:
-	  void add()
-	  {
-	  	
+	  void add(){
 	  	node *p;
 	  	p=new node;
 	  	p->diagnose=false;	
