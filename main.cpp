@@ -62,7 +62,7 @@ BACK1:
     k=nhapluachon();
     if(k!=1 && k!=2){
         printf("vui long nhap lai:\n");
-        goto BACK1;
+        goto BACK1;}
 
 
 switch (k){
@@ -87,29 +87,29 @@ case 1://bạn là nha sĩ
     printf("|          TRAN THANH CAM ON QUY KHACH DA SU DUNG DICH VU CUA CHUNG TOI <3         |\n");
     printf("|                                                                                  |\n");
     printf("*----------------------------------------------------------------------------------*");
-    k=nhapluachon();
-    for(int i =1;i <= 10;i++){
-        if(k!=i){
-        printf("vui long nhap lai:\n");
-        goto BACK2;
-        }
-        break;
-    }
-    //gọi hàm thêm, sửa, xóa
-    switch (k)
-    {
-    case 1://thêm bệnh nhân
+    // k=nhapluachon();
+    // for(int i =1;i <= 10;i++){
+    //     if(k!=i){
+    //     printf("vui long nhap lai:\n");
+    //     goto BACK2;
+    //     }
+    //     break;
+    // }
+    // //gọi hàm thêm, sửa, xóa
+    // switch (k)
+    // {
+    // case 1://thêm bệnh nhân
         
-        break;
-    case 2://thêm nhân viên
+    //     break;
+    // case 2://thêm nhân viên
 
-        break;
-    case 3://thêm lương nhân viên
+    //     break;
+    // case 3://thêm lương nhân viên
 
-        break;
-    default://quay lại
-        break;
-    }
+    //     break;
+    // default://quay lại
+    //     break;
+    // }
 
 case 2://bạn là bệnh nhân
     BACK3:
@@ -162,7 +162,5 @@ default://nhập sai, yêu cầu nhập lại
 }
 
 
-
-}
 
 }
