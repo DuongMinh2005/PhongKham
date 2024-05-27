@@ -113,23 +113,23 @@ case 1://bạn là nha sĩ
 
 case 2://bạn là bệnh nhân
     BACK3:
-    printf("*----------------------------------------------------------------------------------*");
-    printf("|                       NHA KHOA CR7 XIN CHAO QUY KHACH !                          |");
-    printf("|                                                                                  |");
-    printf("|  BAN MUON THUC HIEN DIEU GI?                                                     |");
-    printf("|  1.Dat lich hen voi nha si                                                       |");
-    printf("|  2.Phan hoi ve chat luong dich vu                                                |");
-    printf("|  3.                                                                              |");
-    printf("|                                                                                  |");
-    printf("|                                                                                  |");
-    printf("|                                                                                  |");
-    printf("|                                                                                  |");
-    printf("|                                                                                  |");
-    printf("|                                                                                  |");
-    printf("|                                                                                  |");
-    printf("|                                                                                  |");
-    printf("|          TRAN THANH CAM ON QUY KHACH DA SU DUNG DICH VU CUA CHUNG TOI <3         |");
-    printf("|                                                                                  |");
+    printf("*----------------------------------------------------------------------------------*\n");
+    printf("|                       NHA KHOA CR7 XIN CHAO QUY KHACH !                          |\n");
+    printf("|                                                                                  |\n");
+    printf("|  BAN MUON THUC HIEN DIEU GI?                                                     |\n");
+    printf("|  1.Dat lich hen voi nha si                                                       |\n");
+    printf("|  2.Phan hoi ve chat luong dich vu                                                |\n");
+    printf("|  3.                                                                              |\n");
+    printf("|                                                                                  |\n");
+    printf("|                                                                                  |\n");
+    printf("|                                                                                  |\n");
+    printf("|                                                                                  |\n");
+    printf("|                                                                                  |\n");
+    printf("|                                                                                  |\n");
+    printf("|                                                                                  |\n");
+    printf("|                                                                                  |\n");
+    printf("|          TRAN THANH CAM ON QUY KHACH DA SU DUNG DICH VU CUA CHUNG TOI <3         |\n");
+    printf("|                                                                                  |\n");
     printf("*----------------------------------------------------------------------------------*");
 
 
