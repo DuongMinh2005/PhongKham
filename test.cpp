@@ -1,79 +1,103 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include <iostream>
+using namespace std;
 
-//tệp khách hàng
-typedef struct
+int main()
 {
-    int tuoi;
-    char ten[50];
-    char que[100];
-    char tinh_trang[200];
-}tepkhachhang;
-typedef struct 
-{
-    int ngay;
-    int thang;
-    int nam;
-}lich;
-//hàm nhập lựa chọn
-int nhapluachon(){
-    int n;
-    scanf("%d", &n);
-    return n;
+    bool post,              // posterior: ?
+         ante;              // anterior: ?
+    int fillings;           // fillings: Y/N
+    int tooth_number;       // tooth_number: 1-32
+    int surface_num;        // surface_num should be 1-5
+    int amal_or_comp;       // amalgum or composite filling
+    int cav_deep;           // input for if cavity is deep
+
+    cout << "Is the cavity deep?: 1.Yes 2.No" << endl;
+    cin  >> cav_deep;
+    if (cav_deep==1)
+        cout << "Temporary filling needed. Patient needs to come back for permanent      fill at later date." << endl;
+        else if (cav_deep==2)
+    {
+        cout << "Fillings Needed?: 1.Yes 2.No" << endl;
+        cin  >> fillings;
+        if (fillings==2)
+        {
+            cout << "Proceed to 'crowns'" << endl;
+        }
+        if (fillings==1)
+        {
+            cout << "Tooth #: " << endl;
+            cin >> tooth_number;
+            cout << "Tooth # entered is: " << tooth_number << endl;
+            // if tooth is posterior
+            if (tooth_number>=1&&tooth_number<=5)
+            {
+                cout << "Posterior Tooth" << endl;
+                cout << "1. Amalgam or 2. Composite?" << endl;
+                cin  >> amal_or_comp;
+                if(amal_or_comp==1)
+                    cout << "Amalgam selected." << endl;
+                if(amal_or_comp==2)
+                    cout << "Composite selected." << endl;
+                cout << "Surface #: ";
+                cin  >> surface_num;
+                cout << "Surface # entered: " << surface_num;
+            }
+            if (tooth_number>=12&&tooth_number<=16)
+            {
+                cout << "Posterior Tooth" << endl;
+                cout << "1. Amalgam or 2. Composite?" << endl;
+                cin  >> amal_or_comp;
+                if(amal_or_comp==1)
+                    cout << "Amalgam selected." << endl;
+                if(amal_or_comp==2)
+                    cout << "Composite selected." << endl;
+                cout << "Surface #: ";
+                cin  >> surface_num;
+                cout << "Surface # entered: " << surface_num;
+            }
+            if (tooth_number>=17&&tooth_number<=21)
+            {
+                cout << "Posterior Tooth" << endl;
+                cout << "1. Amalgam or 2. Composite?" << endl;
+                cin  >> amal_or_comp;
+                if(amal_or_comp==1)
+                    cout << "Amalgam selected." << endl;
+                if(amal_or_comp==2)
+                    cout << "Composite selected." << endl;
+                cout << "Surface #: ";
+                cin  >> surface_num;
+                cout << "Surface # entered: " << surface_num;
+            }
+            if (tooth_number>=28&&tooth_number<=32)
+            {
+                cout << "Posterior Tooth" << endl;
+                cout << "1. Amalgam or 2. Composite?" << endl;
+                cin  >> amal_or_comp;
+                if(amal_or_comp==1)
+                    cout << "Amalgam selected." << endl;
+                if(amal_or_comp==2)
+                    cout << "Composite selected." << endl;
+                cout << "Surface #: ";
+                cin  >> surface_num;
+                cout << "Surface # entered: " << surface_num;
+            }
+            // if tooth is anterior
+            if (tooth_number>=6&&tooth_number<=11)
+            {
+                cout << "Anterior Tooth" << endl;
+                cout << "Composite" << endl;
+                cout << "Surface #: ";
+                cin  >> surface_num;
+                cout << "Surface # entered: " << surface_num;
+            }
+            if (tooth_number>=22&&tooth_number<=27)
+            {
+                cout << "Anterior Tooth" << endl;
+                cout << "Composite" << endl;
+                cout << "Surface #: ";
+                cin  >> surface_num;
+                cout << "Surface # entered: " << surface_num;
+            }
+        }
+    }
 }
-
-//hàm nhập thông tin người dùng
-void nhapthongtin(tepkhachhang* a) {
-    printf("Nhap ten: ");
-    scanf(" %[^\n]", a->ten); 
-    printf("Nhap que: ");
-    scanf(" %[^\n]", a->que); 
-    printf("Nhap tuoi: ");
-    scanf("%d", &a->tuoi); 
-}
-
-//hàm xuất thông tin khách hàng
-void xuatten(tepkhachhang a) {
-    printf("Ten: %s\n", a.ten); 
-    printf("Que: %s\n", a.que); 
-    printf("Tuoi: %d\n", a.tuoi); 
-}
-
-
-int main(){
-
-    tepkhachhang khach;
-    nhapthongtin(&khach); //test
-    xuatten(khach); //test
-    
-//option 1: bạn là ai?
-
-int n, k;
-BACK1: 
-    printf("Ban la ai: \nVui long nhap chinh xac theo yeu cau: \nNha si: nhap 1\nBenh nhan: nhap 2\n");
-    k=nhapluachon();
-    if(k!=1 && k!=2){
-        printf("vui long nhap lai:\n");
-        goto BACK1;}
-switch (k){
-case 1:
-    printf("*----------------------------------------------------------------------------------*\n");
-    printf("|                       NHA KHOA CR7 XIN CHAO QUY KHACH !                          |\n");
-    printf("|                                                                                  |\n");
-    printf("|  BAN MUON THUC HIEN DIEU GI?                                                     |\n");
-    printf("|  1.Them thong tin benh nhan                                                      |\n");
-    printf("|  2.Them thong tin nhan vien                                                      |\n");
-    printf("|  3.Them luong cho nhan vien                                                      |\n");
-    printf("|  4.Sua thong tin cho benh nhan                                                   |\n");
-    printf("|  5.Sua thong tin cho nhan vien                                                   |\n");
-    printf("|  6.Xoa thong tin benh nhan                                                       |\n");
-    printf("|  7.Xoa thong tin nhan vien                                                       |\n");
-    printf("|  9.Them lich hen                                                                 |\n");
-    printf("|  10...                                                                           |\n");
-    printf("|                                                                                  |\n");
-    printf("|                                                                                  |\n");
-    printf("|          TRAN THANH CAM ON QUY KHACH DA SU DUNG DICH VU CUA CHUNG TOI <3         |\n");
-    printf("|                                                                                  |\n");
-    printf("*----------------------------------------------------------------------------------*");
-}}
