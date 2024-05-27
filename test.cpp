@@ -34,8 +34,8 @@ bool check_id(int ch){
 		return false;
 };
 class doctor{
-	public:
-	  void add(){
+public:
+	void add(){
 	  	node *p;
 	  	p=new node;
 	  	p->diagnose=false;	
@@ -64,21 +64,16 @@ class doctor{
 	  	arr[i]=p->id;
 	  	
 	  	i++;
-	  	if(check)
-	{
-	    head=p;
-	    lastptr=p;
-	    check=false;
-	}
-	else
-	{
-		lastptr->next=p;
-		lastptr=p;
-	}
-	
+	  	if(check){
+	        head=p;
+	        lastptr=p;
+	        check=false;
+	    }else{
+		    lastptr->next=p;
+		    lastptr=p;
+        }
   }
-  void show()
-  {
+    void show(){
   	    int n;
   	    node *current=NULL,*prev=NULL;
   	    prev=head;
@@ -86,13 +81,11 @@ class doctor{
   	    int ch;
  	    cout<<"enter Patient ID"<<endl;
   	    cin>>ch;
-		if(check_id(ch))
-		{
-  	    while(current->id!=ch)
-  	    {
-  	    	prev=current;
-  	    	current=current->next;
-  	   	  }
+		if(check_id(ch)){
+  	        while(current->id!=ch){
+  	    	    prev=current;
+  	    	    current=current->next;
+  	   	    }
   	   	
   	 	cout<<"enter Patient First name"<<endl;
 	  	cout<<current->fname<<endl;
@@ -123,13 +116,11 @@ class doctor{
 	    cout<<"Admit Required to Hospital?"<<endl;
 	    cout<<current->addmission<<endl;
 	   }}
-	   else
-	   {
+	   else{
 	   	cout<<"ID not present"<<endl;
 	   }
 }
-  void diagnosis()
-  {
+    void diagnosis(){
   	int n;
     node *p=NULL,*prev=NULL;
     p=new node;
@@ -155,7 +146,6 @@ class doctor{
 		cin>>p->addmission;
 		
 	}
-  	
 	else
 		cout<<"ID is not Registered\n";
   	
