@@ -6,17 +6,27 @@ private:
     string ten;
     int tuoi;
     string dia_chi;
-    int ngay;
-    int thang;
-    int nam;
     string trang_thai = "Khong co";
+    string don_thuoc;
 public:
-    void nhap_in4();
-    void xuat_in4();
+    void nhap_thong_tin();
+    void xuat();
+    void tracuu_sk();
     void dat_lich();
     void chuan_doan(string& a);
 };
-void tep_khach_hang::nhap_in4(){
+void tep_khach_hang::chuan_doan(string& a){
+    trang_thai = a;
+}
+class date{
+private:
+    int ngay;
+    int thang; 
+    int nam;
+public:
+    void dat_lich();
+};
+void tep_khach_hang::nhap_thong_tin(){
     cout << "Nhap ho ten: ";
     getline(cin,ten);
     cout << "Nhap tuoi: ";
@@ -24,14 +34,15 @@ void tep_khach_hang::nhap_in4(){
     cout << "Nhap dia chi: ";
     getline(cin,dia_chi);
 }
-void tep_khach_hang::xuat_in4(){
+void tep_khach_hang::xuat(){
     cout << "Thong tin benh nhan:"<< endl;
     cout << "Ho va ten: " << ten << endl;
     cout <<"Tuoi: " << tuoi << endl;
     cout << "Dia chi: " << dia_chi << endl ;
     cout << "Tinh trang suc khoe: " << trang_thai << endl;
 }
-void tep_khach_hang::dat_lich(){
+
+void date::dat_lich(){
     int a,b,c;
     cout << "Dat lich kham: ";
     cin >> a >> b >> c;
@@ -51,7 +62,4 @@ back:
         goto back;
         break;
     }
-}
-void tep_khach_hang::chuan_doan(string& a){
-    trang_thai = a;
 }
