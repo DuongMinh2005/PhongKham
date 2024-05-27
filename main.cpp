@@ -50,20 +50,16 @@ void datlich(){
 
 int main(){
 
-tepkhachhang khach;
+    tepkhachhang khach;
     nhapthongtin(&khach); //test
     xuatten(khach); //test
     
-
-
-
 //option 1: bạn là ai?
-
 
 int n, k;
 BACK1: 
-printf("Ban la ai: \nVui long nhap chinh xac theo yeu cau: \nNha si: nhap 1\nBenh nhan: nhap 2\n");
-k=nhapluachon();
+    printf("Ban la ai: \nVui long nhap chinh xac theo yeu cau: \nNha si: nhap 1\nBenh nhan: nhap 2\n");
+    k=nhapluachon();
     if(k!=1 && k!=2){
         printf("vui long nhap lai:\n");
         goto BACK1;
@@ -73,25 +69,24 @@ switch (k){
 case 1://bạn là nha sĩ
     //option 2: bạn muốn thực hiện điềus gì
     BACK2:
+    printf("*----------------------------------------------------------------------------------*\n");
+    printf("|                       NHA KHOA CR7 XIN CHAO QUY KHACH !                          |\n");
+    printf("|                                                                                  |\n");
+    printf("|  BAN MUON THUC HIEN DIEU GI?                                                     |\n");
+    printf("|  1.Them thong tin benh nhan                                                      |\n");
+    printf("|  2.Them thong tin nhan vien                                                      |\n");
+    printf("|  3.Them luong cho nhan vien                                                      |\n");
+    printf("|  4.Sua thong tin cho benh nhan                                                   |\n");
+    printf("|  5.Sua thong tin cho nhan vien                                                   |\n");
+    printf("|  6.Xoa thong tin benh nhan                                                       |\n");
+    printf("|  7.Xoa thong tin nhan vien                                                       |\n");
+    printf("|  9.Them lich hen                                                                 |\n");
+    printf("|  10...                                                                           |\n");
+    printf("|                                                                                  |\n");
+    printf("|                                                                                  |\n");
+    printf("|          TRAN THANH CAM ON QUY KHACH DA SU DUNG DICH VU CUA CHUNG TOI <3         |\n");
+    printf("|                                                                                  |\n");
     printf("*----------------------------------------------------------------------------------*");
-    printf("|                       NHA KHOA CR7 XIN CHAO QUY KHACH !                          |");
-    printf("|                                                                                  |");
-    printf("|  BAN MUON THUC HIEN DIEU GI?                                                     |");
-    printf("|  1.Them thong tin benh nhan                                                      |");
-    printf("|  2.Them thong tin nhan vien                                                      |");
-    printf("|  3.Them luong cho nhan vien                                                      |");
-    printf("|  4.Sua thong tin cho benh nhan                                                   |");
-    printf("|  5.Sua thong tin cho nhan vien                                                   |");
-    printf("|  6.Xoa thong tin benh nhan                                                       |");
-    printf("|  7.Xoa thong tin nhan vien                                                       |");
-    printf("|  9.Them lich hen                                                                 |");
-    printf("|  10...                                                                           |");
-    printf("|                                                                                  |");
-    printf("|                                                                                  |");
-    printf("|          TRAN THANH CAM ON QUY KHACH DA SU DUNG DICH VU CUA CHUNG TOI <3         |");
-    printf("|                                                                                  |");
-    printf("*----------------------------------------------------------------------------------*");
-
     k=nhapluachon();
     for(int i =1;i <= 10;i++){
         if(k!=i){
