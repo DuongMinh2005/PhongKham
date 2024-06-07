@@ -1,9 +1,9 @@
-Ma so thuoc: 1111
-Ten thuoc: chong ngu
-Noi san xuat: viet nam
-Ngay san xuat: 11
-Han sau dung: 22
-Tac dung: 22
-So luong: 11
-Don gia: 200 vnd
+Ma so thuoc: #345789
+Ten thuoc: siu
+Noi san xuat: Thanh Hoa
+Ngay san xuat: 12/10/2023
+Han sau dung: 15/2/2050
+Tac dung: 15/2/2050
+So luong: 100
+Don gia:  vnd
 --------------------------------
