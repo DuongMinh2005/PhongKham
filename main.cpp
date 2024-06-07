@@ -53,6 +53,7 @@ void suaTK() {
     string search_line;
     bool found = false;
     cout<<"Vui long nhap tai khoan: ";
+    cin.ignore();
     getline(cin,search_line);
     if (!infile.is_open() || !outfile.is_open()) {
         cout<<"____KHONG THE MO FILE THONG TIN____"<<endl;
@@ -93,6 +94,7 @@ void xoaTK() {
     string search_line;
     bool found = false;
     cout<<"Vui long nhap tai khoan: ";
+    cin.ignore();
     getline(cin,search_line);
     if (!file.is_open()){
         cout<<"____KHONG THE MO FILE THONG TIN____"<<endl;
@@ -407,6 +409,7 @@ class KhoDuoc {
 void KhoDuoc::nhapThongTinThuoc() {
     cout<<"____NHAP THONG TIN THUOC____"<<endl;
     cout<<"Ma so thuoc: ";
+    cin.ignore();
     getline(cin,masothuoc);
     cout<<"Ten thuoc: ";
     getline(cin,tenthuoc);
@@ -423,8 +426,9 @@ void KhoDuoc::nhapThongTinThuoc() {
     cout<<"Don gia: ";
     getline(cin,dongia);
 
-    ofstream file("thongtinkhoduoc.txt");
+    ofstream file("thongtinkhoduoc.txt", ios::app);
     if (file.is_open()) {
+        
         file<<"Ma so thuoc: "<< masothuoc <<endl;
         file<<"Ten thuoc: "<< tenthuoc <<endl;
         file<<"Noi san xuat: "<< suatxu <<endl;
@@ -443,6 +447,7 @@ void KhoDuoc::nhapThongTinThuoc() {
 void KhoDuoc::xoaThongTinThuoc() {
     cout<<"____XOA THONG TIN THUOC____"<<endl;
     cout<<"Nhap ma so thuoc: ";
+    cin.ignore();
     getline(cin,masothuoc);
     string line;
     ifstream infile("thongtinkhoduoc.txt");
@@ -483,6 +488,7 @@ bool KhoDuoc::suaThongTinThuoc() {
         bool found = false;
         cout << "____SUA THONG TIN THUOC____" << endl;
         cout << "Vui long nhap ma so thuoc: ";
+        cin.ignore();
         getline(cin, masothuoc);
 
       while (getline(file, line)) {
@@ -552,6 +558,7 @@ void KhoDuoc::timThongTinThuoc() {
     bool found = false;
     cout<<"____TIM KIEM THONG TIN THUOC____"<<endl;
     cout<<"Nhap ma so thuoc: ";
+    cin.ignore();
     getline(cin,search_line);
     
     while (getline(file,line))
@@ -595,6 +602,7 @@ public:
 void BenhNhan::xoaThongTinBenhNhan() {
         cout<<"Nhap ten tai khoan can xoa."<<endl;
         cout << "Ten dang nhap: ";
+        cin.ignore();
         getline(cin, tenDangNhap);
         string line;
         ifstream inFile("thongtinbenhnhan.txt");
@@ -636,6 +644,7 @@ void BenhNhan::xoaThongTinBenhNhan() {
 void BenhNhan::nhapThongTinBenhNhan() {
         cout << "____NHAP THONG TIN BENH NHAN____" << endl;
         cout << "Ten dang nhap: ";
+        cin.ignore();
         getline(cin, tenDangNhap);
         cout << "Ten: ";
         getline(cin, ten);
@@ -674,6 +683,7 @@ bool BenhNhan::suaThongTinBenhNhan() {
         string line;
         bool found = false;
         cout << "Vui long nhap ten dang nhap: ";
+        cin.ignore();
         getline(cin, tenDangNhap);
 
       while (getline(file, line)) {
@@ -687,16 +697,16 @@ bool BenhNhan::suaThongTinBenhNhan() {
             getline(cin, ten);
             cout << "Tuoi: ";
             cin >> tuoi;
-            cin.ignore(); // B? qua k� t? d�ng m?i
+            cin.ignore(); 
             cout << "Dia chi: ";
             getline(cin, diachi);
             cout << "Loai benh: ";
             getline(cin, loaiBenh);
             cout << "Vien phi: ";
             cin >> vienPhi;
-            cin.ignore(); // B? qua k� t? d�ng m?i
+            cin.ignore(); 
 
-          // Ghi th�ng tin m?i v�o file t?m
+        
           tempFile << "Ten dang nhap: " << tenDangNhap << endl;
           tempFile << "Ten: " << ten << endl;
           tempFile << "Tuoi: " << tuoi << endl;
@@ -746,6 +756,7 @@ void BenhNhan::timThongTinBenhNhan() {
     bool found = false;
     cout<<"____TIM KIEM THONG TIN BENH NHAN____"<<endl;
     cout<<"Nhap ten dang nhap: ";
+    cin.ignore();
     getline(cin,search_line);
     while (getline(file,line))
     {
@@ -766,6 +777,7 @@ void doiMK() {
     string nhapTK, nhapMK , MKmoi;
     nhaplai:
     cout<<"Vui long nhap tai khoan: ";
+    cin.ignore();
     getline(cin,nhapTK);
     cout<<"Mat khau: ";
     getline(cin,nhapMK);
