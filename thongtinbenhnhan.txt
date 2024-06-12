@@ -1,7 +1,7 @@
-Ten dang nhap: nguyenphuongthao
-Ten: Nguyen Phuong Thao
-Tuoi: 19
-Dia chi: Ba Dinh, Ha Noi
-Loai benh: iu don phuong
-Vien phi: 1 vnd
+Ten dang nhap: thao
+Ten: Thao
+Tuoi: 30
+Dia chi: Da Nang
+Loai benh: Hiem gap
+Vien phi: 1e+08
 --------------------------------------
