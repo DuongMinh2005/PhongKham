@@ -37,7 +37,8 @@ void TaoTK()
             file.close();
             cout<<"____TAO TAI KHOAN THANH CONG____"<< endl; 
         }
-    else {cout<<"Khong the mo tep ghi!"<<endl;}
+    else 
+        cout<<"Khong the mo tep ghi!"<<endl;
 };
 
 void suaTK() {
@@ -134,15 +135,12 @@ int Dangnhap()
             Taikhoan TK;
             TK.usernameDN = fileUsernameDN;
             TK.passwordDN = filePasswordDN;
-            
             taikhoan.push_back(TK);
         }
         file.close();
 
         for (const auto& TK : taikhoan) {
-            if (TK.usernameDN == usernameDN && TK.passwordDN == passwordDN) {
-                
-                
+            if (TK.usernameDN == usernameDN && TK.passwordDN == passwordDN){
                 return role;}
             } 
         
@@ -162,11 +160,9 @@ class Person {
         void setTenDangNhap(const string& tenDN) {
             tenDangNhap = tenDN;
         };
-
         string getTenDangNhap() const {
             return tenDangNhap;
         };
-
 };
 
 class BacSi : public Person {
@@ -369,7 +365,7 @@ void BacSi::timThongTinBacSi() {
         }
     }
     if (!found) {
-        cout<<"____KHONG TIM THAY THONG TIN BENH NHAN____"<<endl;
+        cout<<"____KHONG TIM THAY THONG TIN BAC SI____"<<endl;
     }
 };
 
@@ -778,7 +774,7 @@ void BenhNhan::timThongTinBenhNhan() {
 
 void doiMK() {
     string nhapTK, nhapMK , MKmoi;
-    nhaplai:
+nhaplai:
     cout<<"Vui long nhap tai khoan: ";
     cin.ignore();
     getline(cin,nhapTK);
@@ -808,8 +804,8 @@ void doiMK() {
         rename("temp.txt","user.txt");
         cout<<"____DOI MAT KHAU THANH CONG____"<<endl;
     }   else {
-        cout<< "____TAI KHOAN MAT KHAU KHONG CHINH XAC____"<<endl;
-        cout<<"____VUI LONG NHAP LAI____"<<endl;
+        cout<<"____TAI KHOAN MAT KHAU KHONG CHINH XAC____"<<endl;
+        cout<<"____________VUI LONG NHAP LAI_____________"<<endl;
         goto nhaplai;
     }
 };
