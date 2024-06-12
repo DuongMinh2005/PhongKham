@@ -7,7 +7,6 @@ struct Taikhoan {
     int role;    
 };
 
-
 int chonvaitro()
 {
     int a;
@@ -15,7 +14,6 @@ int chonvaitro()
     cin>>a; fflush(stdin);
     return a;
 };
-
 
 //lưu ý: khi để file text và file code khác thư mục, cần truyền thêm đường dẫn trực tiếp, VD: "D//VScode1//Project2//user.txt"
 
@@ -118,7 +116,6 @@ void xoaTK() {
     }
 };
 
-
 int Dangnhap()
 {
     string usernameDN , passwordDN;
@@ -154,7 +151,6 @@ int Dangnhap()
     }
     return 0;
 };
-
 
 class Person {
     protected:
@@ -199,6 +195,7 @@ class BacSi : public Person {
 void BacSi::nhapThongTinBacSi() {
         cout << "____NHAP THONG TIN BAC SI____" << endl;
         cout << "Ten dang nhap: ";
+        cin.ignore();
         getline(cin, tenDangNhap);
         cout << "Ten: ";
         getline(cin, ten);
@@ -233,9 +230,11 @@ void BacSi::nhapThongTinBacSi() {
             cout << "____KHONG THE MO FILE THONG TIN____" << endl;
         }
 };
+
 void BacSi::xoaThongTinBacSi() {
         cout<<"____NHAP TAI KHOAN MUON XOA____"<<endl;
         cout << "Ten dang nhap: ";
+        cin.ignore();
         getline(cin, tenDangNhap);
         string line;
         ifstream inFile("thongtinbacsi.txt");
@@ -283,6 +282,7 @@ bool BacSi::suaThongTinBacSi() {
         bool found = false;
         cout << "____SUA THONG TIN BAC SI____" << endl;
         cout << "Vui long nhap ten dang nhap: ";
+        cin.ignore();
         getline(cin, tenDangNhap);
 
       while (getline(file, line)) {
@@ -356,6 +356,7 @@ void BacSi::timThongTinBacSi() {
     bool found = false;
     cout<<"____TIM KIEM THONG TIN BAC SI____"<<endl;
     cout<<"Nhap ten dang nhap: ";
+    cin.ignore();
     getline(cin,search_line);
     while (getline(file,line))
     {
@@ -444,6 +445,7 @@ void KhoDuoc::nhapThongTinThuoc() {
         cout<<"____KHONG THE MO FILE THONG TIN____"<<endl;
     }
 };
+
 void KhoDuoc::xoaThongTinThuoc() {
     cout<<"____XOA THONG TIN THUOC____"<<endl;
     cout<<"Nhap ma so thuoc: ";
@@ -479,6 +481,7 @@ void KhoDuoc::xoaThongTinThuoc() {
         cout<<"____KHONG TIM THAY TAI KHOAN CAN XOA____"<<endl;
     }
 };
+
 bool KhoDuoc::suaThongTinThuoc() {
     ifstream file("thongtinkhoduoc.txt");
     ofstream tempfile("temp.txt"); // Tep tam thoi cho du lieu de sua doi
@@ -581,7 +584,7 @@ void KhoDuoc::timThongTinThuoc() {
 class BenhNhan : public Person {
 private:
     string loaiBenh;
-    float vienPhi;
+    double vienPhi;
 
 public:
     BenhNhan() {
