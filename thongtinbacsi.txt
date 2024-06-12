@@ -1,0 +1,9 @@
+Ten dang nhap: 
+Ten: Minh
+Tuoi: 50
+Dia chi: Ba Dinh
+Ma so : #789
+Chuc vu: nothing
+Chuyen khoa: Rang Ham Mat
+Kinh nghiem: 50 nam
+--------------------------------------
