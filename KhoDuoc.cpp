@@ -208,6 +208,21 @@ void timThongTinThuoc(){
     }
 }
 
+
+void inDanhSachThuoc(){
+    FILE *file = fopen("thongtinkhoduoc.txt","r");
+    if( file == NULL){
+        printf("____KHONG THE MO FILE THONG TIN____\n");
+    }
+
+    char line[256];
+    printf("____DANH SACH THUOC____\n");
+
+    while(fgets(line,sizeof(line),file)){
+        printf("%s", line);
+    }
+    fclose(file);
+}
 int main(){
     
 }
