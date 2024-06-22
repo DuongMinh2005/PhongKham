@@ -2,6 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>>
+struct BenhNhan
+{
+    
+};
+struct BacSi 
+{
+    /* data */
+};
+struct KhoDuoc
+{
+    /* data */
+};
+
+
 int main(){
     int role;
     BenhNhan benhnhan;
@@ -36,7 +50,6 @@ tryagain:
         }
     } else
         printf( "____KHONG THE MO FILE THONG TIN____\n");
-    
     switch (role) 
     {
         case 1: 
@@ -94,12 +107,11 @@ quanlitaikhoan:
                         goto menu;
                     default:
                         printf("!!!CHUC NANG KHONG PHU HOP!!!\n");
-                        printf("======VUI LONG CHON LAI======\n");
+                        printf("======VUI LONG CHON LAI======\n\n");
                         goto quanlitaikhoan;
                         break;
                 }
                 goto quanlitaikhoan;
-                break;
             case 2:
 quanlibenhnhan:
                 printf(".______________________________.\n");
@@ -116,23 +128,22 @@ quanlibenhnhan:
                 scanf("%d",&b);
                 switch (b){
                     case 1:
-                        benhnhan.nhapThongTinBenhNhan();
+                        nhapThongTinBenhNhan();
                         break;
                     case 2:
-                        benhnhan.xoaThongTinBenhNhan();
+                        xoaThongTinBenhNhan();
                         break;
                     case 3:
-                        benhnhan.suaThongTinBenhNhan();
+                        suaThongTinBenhNhan();
                         break;
                     case 4: 
-                        benhnhan.timThongTinBenhNhan();
+                        timThongTinBenhNhan();
                         break;
                     case 5:
                         inDanhSachBN();
                         break;
                     case 6:
                         goto menu;
-                        break;
                     default:
                         printf("!!!CHUC NANG KHONG PHU HOP!!!\n");
                         printf("======VUI LONG CHON LAI======\n");
@@ -140,7 +151,6 @@ quanlibenhnhan:
                         break;
                 }
                 goto quanlibenhnhan;
-                break;
             case 3:
 quanlibacsi:
                 printf(".______________________________.\n");
@@ -157,16 +167,16 @@ quanlibacsi:
                 scanf("%d",&c);
                 switch (c){
                     case 1:
-                        bacsi.nhapThongTinBacSi();
+                        nhapThongTinBacSi();
                         break;
                     case 2:
-                        bacsi.xoaThongTinBacSi();
+                        xoaThongTinBacSi();
                         break;
                     case 3:
-                        bacsi.suaThongTinBacSi();
+                        suaThongTinBacSi();
                         break;
                     case 4: 
-                        bacsi.timThongTinBacSi();
+                        timThongTinBacSi();
                         break;
                     case 5:
                         inDanhSachBS();
@@ -178,10 +188,8 @@ quanlibacsi:
                         printf("!!!CHUC NANG KHONG PHU HOP!!!\n");
                         printf("======VUI LONG CHON LAI======\n");
                         goto quanlibacsi;
-                        break;
                 }
                 goto quanlibacsi;
-                break;
             case 4:
 quanlikhoduoc:
                 printf(".______________________________.\n");
@@ -198,16 +206,16 @@ quanlikhoduoc:
                 scanf("%d",&e);
                 switch (e){
                     case 1:
-                        khoduoc.nhapThongTinThuoc();
+                        nhapThongTinThuoc();
                         break;
                     case 2:
-                        khoduoc.xoaThongTinThuoc();
+                        xoaThongTinThuoc();
                         break;
                     case 3:
-                        khoduoc.suaThongTinThuoc();
+                        suaThongTinThuoc();
                         break;
                     case 4: 
-                        khoduoc.timThongTinThuoc();
+                        timThongTinThuoc();
                         break;
                     case 5:
                         inDanhSachTHUOC();
@@ -231,6 +239,8 @@ quanlikhoduoc:
                 goto tryagain;
             default:
                 printf("!!!CHUC NANG KHONG PHU HOP!!!\n");
+                goto menu;
+                break;
         }
     }
     if (role == 1){
@@ -245,25 +255,24 @@ menu2:
         printf("VUI LONG CHON CHUC NANG: ");
         scanf("%d",&a);
         switch (a) {
-            case 1:{
+            case 1:
                 char[50] line;
-                    ifstream file("thongtinbenhnhan.txt\n");
-                    if (!file.is_open()) {
-                        printf("____KHONG THE MO FILE THONG TIN____\n");
-                        }
-                    while (getline(file,line)){
-                        if (line == "Ten dang nhap: " + usernameDN) {
-                            printf("____THONG TIN CA NHAN____\n");
-                                for (int i=0;i<6;i++) {
-                                        getline(file,line);
-                                        printf( line );
-                                    }
-                                }else {
-                                    printf("____THONG TIN BENH NHAN KHONG TON TAI____\n");
-                                }
+                ifstream file("thongtinbenhnhan.txt\n");
+                if (!file.is_open()) {
+                    printf("____KHONG THE MO FILE THONG TIN____\n");
+                    }
+                while (getline(file,line)){
+                    if (line == "Ten dang nhap: " + usernameDN) {
+                        printf("____THONG TIN CA NHAN____\n");
+                        for (int i=0;i<6;i++) {
+                            getline(file,line);
+                            printf( line );
+                            }
+                    }else 
+                        printf("____THONG TIN BENH NHAN KHONG TON TAI____\n");
+                                
                     };
                 break;
-                }
             case 2:
                 doiMK();
                 usernameDN = "";
@@ -305,19 +314,18 @@ menu3:
                 int b;
                 scanf("%d",&b);
                 switch (b) {
-                    case 1:{
+                    case 1:
                         string line;
                         ifstream file("thongtinbacsi.txt\n");
-                        if (!file.is_open()) {
+                        if (!file.is_open()) 
                             printf("____KHONG THE MO FILE THONG TIN____\n");
-                            }
                         while (getline(file,line)){
                             if (line == "Ten dang nhap: " + usernameDN) {
-                                    printf("____THONG TIN CA NHAN____\n");
-                                    for (int i=0;i<8;i++) {
-                                        getline(file,line);
-                                        printf( line );
-                                    }
+                                printf("____THONG TIN CA NHAN____\n");
+                                for (int i=0;i<8;i++) {
+                                    getline(file,line);
+                                    printf( line );
+                                }
                             }else {
                                 printf("____THONG TIN NHA SI KHONG TON TAI____\n");
                                 printf("Bam ENTER de quay lai Menu\n");
@@ -327,7 +335,6 @@ menu3:
                                 }
                         };
                         break;
-                    }
                     case 2:
                         doiMK();
                         usernameDN = "";
@@ -360,35 +367,32 @@ quanlibenhnhan2:
                 scanf("%d",&b);
                 switch (b){
                     case 1:
-                        benhnhan.nhapThongTinBenhNhan();
+                        nhapThongTinBenhNhan();
                         break;
                     case 2:
-                        benhnhan.xoaThongTinBenhNhan();
+                        xoaThongTinBenhNhan();
                         break;
                     case 3:
-                        benhnhan.suaThongTinBenhNhan();
+                        suaThongTinBenhNhan();
                         break;
                     case 4: 
-                        benhnhan.timThongTinBenhNhan();
+                        timThongTinBenhNhan();
                         break;
                     case 5:
                         inDanhSachBN();
                         break;
                     case 6:
                         goto menu3;
-                        break;
                     default:
                         printf("!!!CHUC NANG KHONG PHU HOP!!!\n");
                         printf("======VUI LONG CHON LAI======\n");
                         goto quanlibenhnhan;
-                        break;
                 }
                 goto quanlibenhnhan2;
                 break;
             case 3: 
                 inDanhSachTHUOC();
                 goto menu2;
-                break;
             case 4:
                 usernameDN="";
                 passwordDN="";
