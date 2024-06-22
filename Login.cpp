@@ -15,9 +15,9 @@ int chonvaitro(){
 
 
 void TaoTK(){
-    printf("________________________________\n");
+    printf(".______________________________.\n");
     printf("|         TAO TAI KHOAN        |\n");
-    printf("________________________________\n");
+    printf(".______________________________.\n");
     int vaitro;
     vaitro = chonvaitro();
 
@@ -40,9 +40,9 @@ void TaoTK(){
 
 }
 void suaTK() {
-    printf("________________________________\n");
+    printf(".______________________________.\n");
     printf("|         SUA TAI KHOAN        |\n");
-    printf("________________________________\n");
+    printf(".______________________________.\n");
 
     FILE *infile = fopen("user.txt", "r");
     FILE *outfile = fopen("temp.txt", "w");
@@ -103,9 +103,9 @@ void suaTK() {
 
 
 void xoaTK() {
-    printf("________________________________\n");
+    printf(".______________________________.\n");
     printf("|         XOA TAI KHOAN        |\n");
-    printf("________________________________\n");
+    printf(".______________________________.\n");
 
     FILE *file = fopen("user.txt", "r");
     FILE *tempfile = fopen("temp.txt", "w");
