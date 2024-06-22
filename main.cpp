@@ -387,6 +387,7 @@ class KhoDuoc {
         void xoaThongTinThuoc();
         bool suaThongTinThuoc();
         void timThongTinThuoc();
+        
         void setMaSoThuoc(const string& MSThuoc) {
             masothuoc = MSThuoc;
         };
@@ -568,6 +569,9 @@ void KhoDuoc::timThongTinThuoc() {
         cout<<"____KHONG TIM THAY THONG TIN THUOC____"<<endl;
     }
 };
+
+
+
 
 class BenhNhan : public Person {
 private:
