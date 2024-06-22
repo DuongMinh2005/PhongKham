@@ -209,9 +209,5 @@ void timThongTinThuoc(){
 }
 
 int main(){
-    KhoDuoc a1[3];
-    // for(int i=0;i<3;i++){
-    //     nhapThongTinThuoc(&a1[i]);
-    // }
-    xoaThongTinThuoc();
+    
 }
