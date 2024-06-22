@@ -209,7 +209,10 @@ void timThongTinThuoc(){
 }
 
 
-void inDanhSachThuoc(){
+void inDanhSachTHUOC(){
+    printf("________________________________\n");
+    printf("|        DANH SACH THUOC       |\n");
+    printf("________________________________\n");
     FILE *file = fopen("thongtinkhoduoc.txt","r");
     if( file == NULL){
         printf("____KHONG THE MO FILE THONG TIN____\n");
