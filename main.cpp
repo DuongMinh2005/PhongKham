@@ -717,43 +717,6 @@ void BenhNhan::timThongTinBenhNhan() {
     }
 };
 
-// void doiMK() {
-//     string nhapTK, nhapMK , MKmoi;
-// nhaplai:
-//     cout<<"Vui long nhap tai khoan: ";
-//     cin.ignore();
-//     getline(cin,nhapTK);
-//     cout<<"Mat khau: ";
-//     getline(cin,nhapMK);
-//     string TK , MK , VT;
-//     bool found = false;
-//     ifstream infile("user.txt");
-//     ofstream outfile("temp.txt");
-//     if (!infile.is_open() || !outfile.is_open())
-//         cout<<"____KHONG THE MO FILE THONG TIN____"<<endl;
-//     while (infile >> TK >> MK >> VT) {
-//         if (nhapTK == TK && nhapMK == MK) {
-//             cout<<"Vui long nhap mat khau moi: ";
-//             getline(cin, MKmoi);
-//             outfile << TK << " " << MKmoi << " " << VT<<endl;
-//             found = true;
-//         }else {
-//             outfile << TK << " " << MK << " " << VT <<endl;
-//         }
-//     }
-//     infile.close();
-//     outfile.close();
-//     if (found) {
-//         remove("user.txt");
-//         rename("temp.txt","user.txt");
-//         cout<<"____DOI MAT KHAU THANH CONG____"<<endl;
-//     } else {
-//         cout<<"____TAI KHOAN MAT KHAU KHONG CHINH XAC____"<<endl;
-//         cout<<"____________VUI LONG NHAP LAI_____________\n"<<endl;
-//         goto nhaplai;
-//     }
-// };
-
 void inDanhSachBN() {
     cout<<".______________________________."<<endl;
     cout<<"|     DANH SACH BENH NHAN      |"<<endl;
@@ -797,7 +760,6 @@ void inDanhSachTHUOC() {
 };
 
 int main(){
-    // int role;
     BenhNhan benhnhan;
     BacSi bacsi;
     KhoDuoc khoduoc;
