@@ -1,20 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct Taikhoan {
-    string usernameDN;
-    string passwordDN;
-    int role;    
-};
-
-int chonvaitro()
-{
-    int a;
-    cout<<"Ban muon tao tai khoan voi vai tro:"<<endl<<"1: BENH NHAN"<<endl<<"2: BAC SI"<<endl<<"3: QUAN LY"<<endl<<"Hay nhap lua chon:";
-    cin>>a; fflush(stdin);
-    return a;
-};
-
 //lưu ý: khi để file text và file code khác thư mục, cần truyền thêm đường dẫn trực tiếp, VD: "D//VScode1//Project2//user.txt"
 
 void TaoTK()
@@ -23,7 +9,6 @@ void TaoTK()
     cout<<"|         TAO TAI KHOAN        |"<<endl;
     cout<<".______________________________."<<endl;
     int vaitro;
-    vaitro =chonvaitro();
     string usernameTaoTK , passwordTaoTK;
     cout << "Nhap ten dang nhap: ";
     cin >> usernameTaoTK;
@@ -117,36 +102,6 @@ void xoaTK() {
         cout<<"____KHONG TIM THAY TAI KHOAN TREN____"<<endl;
     }
 };
-
-// int Dangnhap()
-// {
-//     string usernameDN , passwordDN;
-//     vector<Taikhoan> taikhoan;
-//     cout<<"Vui long nhap ten dang nhap: ";
-//     cin>>usernameDN; 
-//     cout<<"Vui long nhap mat khau: ";
-//     cin>>passwordDN;   
-//     ifstream file("user.txt"); 
-//     if (file.is_open()) {
-//         string fileUsernameDN , filePasswordDN;
-//         int role;
-//         while (file >> fileUsernameDN >> filePasswordDN>>role) {
-//             Taikhoan TK;
-//             TK.usernameDN = fileUsernameDN;
-//             TK.passwordDN = filePasswordDN;
-//             taikhoan.push_back(TK);
-//         }
-//         file.close();
-//         for (const auto& TK : taikhoan) {
-//             if (TK.usernameDN == usernameDN && TK.passwordDN == passwordDN){
-//                 return role;}
-//             }         
-//     } else {
-//         cout<< "____KHONG THE MO FILE THONG TIN____"<<endl;
-//     }
-//     return 0;
-// };
-
 class Person {
     protected:
         string tenDangNhap;
@@ -762,42 +717,42 @@ void BenhNhan::timThongTinBenhNhan() {
     }
 };
 
-void doiMK() {
-    string nhapTK, nhapMK , MKmoi;
-nhaplai:
-    cout<<"Vui long nhap tai khoan: ";
-    cin.ignore();
-    getline(cin,nhapTK);
-    cout<<"Mat khau: ";
-    getline(cin,nhapMK);
-    string TK , MK , VT;
-    bool found = false;
-    ifstream infile("user.txt");
-    ofstream outfile("temp.txt");
-    if (!infile.is_open() || !outfile.is_open())
-        cout<<"____KHONG THE MO FILE THONG TIN____"<<endl;
-    while (infile >> TK >> MK >> VT) {
-        if (nhapTK == TK && nhapMK == MK) {
-            cout<<"Vui long nhap mat khau moi: ";
-            getline(cin, MKmoi);
-            outfile << TK << " " << MKmoi << " " << VT<<endl;
-            found = true;
-        }else {
-            outfile << TK << " " << MK << " " << VT <<endl;
-        }
-    }
-    infile.close();
-    outfile.close();
-    if (found) {
-        remove("user.txt");
-        rename("temp.txt","user.txt");
-        cout<<"____DOI MAT KHAU THANH CONG____"<<endl;
-    } else {
-        cout<<"____TAI KHOAN MAT KHAU KHONG CHINH XAC____"<<endl;
-        cout<<"____________VUI LONG NHAP LAI_____________\n"<<endl;
-        goto nhaplai;
-    }
-};
+// void doiMK() {
+//     string nhapTK, nhapMK , MKmoi;
+// nhaplai:
+//     cout<<"Vui long nhap tai khoan: ";
+//     cin.ignore();
+//     getline(cin,nhapTK);
+//     cout<<"Mat khau: ";
+//     getline(cin,nhapMK);
+//     string TK , MK , VT;
+//     bool found = false;
+//     ifstream infile("user.txt");
+//     ofstream outfile("temp.txt");
+//     if (!infile.is_open() || !outfile.is_open())
+//         cout<<"____KHONG THE MO FILE THONG TIN____"<<endl;
+//     while (infile >> TK >> MK >> VT) {
+//         if (nhapTK == TK && nhapMK == MK) {
+//             cout<<"Vui long nhap mat khau moi: ";
+//             getline(cin, MKmoi);
+//             outfile << TK << " " << MKmoi << " " << VT<<endl;
+//             found = true;
+//         }else {
+//             outfile << TK << " " << MK << " " << VT <<endl;
+//         }
+//     }
+//     infile.close();
+//     outfile.close();
+//     if (found) {
+//         remove("user.txt");
+//         rename("temp.txt","user.txt");
+//         cout<<"____DOI MAT KHAU THANH CONG____"<<endl;
+//     } else {
+//         cout<<"____TAI KHOAN MAT KHAU KHONG CHINH XAC____"<<endl;
+//         cout<<"____________VUI LONG NHAP LAI_____________\n"<<endl;
+//         goto nhaplai;
+//     }
+// };
 
 void inDanhSachBN() {
     cout<<".______________________________."<<endl;
@@ -842,59 +797,10 @@ void inDanhSachTHUOC() {
 };
 
 int main(){
-    int role;
+    // int role;
     BenhNhan benhnhan;
     BacSi bacsi;
     KhoDuoc khoduoc;
-    string usernameDN , passwordDN;
-    int vaitro;
-    cout<<".________________________________."<<endl;
-    cout<<"|             LOGIN              |"<<endl;
-    cout<<"|________________________________|"<<endl;
-    int choice = 0;
-    cout<<"Da co tai khoan? : nhap 1"<<endl<<"Chua co tai khoan? : nhap 0"<<endl;
-    cin>>choice; fflush(stdin);
-    if(choice==0){
-        TaoTK();
-    }
-tryagain:
-    cout<<"Vui long nhap ten dang nhap: ";
-    cin>>usernameDN;
-    cout<<"Vui long nhap mat khau: ";
-    cin>>passwordDN;
-    
-    ifstream file("user.txt"); 
-    if (file.is_open()) {
-        string fileUsernameDN , filePasswordDN;
-        int vaitro;
-        while (file >> fileUsernameDN >> filePasswordDN>>vaitro) {
-            if (usernameDN == fileUsernameDN && passwordDN == filePasswordDN){
-                role = vaitro;
-                file.close();
-            }
-        }
-        
-    } else {
-        cout<< "____KHONG THE MO FILE THONG TIN____"<<endl;
-    }
-    
-    switch (role) {
-        case 1: 
-        cout<<"____DANG NHAP THANH CONG VOI VAI TRO BENH NHAN____\n"<<endl;
-        break;
-        case 2:
-        cout<<"____DANG NHAP THANH CONG VOI VAI TRO BAC SI____\n"<<endl;
-        break;
-        case 3: 
-        cout<<"____DANG NHAP THANH CONG VOI VAI TRO QUAN LI____\n"<<endl;
-        break;
-        default: 
-        cout<<"____TAI KHOAN MAT KHAU KHONG CHINH XAC____"<<endl<<"____VUI LONG DANG NHAP LAI____\n"<<endl;
-        goto tryagain;
-        break;
-    };
-    if (role==3)
-    {
 menu:
         int a;
         cout<<".______________________________."<<endl;
@@ -934,7 +840,7 @@ quanlitaikhoan:
                         goto menu;
                     default:
                         cout<<"!!!CHUC NANG KHONG PHU HOP!!!"<<endl;
-                        cout<<"VUI LONG CHON LAI"<<endl;
+                        cout<<"     VUI LONG CHON LAI"<<endl;
                         goto quanlitaikhoan;
                         break;
                 }
@@ -975,7 +881,7 @@ quanlibenhnhan:
                         break;
                     default:
                         cout<<"!!!CHUC NANG KHONG PHU HOP!!!"<<endl;
-                        cout<<"VUI LONG CHON LAI"<<endl;
+                        cout<<"      VUI LONG CHON LAI"<<endl;
                         goto quanlibenhnhan;
                         break;
                 }
@@ -1064,179 +970,8 @@ quanlikhoduoc:
                 goto quanlikhoduoc;
                 break;
             case 5:
-                usernameDN = "";
-                passwordDN = "";
-                role=0;
                 cout<<"____DANG XUAT THANH CONG____"<<endl;
-                goto tryagain;
             default:
                 cout<<"!!!CHUC NANG KHONG PHU HOP!!!"<<endl;
         }
     }
-    if (role == 1){
-menu2:
-        int a;
-        cout<<".______________________________."<<endl;
-        cout<<"|             MENU             |"<<endl;
-        cout<<".______________________________."<<endl;
-        cout<<"1.XEM THONG TIN CA NHAN"<<endl;
-        cout<<"2.DOI MAT KHAU"<<endl;
-        cout<<"3.DANG XUAT"<<endl;
-        cout<<"VUI LONG CHON CHUC NANG: ";
-        cin>>a;fflush(stdin);
-        switch (a) {
-            case 1:{
-                string line;
-                    ifstream file("thongtinbenhnhan.txt");
-                    if (!file.is_open()) {
-                        cout<<"____KHONG THE MO FILE THONG TIN____"<<endl;
-                        }
-                    while (getline(file,line)){
-                        if (line == "Ten dang nhap: " + usernameDN) {
-                            cout<<"____THONG TIN CA NHAN____"<<endl;
-                                for (int i=0;i<6;i++) {
-                                        getline(file,line);
-                                        cout<< line <<endl;
-                                    }
-                                }else {
-                                    cout<<"____THONG TIN BENH NHAN KHONG TON TAI____"<<endl;
-                                }
-                    };
-                break;
-                }
-            case 2:
-                doiMK();
-                usernameDN = "";
-                passwordDN = "";
-                role=0;
-                goto tryagain;
-                break;
-            case 3:
-                usernameDN="";
-                passwordDN="";
-                cout<<"____DANG XUAT THANH CONG____"<<endl;
-                goto tryagain;
-                break;
-            
-        }goto menu2;
-    }
-    if (role == 2)
-    {
-menu3:
-        int a;
-        cout<<".______________________________."<<endl;
-        cout<<"|            MENU             |"<<endl;
-        cout<<".______________________________."<<endl;
-        cout<<"1.QUAN LI THONG TIN CA NHAN"<<endl;
-        cout<<"2.QUAN LI BENH NHAN"<<endl;
-        cout<<"3.XEM DANH SACH THUOC"<<endl;
-        cout<<"4.DANG XUAT"<<endl;
-        cout<<"VUI LONG CHON CHUC NANG: ";
-        cin>>a;fflush(stdin);
-        switch (a) {
-            case 1:{
-                cout<<".______________________________."<<endl;
-                cout<<"|  QUAN LI THONG TIN CA NHAN   |"<<endl;
-                cout<<".______________________________."<<endl;
-                cout<<"1.XEM THONG TIN CA NHAN"<<endl;
-                cout<<"2.DOI MAT KHAU"<<endl;
-                cout<<"3.QUAY LAI"<<endl;
-                cout<<"VUI LONG CHON CHUC NANG: ";
-                int b;
-                cin>>b;fflush(stdin);
-                switch (b) {
-                    case 1:{
-                        string line;
-                        ifstream file("thongtinbacsi.txt");
-                        if (!file.is_open()) 
-                            cout<<"____KHONG THE MO FILE THONG TIN____"<<endl;
-                        while (getline(file,line)){
-                            if (line == "Ten dang nhap: " + usernameDN) {
-                                    cout<<"____THONG TIN CA NHAN____"<<endl;
-                                    for (int i=0;i<8;i++) {
-                                        getline(file,line);
-                                        cout<< line <<endl;
-                                    }
-                                }else {
-                                    cout<<"____THONG TIN BAC SI KHONG TON TAI____"<<endl;
-                                    cout<<"Bam ENTER de quay lai Menu";
-                                    char input=cin.get();
-                                    if (input == '\n'){
-                                        goto menu3;
-                                    }
-                                }
-                        };
-                        break;
-                    }
-                    case 2:
-                        doiMK();
-                        usernameDN = "";
-                        passwordDN = "";
-                        role=0;
-                        goto tryagain;
-                        break;
-                    case 3:
-                        goto menu3;
-                        break;
-                    default :
-                        cout<<"____CHUC NANG KHONG PHU HOP____"<<endl;
-                        goto menu3;
-                }
-                goto menu3;}
-            case 2:
-quanlibenhnhan2:
-                cout<<".______________________________."<<endl;
-                cout<<"|       QUAN LY BENH NHAN      |"<<endl;
-                cout<<".______________________________."<<endl;
-                cout<<"1.NHAP THONG TIN BENH NHAN"<<endl;
-                cout<<"2.XOA THONG TIN BENH NHAN"<<endl;
-                cout<<"3.SUA THONG TIN BENH NHAN"<<endl;
-                cout<<"4.TIM THONG TIN BENH NHAN"<<endl;
-                cout<<"5.XEM DANH SACH BENH NHAN"<<endl;
-                cout<<"6.QUAY LAI"<<endl;
-                cout<<"VUI LONG CHON CHUC NANG: ";
-                int b;
-                cin>>b;fflush(stdin);
-                switch (b){
-                    case 1:
-                        benhnhan.nhapThongTinBenhNhan();
-                        break;
-                    case 2:
-                        benhnhan.xoaThongTinBenhNhan();
-                        break;
-                    case 3:
-                        benhnhan.suaThongTinBenhNhan();
-                        break;
-                    case 4: 
-                        benhnhan.timThongTinBenhNhan();
-                        break;
-                    case 5:
-                        inDanhSachBN();
-                        break;
-                    case 6:
-                        goto menu3;
-                        break;
-                    default:
-                        cout<<"!!!CHUC NANG KHONG PHU HOP!!!"<<endl;
-                        cout<<"VUI LONG CHON LAI"<<endl;
-                        goto quanlibenhnhan;
-                        break;
-                }
-                goto quanlibenhnhan2;
-                break;
-            case 3: 
-                inDanhSachTHUOC();
-                goto menu2;
-                break;
-            case 4:
-                usernameDN="";
-                passwordDN="";
-                cout<<"____DANG XUAT THANH CONG____"<<endl;
-                goto tryagain;
-            default :
-                cout<<"____CHUC NANG KHONG PHU HOP____"<<endl;
-                goto menu2;
-        }
-    }
-    return 0;
-}; 
