@@ -118,38 +118,34 @@ void xoaTK() {
     }
 };
 
-int Dangnhap()
-{
-    string usernameDN , passwordDN;
-    vector<Taikhoan> taikhoan;
-    
-    cout<<"Vui long nhap ten dang nhap: ";
-    cin>>usernameDN; 
-    cout<<"Vui long nhap mat khau: ";
-    cin>>passwordDN;
-    
-    ifstream file("user.txt"); 
-    if (file.is_open()) {
-        string fileUsernameDN , filePasswordDN;
-        int role;
-        while (file >> fileUsernameDN >> filePasswordDN>>role) {
-            Taikhoan TK;
-            TK.usernameDN = fileUsernameDN;
-            TK.passwordDN = filePasswordDN;
-            taikhoan.push_back(TK);
-        }
-        file.close();
-
-        for (const auto& TK : taikhoan) {
-            if (TK.usernameDN == usernameDN && TK.passwordDN == passwordDN){
-                return role;}
-            } 
-        
-    } else {
-        cout<< "____KHONG THE MO FILE THONG TIN____"<<endl;
-    }
-    return 0;
-};
+// int Dangnhap()
+// {
+//     string usernameDN , passwordDN;
+//     vector<Taikhoan> taikhoan;
+//     cout<<"Vui long nhap ten dang nhap: ";
+//     cin>>usernameDN; 
+//     cout<<"Vui long nhap mat khau: ";
+//     cin>>passwordDN;   
+//     ifstream file("user.txt"); 
+//     if (file.is_open()) {
+//         string fileUsernameDN , filePasswordDN;
+//         int role;
+//         while (file >> fileUsernameDN >> filePasswordDN>>role) {
+//             Taikhoan TK;
+//             TK.usernameDN = fileUsernameDN;
+//             TK.passwordDN = filePasswordDN;
+//             taikhoan.push_back(TK);
+//         }
+//         file.close();
+//         for (const auto& TK : taikhoan) {
+//             if (TK.usernameDN == usernameDN && TK.passwordDN == passwordDN){
+//                 return role;}
+//             }         
+//     } else {
+//         cout<< "____KHONG THE MO FILE THONG TIN____"<<endl;
+//     }
+//     return 0;
+// };
 
 class Person {
     protected:
