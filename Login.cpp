@@ -25,6 +25,7 @@ void TaoTK(){
     char passwordTaoTK[50]; 
 
     printf("Nhap ten dang nhap: ");
+    fflush(stdin);
     fgets(usernameTaoTK, sizeof(usernameTaoTK), stdin);
     printf("Nhap mat khau: ");
     fgets(passwordTaoTK, sizeof(passwordTaoTK), stdin);
@@ -197,6 +198,9 @@ char* getTenDangNhap(struct Person *person) {
 
 
 int main(){
-    printf("nha bao viec");
+    // TaoTK();
+    Dangnhap();
+    
+    suaTK();
 }
 
