@@ -1,17 +1,9 @@
-Ma so thuoc: #345789
-Ten thuoc: siu
-Noi san xuat: Thanh Hoa
-Ngay san xuat: 12/10/2023
-Han sau dung: 15/2/2050
-Tac dung: 15/2/2050
-So luong: 100
-Don gia:  vnd
---------------------------------
 Ma so thuoc: 123
-Ten thuoc: 1
-Noi san xuat: 1
-Han su dung: 1
-Tac dung cua thuoc: 1
-So luong: 1
-Don gia: 1
+Ten thuoc: Paracetamol
+Noi san xuat: Ha Noi
+Ngay san xuat: Ha Noi
+Han su dung: 1/1/2030
+Tac dung cua thuoc: Khong chet
+So luong: 100000
+Don gia: 1000000
 ------------------------------------
