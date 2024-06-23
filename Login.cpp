@@ -35,7 +35,7 @@ void TaoTK(){
         fclose(file);
         printf("____TAO TAI KHOAN THANH CONG____\n");
     } else {
-        printf("Khong the mo tep ghi!\n");
+        printf("____KHONG THE MO FILE THONG TIN____\n");
     }
 
 }
@@ -133,7 +133,6 @@ void xoaTK() {
 
     fclose(file);
     fclose(tempfile);
-
     if (found) {
         remove("user.txt");
         rename("temp.txt", "user.txt");
@@ -142,8 +141,6 @@ void xoaTK() {
         printf("____KHONG TIM THAY TAI KHOAN TREN____\n");
     }
 }
-
-
 
 int Dangnhap() {
     char usernameDN[50], passwordDN[50];
@@ -200,14 +197,6 @@ char* getTenDangNhap(struct Person *person) {
 
 
 int main(){
-    TaoTK();
-    // int role = Dangnhap();
-    // if (role) {
-    //     printf("Dang nhap thanh cong voi vai tro: %dSiuu\n", role);
-    // } else {
-    //     printf("Dang nhap that bai\n");
-    // }
-    // xoaTK();
-    suaTK();
+    printf("nha bao viec");
 }
 
