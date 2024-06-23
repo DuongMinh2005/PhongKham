@@ -916,7 +916,7 @@ tryagain:
 quanlitaikhoan:
                 cout<<".______________________________."<<endl;
                 cout<<"|       QUAN LY TAI KHOAN      |"<<endl;
-                cout<<"|______________________________|"<<endl;
+                cout<<".______________________________."<<endl;
                 cout<<"1.TAO TAI KHOAN"<<endl;
                 cout<<"2.XOA TAI KHOAN"<<endl;
                 cout<<"3.SUA TAI KHOAN"<<endl;
@@ -948,7 +948,7 @@ quanlitaikhoan:
 quanlibenhnhan:
                 cout<<".______________________________."<<endl;
                 cout<<"|       QUAN LY BENH NHAN      |"<<endl;
-                cout<<"|______________________________|"<<endl;
+                cout<<".______________________________."<<endl;
                 cout<<"1.NHAP THONG TIN BENH NHAN"<<endl;
                 cout<<"2.XOA THONG TIN BENH NHAN"<<endl;
                 cout<<"3.SUA THONG TIN BENH NHAN"<<endl;
