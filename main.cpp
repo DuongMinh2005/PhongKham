@@ -895,7 +895,7 @@ tryagain:
     };
     if (role==3)
     {
-        menu:
+menu:
         int a;
         cout<<".______________________________."<<endl;
         cout<<"|             MENU             |"<<endl;
