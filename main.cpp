@@ -3,105 +3,6 @@ using namespace std;
 
 //lưu ý: khi để file text và file code khác thư mục, cần truyền thêm đường dẫn trực tiếp, VD: "D//VScode1//Project2//user.txt"
 
-void TaoTK()
-{
-    cout<<".______________________________."<<endl;
-    cout<<"|         TAO TAI KHOAN        |"<<endl;
-    cout<<".______________________________."<<endl;
-    int vaitro;
-    string usernameTaoTK , passwordTaoTK;
-    cout << "Nhap ten dang nhap: ";
-    cin >> usernameTaoTK;
-    cout<< "Nhap mat khau: ";
-    cin >> passwordTaoTK;
-    
-    ofstream file("user.txt", ios::app);
-    if (file.is_open())
-        {
-            file << usernameTaoTK <<" " << passwordTaoTK << " " << vaitro << endl;
-            file.close();
-            cout<<"____TAO TAI KHOAN THANH CONG____"<< endl; 
-        }
-    else 
-        cout<<"Khong the mo tep ghi!"<<endl;
-};
-
-void suaTK() {
-    cout<<".______________________________."<<endl;
-    cout<<"|         SUA TAI KHOAN        |"<<endl;
-    cout<<".______________________________."<<endl;
-    ifstream infile("user.txt");
-    ofstream outfile("temp.txt");
-    string taikhoan, matkhau, role, line;
-    string TK,MK,VT;
-    string search_line;
-    bool found = false;
-    cout<<"Vui long nhap tai khoan: ";
-    cin.ignore();
-    getline(cin,search_line);
-    if (!infile.is_open() || !outfile.is_open()) {
-        cout<<"____KHONG THE MO FILE THONG TIN____"<<endl;
-    }
-    while (infile >> taikhoan >> matkhau >> role){
-        if (taikhoan == search_line){
-            cout<<"____DA TIM THAY TAI KHOAN CAN SUA____"<<endl;
-            cout<<"_____VUI LONG NHAP LAI THONG TIN_____"<<endl;
-            cout<<"Ten dang nhap: ";
-            cin.ignore();
-            getline(cin,TK);
-            cout<<"Mat khau: ";
-            getline(cin,MK);
-            cout<<"Vai tro: ";
-            getline(cin,VT);
-            getline(infile,line);
-            outfile << TK << " "<< MK <<" "<< VT <<" "<<endl;
-            found = true;
-        }   else {
-            outfile << taikhoan << " " << matkhau << " " << role << endl;
-        }
-    }
-    infile.close();
-    outfile.close();
-    if (found) {
-        cout<<"____DA SUA TAI KHOAN THANH CONG____"<<endl;
-        remove("user.txt");
-        rename("temp.txt","user.txt");
-    }
-};
-
-void xoaTK() {
-    cout<<".______________________________."<<endl;
-    cout<<"|         XOA TAI KHOAN        |"<<endl;
-    cout<<".______________________________."<<endl;
-    ifstream file("user.txt");
-    ofstream tempfile("temp.txt");
-    string taikhoan, matkhau, role, line;
-    string search_line;
-    bool found = false;
-    cout<<"Vui long nhap tai khoan: ";
-    cin.ignore();
-    getline(cin,search_line);
-    if (!file.is_open()){
-        cout<<"____KHONG THE MO FILE THONG TIN____"<<endl;
-    }
-    while (file >> taikhoan >>matkhau>>role){
-        if (taikhoan == search_line){
-            getline(file,line);
-            found = true;
-        } else {
-            tempfile<<taikhoan<<" "<<matkhau<<" "<<role<<endl;
-        }
-    }
-    file.close();
-    tempfile.close();
-    if (found){
-        remove("user.txt");
-        rename("temp.txt","user.txt");
-        cout<<"____XOA TAI KHOAN "<<search_line<<" THANH CONG"<<endl;
-    } else {
-        cout<<"____KHONG TIM THAY TAI KHOAN TREN____"<<endl;
-    }
-};
 class Person {
     protected:
         string tenDangNhap;
@@ -768,47 +669,14 @@ menu:
         cout<<".______________________________."<<endl;
         cout<<"|             MENU             |"<<endl;
         cout<<".______________________________."<<endl;
-        cout<<"1.QUAN LY TAI KHOAN"<<endl;
-        cout<<"2.QUAN LY BENH NHAN"<<endl;
-        cout<<"3.QUAN LY BAC SI"<<endl;
-        cout<<"4.QUAN LY KHO DUOC"<<endl;
-        cout<<"5.DANG XUAT"<<endl;
+        cout<<"1.QUAN LY BENH NHAN"<<endl;
+        cout<<"2.QUAN LY BAC SI"<<endl;
+        cout<<"3.QUAN LY KHO DUOC"<<endl;
+        cout<<"4.DANG XUAT"<<endl;
         cout<<"VUI LONG CHON CHUC NANG: ";
         cin>>a;fflush(stdin);
         switch (a) {
             case 1:
-quanlitaikhoan:
-                cout<<".______________________________."<<endl;
-                cout<<"|       QUAN LY TAI KHOAN      |"<<endl;
-                cout<<".______________________________."<<endl;
-                cout<<"1.TAO TAI KHOAN"<<endl;
-                cout<<"2.XOA TAI KHOAN"<<endl;
-                cout<<"3.SUA TAI KHOAN"<<endl;
-                cout<<"4.QUAY LAI"<<endl;
-                cout<<"VUI LONG CHON CHUC NANG: ";
-                int d;
-                cin>>d;fflush(stdin);
-                switch (d) {
-                    case 1:
-                        TaoTK();
-                        break;
-                    case 2:
-                        xoaTK();
-                        break;
-                    case 3:
-                        suaTK();
-                        break;
-                    case 4:
-                        goto menu;
-                    default:
-                        cout<<"!!!CHUC NANG KHONG PHU HOP!!!"<<endl;
-                        cout<<"     VUI LONG CHON LAI"<<endl;
-                        goto quanlitaikhoan;
-                        break;
-                }
-                goto quanlitaikhoan;
-                break;
-            case 2:
 quanlibenhnhan:
                 cout<<".______________________________."<<endl;
                 cout<<"|       QUAN LY BENH NHAN      |"<<endl;
@@ -849,7 +717,7 @@ quanlibenhnhan:
                 }
                 goto quanlibenhnhan;
                 break;
-            case 3:
+            case 2:
 quanlibacsi:
                 cout<<".______________________________."<<endl;
                 cout<<"|        QUAN LY BAC SI        |"<<endl;
@@ -890,7 +758,7 @@ quanlibacsi:
                 }
                 goto quanlibacsi;
                 break;
-            case 4:
+            case 3:
 quanlikhoduoc:
                 cout<<".______________________________."<<endl;
                 cout<<"|        QUAN LY KHO DUOC      |"<<endl;
@@ -931,7 +799,7 @@ quanlikhoduoc:
                 }
                 goto quanlikhoduoc;
                 break;
-            case 5:
+            case 4:
                 cout<<"____DANG XUAT THANH CONG____"<<endl;
             default:
                 cout<<"!!!CHUC NANG KHONG PHU HOP!!!"<<endl;
