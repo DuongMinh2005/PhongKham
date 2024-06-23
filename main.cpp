@@ -19,9 +19,9 @@ int chonvaitro()
 
 void TaoTK()
 {
-    cout<<"________________________________"<<endl;
+    cout<<".______________________________."<<endl;
     cout<<"|         TAO TAI KHOAN        |"<<endl;
-    cout<<"________________________________"<<endl;
+    cout<<".______________________________."<<endl;
     int vaitro;
     vaitro =chonvaitro();
     string usernameTaoTK , passwordTaoTK;
@@ -42,9 +42,9 @@ void TaoTK()
 };
 
 void suaTK() {
-    cout<<"________________________________"<<endl;
+    cout<<".______________________________."<<endl;
     cout<<"|         SUA TAI KHOAN        |"<<endl;
-    cout<<"________________________________"<<endl;
+    cout<<".______________________________."<<endl;
     ifstream infile("user.txt");
     ofstream outfile("temp.txt");
     string taikhoan, matkhau, role, line;
@@ -85,9 +85,9 @@ void suaTK() {
 };
 
 void xoaTK() {
-    cout<<"________________________________"<<endl;
+    cout<<".______________________________."<<endl;
     cout<<"|         XOA TAI KHOAN        |"<<endl;
-    cout<<"________________________________"<<endl;
+    cout<<".______________________________."<<endl;
     ifstream file("user.txt");
     ofstream tempfile("temp.txt");
     string taikhoan, matkhau, role, line;
@@ -778,9 +778,8 @@ nhaplai:
     bool found = false;
     ifstream infile("user.txt");
     ofstream outfile("temp.txt");
-    if (!infile.is_open() || !outfile.is_open()) {
+    if (!infile.is_open() || !outfile.is_open())
         cout<<"____KHONG THE MO FILE THONG TIN____"<<endl;
-    }
     while (infile >> TK >> MK >> VT) {
         if (nhapTK == TK && nhapMK == MK) {
             cout<<"Vui long nhap mat khau moi: ";
@@ -799,15 +798,15 @@ nhaplai:
         cout<<"____DOI MAT KHAU THANH CONG____"<<endl;
     } else {
         cout<<"____TAI KHOAN MAT KHAU KHONG CHINH XAC____"<<endl;
-        cout<<"____________VUI LONG NHAP LAI_____________"<<endl;
+        cout<<"____________VUI LONG NHAP LAI_____________\n"<<endl;
         goto nhaplai;
     }
 };
 
 void inDanhSachBN() {
-    cout<<"________________________________"<<endl;
+    cout<<".______________________________."<<endl;
     cout<<"|     DANH SACH BENH NHAN      |"<<endl;
-    cout<<"________________________________"<<endl;
+    cout<<".______________________________."<<endl;
     string line;
     ifstream file("thongtinbenhnhan.txt");
     if (!file.is_open()) {
@@ -819,9 +818,9 @@ void inDanhSachBN() {
 };
 
 void inDanhSachBS() {
-    cout<<"________________________________"<<endl;
+    cout<<".______________________________."<<endl;
     cout<<"|       DANH SACH BAC SI       |"<<endl;
-    cout<<"________________________________"<<endl;
+    cout<<".______________________________."<<endl;
     string line;
     ifstream file("thongtinbacsi.txt");
     if (!file.is_open()) {
@@ -833,9 +832,9 @@ void inDanhSachBS() {
 };
 
 void inDanhSachTHUOC() {
-    cout<<"________________________________"<<endl;
+    cout<<".______________________________."<<endl;
     cout<<"|        DANH SACH THUOC       |"<<endl;
-    cout<<"________________________________"<<endl;
+    cout<<".______________________________."<<endl;
     string line;
     ifstream file("thongtinkhoduoc.txt");
     if (!file.is_open()) {
@@ -885,16 +884,16 @@ tryagain:
     
     switch (role) {
         case 1: 
-        cout<<"____DANG NHAP THANH CONG VOI VAI TRO BENH NHAN____"<<endl;
+        cout<<"____DANG NHAP THANH CONG VOI VAI TRO BENH NHAN____\n"<<endl;
         break;
         case 2:
-        cout<<"____DANG NHAP THANH CONG VOI VAI TRO BAC SI____"<<endl;
+        cout<<"____DANG NHAP THANH CONG VOI VAI TRO BAC SI____\n"<<endl;
         break;
         case 3: 
-        cout<<"____DANG NHAP THANH CONG VOI VAI TRO QUAN LI____"<<endl;
+        cout<<"____DANG NHAP THANH CONG VOI VAI TRO QUAN LI____\n"<<endl;
         break;
         default: 
-        cout<<"____TAI KHOAN MAT KHAU KHONG CHINH XAC____"<<endl<<"____VUI LONG DANG NHAP LAI____"<<endl;
+        cout<<"____TAI KHOAN MAT KHAU KHONG CHINH XAC____"<<endl<<"____VUI LONG DANG NHAP LAI____\n"<<endl;
         goto tryagain;
         break;
     };
@@ -902,9 +901,9 @@ tryagain:
     {
         menu:
         int a;
-        cout<<"________________________________"<<endl;
+        cout<<".______________________________."<<endl;
         cout<<"|             MENU             |"<<endl;
-        cout<<"________________________________"<<endl;
+        cout<<".______________________________."<<endl;
         cout<<"1.QUAN LY TAI KHOAN"<<endl;
         cout<<"2.QUAN LY BENH NHAN"<<endl;
         cout<<"3.QUAN LY BAC SI"<<endl;
@@ -915,7 +914,7 @@ tryagain:
         switch (a) {
             case 1:
 quanlitaikhoan:
-                cout<<"________________________________"<<endl;
+                cout<<".______________________________."<<endl;
                 cout<<"|       QUAN LY TAI KHOAN      |"<<endl;
                 cout<<"|______________________________|"<<endl;
                 cout<<"1.TAO TAI KHOAN"<<endl;
@@ -947,7 +946,7 @@ quanlitaikhoan:
                 break;
             case 2:
 quanlibenhnhan:
-                cout<<"________________________________"<<endl;
+                cout<<".______________________________."<<endl;
                 cout<<"|       QUAN LY BENH NHAN      |"<<endl;
                 cout<<"|______________________________|"<<endl;
                 cout<<"1.NHAP THONG TIN BENH NHAN"<<endl;
@@ -988,9 +987,9 @@ quanlibenhnhan:
                 break;
             case 3:
 quanlibacsi:
-                cout<<"________________________________"<<endl;
+                cout<<".______________________________."<<endl;
                 cout<<"|        QUAN LY BAC SI        |"<<endl;
-                cout<<"________________________________"<<endl;
+                cout<<".______________________________."<<endl;
                 cout<<"1.NHAP THONG TIN BAC SI"<<endl;
                 cout<<"2.XOA THONG TIN BAC SI"<<endl;
                 cout<<"3.SUA THONG TIN BAC SI"<<endl;
@@ -1029,9 +1028,9 @@ quanlibacsi:
                 break;
             case 4:
 quanlikhoduoc:
-                cout<<"________________________________"<<endl;
+                cout<<".______________________________."<<endl;
                 cout<<"|        QUAN LY KHO DUOC      |"<<endl;
-                cout<<"________________________________"<<endl;
+                cout<<".______________________________."<<endl;
                 cout<<"1.NHAP THONG TIN THUOC"<<endl;
                 cout<<"2.XOA THONG TIN THUOC"<<endl;
                 cout<<"3.SUA THONG TIN THUOC"<<endl;
@@ -1081,9 +1080,9 @@ quanlikhoduoc:
     if (role == 1){
 menu2:
         int a;
-        cout<<"________________________________"<<endl;
+        cout<<".______________________________."<<endl;
         cout<<"|             MENU             |"<<endl;
-        cout<<"________________________________"<<endl;
+        cout<<".______________________________."<<endl;
         cout<<"1.XEM THONG TIN CA NHAN"<<endl;
         cout<<"2.DOI MAT KHAU"<<endl;
         cout<<"3.DANG XUAT"<<endl;
@@ -1129,9 +1128,9 @@ menu2:
     {
 menu3:
         int a;
-        cout<<"________________________________"<<endl;
+        cout<<".______________________________."<<endl;
         cout<<"|            MENU             |"<<endl;
-        cout<<"________________________________"<<endl;
+        cout<<".______________________________."<<endl;
         cout<<"1.QUAN LI THONG TIN CA NHAN"<<endl;
         cout<<"2.QUAN LI BENH NHAN"<<endl;
         cout<<"3.XEM DANH SACH THUOC"<<endl;
@@ -1140,9 +1139,9 @@ menu3:
         cin>>a;fflush(stdin);
         switch (a) {
             case 1:{
-                cout<<"________________________________"<<endl;
+                cout<<".______________________________."<<endl;
                 cout<<"|  QUAN LI THONG TIN CA NHAN   |"<<endl;
-                cout<<"________________________________"<<endl;
+                cout<<".______________________________."<<endl;
                 cout<<"1.XEM THONG TIN CA NHAN"<<endl;
                 cout<<"2.DOI MAT KHAU"<<endl;
                 cout<<"3.QUAY LAI"<<endl;
@@ -1191,9 +1190,9 @@ menu3:
                 goto menu3;}
             case 2:
 quanlibenhnhan2:
-                cout<<"________________________________"<<endl;
+                cout<<".______________________________."<<endl;
                 cout<<"|       QUAN LY BENH NHAN      |"<<endl;
-                cout<<"________________________________"<<endl;
+                cout<<".______________________________."<<endl;
                 cout<<"1.NHAP THONG TIN BENH NHAN"<<endl;
                 cout<<"2.XOA THONG TIN BENH NHAN"<<endl;
                 cout<<"3.SUA THONG TIN BENH NHAN"<<endl;
