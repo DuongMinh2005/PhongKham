@@ -1148,9 +1148,8 @@ menu3:
                     case 1:{
                         string line;
                         ifstream file("thongtinbacsi.txt");
-                        if (!file.is_open()) {
+                        if (!file.is_open()) 
                             cout<<"____KHONG THE MO FILE THONG TIN____"<<endl;
-                            }
                         while (getline(file,line)){
                             if (line == "Ten dang nhap: " + usernameDN) {
                                     cout<<"____THONG TIN CA NHAN____"<<endl;
