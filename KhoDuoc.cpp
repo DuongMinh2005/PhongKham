@@ -44,7 +44,7 @@ void nhapThongTinThuoc(KhoDuoc *thuoc){
             fprintf(file, "Tac dung cua thuoc: %s", thuoc->tacdung);
             fprintf(file, "So luong: %d\n", thuoc->soluong);
             fprintf(file, "Don gia: %s", thuoc->dongia);
-            fprintf(file, "------------------------------------\n");\
+            fprintf(file, "------------------------------------\n");
             fclose(file);
             printf("____NHAP THONG TIN THANH CONG____\n");
         }
@@ -179,10 +179,9 @@ void timThongTinThuoc(){
     char masothuoc[256];
     char line[256];
     char search_line[150];
-    int found =0;
+    int found = 0;
     printf("____TIM KIEM THONG TIN THUOC____\n");
     printf("Nhap ma so thuoc: ");
-    fflush(stdin);
     getchar();
     fgets(masothuoc,sizeof(masothuoc),stdin);
     snprintf(search_line, sizeof(search_line),"Ma so thuoc: %s",masothuoc);
@@ -197,10 +196,8 @@ void timThongTinThuoc(){
             }
             break;
         }
-        
     }
     fclose(file);
-
     if (!found) 
         printf("____KHONG TIM THAY THONG TIN THUOC____\n");
 }
