@@ -1,7 +1,14 @@
-Ten dang nhap: huyle
-Ten: Huy Le
-Tuoi: 30
-Dia chi: Lang Son
-Loai benh: Sau Rang
-Vien phi: 500000
-------------------------------------
+Ten dang nhap: tuyet
+Ten: Mai
+Tuoi: 19
+Dia chi: vn
+Loai benh: ko
+Vien phi: 10000
+--------------------------------
+Ten dang nhap: duong
+Ten: d
+Tuoi: 19
+Dia chi: d
+Loai benh: d
+Vien phi: 1000000
+--------------------------------
