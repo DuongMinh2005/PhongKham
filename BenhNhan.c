@@ -208,7 +208,7 @@ int main(){
     BenhNhan b1;
     // nhapThongTinBenhNhan(&b1);
     inThongTinBenhNhan();
-    xoaThongTinBenhNhan();
-    suaThongTinBenhNhan();
+    // xoaThongTinBenhNhan();
+    // suaThongTinBenhNhan();
     timThongTinBenhNhan();
 }
