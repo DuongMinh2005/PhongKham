@@ -186,7 +186,7 @@ void timThongTinThuoc(){
         return;
     }
 
-    char masothuoc[100];
+    
 
     char masothuoc[256];
     char line[256];
@@ -234,5 +234,6 @@ void inDanhSachTHUOC(){
     fclose(file);
 }
 int main(){
-
+    KhoDuoc a;
+    inDanhSachTHUOC();
 }
