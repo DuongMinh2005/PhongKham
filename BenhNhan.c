@@ -165,7 +165,7 @@ void timThongTinBenhNhan(){
     printf("____TIM KIEM THONG TIN BENH NHAN____\n");
     printf("Nhap ten dang nhap: ");
     //fflush(stdin);
-    getchar();
+    //getchar();
     gets(TenDangNhap);
     snprintf(search_line, sizeof(search_line),"Ten dang nhap: %s\n",TenDangNhap);
 
