@@ -10,13 +10,12 @@ typedef struct{
     char diachi[200];
     char chucvu[100];
     char chuyenkhoa[100];
-    int kinhnghiem;
+    char kinhnghiem[100];
 }BacSi;
 
 void NhapThongTinBacSi(BacSi* nhap){
         printf("____NHAP THONG TIN BAC SI____\n");
         printf("Ten dang nhap: ");
-        //getchar();
         gets(nhap->tenDangNhap);
         printf("Ten: ");
         gets(nhap->tenBacSi);
@@ -33,8 +32,8 @@ void NhapThongTinBacSi(BacSi* nhap){
         gets(nhap->chuyenkhoa);
         fflush(stdin);
         printf("Kinh nghiem: ");
-        scanf("%d",&nhap->kinhnghiem);
-        getchar();
+        gets(nhap->kinhnghiem);
+        //getchar();
 
     FILE *file = fopen ("thongtinbacsi.txt","a");
         if(file != NULL){
@@ -45,7 +44,7 @@ void NhapThongTinBacSi(BacSi* nhap){
             fprintf(file, "Dia chi: %s\n", nhap->diachi);
             fprintf(file, "Chuc vu: %s\n", nhap->chucvu);
             fprintf(file, "Chuyen khoa: %s\n", nhap->chuyenkhoa);
-            fprintf(file, "Tuoi: %d\n", nhap->kinhnghiem);
+            fprintf(file, "Kinh nghiem: %s\n", nhap->kinhnghiem);
             fprintf(file, "------------------------------------\n");
             fclose(file);
             printf("____NHAP THONG TIN BAC SI THANH CONG____\n");
@@ -58,15 +57,18 @@ void NhapThongTinBacSi(BacSi* nhap){
 void xoaThongTinBacSi(){
         char TenDangNhap[100];
         printf("____XOA THONG TIN BAC SI____\n");
-        printf("Nhap ten tai khoan can xoa: \n");
+        printf("Nhap ten tai khoan can xoa \n");
         printf("Ten dang nhap: ");
-        getchar();
+        //getchar();
         gets(TenDangNhap);
+        TenDangNhap[strcspn(TenDangNhap, "\n")] = '\0';
 
-    FILE *infile = fopen("thongtinbasi.txt","r");
+    FILE *infile = fopen("thongtinbacsi.txt","r");
     FILE *outfile = fopen("tempt.txt","w");
         if( infile == NULL || outfile == NULL){
             printf("____KHONG THE MO FILE THONG TIN BAC SI____\n");
+            if (infile) fclose(infile);
+            if (outfile) fclose(outfile);
             return;
         }
         char line[256];
@@ -104,6 +106,7 @@ void suaThongTinBacSi(){
         printf("____SUA THONG TIN BAC SI____\n");
         printf("Vui long nhap ten dang nhap: ");
         gets(TenDangNhap);
+        TenDangNhap[strcspn(TenDangNhap, "\n")] = '\0';
 
     FILE *infile = fopen("thongtinbacsi.txt","r");
     FILE *tempfile = fopen("tempt.txt","w");
@@ -136,7 +139,7 @@ void suaThongTinBacSi(){
                 printf("Chuyen khoa: ");
                 gets(nhap.chuyenkhoa);
                 printf("Kinh nghiem: ");
-                scanf("%d",&nhap.kinhnghiem);
+                gets(nhap.kinhnghiem);
 
                 fprintf(tempfile,"Ten dang nhap: %s\n", nhap.tenDangNhap);
                 fprintf(tempfile, "Ten: %s\n", nhap.tenBacSi);
@@ -145,10 +148,10 @@ void suaThongTinBacSi(){
                 fprintf(tempfile, "Dia chi: %s\n", nhap.diachi);
                 fprintf(tempfile, "Chuc vu: %s\n", nhap.chucvu);
                 fprintf(tempfile, "Chuyen khoa: %s\n", nhap.chuyenkhoa);
-                fprintf(tempfile, "Kinh nghiem: %d\n", nhap.kinhnghiem);
+                fprintf(tempfile, "Kinh nghiem: %s\n", nhap.kinhnghiem);
                 fprintf(tempfile, "------------------------------------\n");
 
-                for( int i=0; i<8; ++i){
+                for(int i=0; i<8; ++i){
                     fgets(line, sizeof(line),infile);
                 }
             }
@@ -170,7 +173,7 @@ void suaThongTinBacSi(){
 }
 
 void timThongTinBacSi(){
-    FILE* file = fopen("thongtinbacsi.txt","a");
+    FILE* file = fopen("thongtinbacsi.txt","r");
     if(file == NULL){
         printf("____KHONG THE MO FILE THONG TIN BAC SI____\n");
     }
@@ -181,16 +184,15 @@ void timThongTinBacSi(){
     int found = 0;
     printf("____TIM KIEM THONG TIN BAC SI____\n");
     printf("Nhap ten dang nhap: ");
-    //getchar();
     gets(TenDangNhap);
     snprintf(search_line, sizeof(search_line),"Ten dang nhap: %s\n",TenDangNhap);
 
-    while(fgets(line,sizeof(line),stdin)){
+    while(fgets(line,sizeof(line),file)){
         if(strcmp(line, search_line) == 0){
             found = 1;
             printf("%s", line);
             for ( int i = 0 ; i < 8; i++){
-                if(fgets(line,sizeof(line),stdin))
+                if(fgets(line,sizeof(line),file))
                     printf("%s", line);
             }
             break;
@@ -213,6 +215,8 @@ void inThongTinBacSi(){
     }
 
     char line[256];
+    printf("____DANH SACH BAC SI____\n");
+
     while(fgets(line,sizeof(line),file)){
         printf("%s", line);
     }
@@ -220,11 +224,14 @@ void inThongTinBacSi(){
 }
 
 int main(){
-    BacSi b1,b2,b3;
-    // NhapThongTinBacSi(&b1);
-    // NhapThongTinBacSi(&b2);
-    // NhapThongTinBacSi(&b3);
+    BacSi b1,b2;
+    NhapThongTinBacSi(&b1);
+    NhapThongTinBacSi(&b2);
+    //NhapThongTinBacSi(&b3);
     inThongTinBacSi();
-    // suaThongTinBacSi();
+    xoaThongTinBacSi();
+    suaThongTinBacSi();
     timThongTinBacSi();
+    return 0;
+
 }
