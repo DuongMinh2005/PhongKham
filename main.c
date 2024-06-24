@@ -364,7 +364,7 @@ void timThongTinThuoc(){
     FILE *file = fopen("thongtinkhoduoc.txt","r");
     if(file == NULL){
         printf("____KHONG THE MO FILE THONG TIN____\n");
-        
+        return;
     }
 
     char masothuoc[100];
@@ -377,12 +377,12 @@ void timThongTinThuoc(){
     fgets(masothuoc,sizeof(masothuoc),stdin);
     snprintf(search_line, sizeof(search_line),"Ma so thuoc: %s",masothuoc);
 
-    while(fgets(line,sizeof(line),stdin)){
+    while(fgets(line,sizeof(line),file)){
         if(strcmp(line, search_line)==0){
             found =1;
             printf("%s", line);
             for ( int i =0 ; i<8;++i){
-                if(fgets(line,sizeof(line),stdin))
+                if(fgets(line,sizeof(line),file))
                     printf("%s", line);
             }
             break;

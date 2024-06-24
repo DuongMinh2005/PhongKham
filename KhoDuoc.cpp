@@ -228,7 +228,7 @@ void inDanhSachTHUOC(){
     fclose(file);
 }
 int main(){
-    KhoDuoc k;
-    nhapThongTinThuoc(&k);
-    timThongTinThuoc();
+    // KhoDuoc k;
+    // nhapThongTinThuoc(&k);
+    // timThongTinThuoc();
 }
