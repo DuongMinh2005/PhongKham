@@ -674,7 +674,7 @@ menu:
         cout<<"3.QUAN LY KHO DUOC"<<endl;
         cout<<"4.DANG XUAT"<<endl;
         cout<<"VUI LONG CHON CHUC NANG: ";
-        cin>>a;fflush(stdin);
+        cin>>a;
         switch (a) {
             case 1:
 quanlibenhnhan:
@@ -708,7 +708,6 @@ quanlibenhnhan:
                         break;
                     case 6:
                         goto menu;
-                        break;
                     default:
                         cout<<"!!!CHUC NANG KHONG PHU HOP!!!"<<endl;
                         cout<<"======VUI LONG CHON LAI======\n\n";
@@ -716,7 +715,6 @@ quanlibenhnhan:
                         break;
                 }
                 goto quanlibenhnhan;
-                break;
             case 2:
 quanlibacsi:
                 cout<<".______________________________."<<endl;
@@ -749,15 +747,12 @@ quanlibacsi:
                         break;
                     case 6:
                         goto menu;
-                        break;
                     default:
                         cout<<"!!!CHUC NANG KHONG PHU HOP!!!"<<endl;
                         cout<<"======VUI LONG CHON LAI======\n\n";
                         goto quanlibacsi;
-                        break;
                 }
                 goto quanlibacsi;
-                break;
             case 3:
 quanlikhoduoc:
                 cout<<".______________________________."<<endl;
@@ -771,7 +766,7 @@ quanlikhoduoc:
                 cout<<"6.QUAY LAI"<<endl;
                 cout<<"VUI LONG CHON CHUC NANG: ";
                 int e;
-                cin>>e;fflush(stdin);
+                cin>>e;
                 switch (e){
                     case 1:
                         khoduoc.nhapThongTinThuoc();
