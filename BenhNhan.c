@@ -179,12 +179,11 @@ void timThongTinBenhNhan(){
             }
             break;
         }
+        else
+        printf("____KHONG TIM THAY THONG BENH NHAN____\n");
+    
     }
     fclose(file);
-
-    else{
-        printf("____KHONG TIM THAY THONG BENH NHAN____\n");
-    }
 }
 
 void inThongTinBenhNhan(){
@@ -208,8 +207,8 @@ void inThongTinBenhNhan(){
 int main(){
     BenhNhan b1;
     // nhapThongTinBenhNhan(&b1);
-    // inThongTinBenhNhan();
-    // xoaThongTinBenhNhan();
-    // suaThongTinBenhNhan();
-    // timThongTinBenhNhan();
+    inThongTinBenhNhan();
+    xoaThongTinBenhNhan();
+    suaThongTinBenhNhan();
+    timThongTinBenhNhan();
 }
