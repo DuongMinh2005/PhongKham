@@ -213,8 +213,6 @@ void inThongTinBacSi(){
     }
 
     char line[256];
-    printf("____DANH SACH BAC SI____\n");
-
     while(fgets(line,sizeof(line),file)){
         printf("%s", line);
     }
@@ -228,5 +226,5 @@ int main(){
     // NhapThongTinBacSi(&b3);
     inThongTinBacSi();
     suaThongTinBacSi();
-
+    timThongTinBacSi();
 }
