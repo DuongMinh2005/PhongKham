@@ -7,14 +7,6 @@ Tac dung cua thuoc: Khong chet
 So luong: 100000
 Don gia: 1000000
 ------------------------------------
-Ma so thuoc: 2345
-Ten thuoc: 1
-Noi san xuat: 1
-Han su dung: 1
-Tac dung cua thuoc: 
-So luong: 1
-Don gia: 1
-------------------------------------
 Ma so thuoc: 234
 Ten thuoc: 1
 Noi san xuat: 1
@@ -24,20 +16,20 @@ So luong: 1
 Don gia: 1
 ------------------------------------
 Ma so thuoc: 4567
-Ten thuoc: 5
-Noi san xuat: 5
-Ngay san xuat: 5
-Han su dung: 5
-Tac dung cua thuoc: 5
-So luong: 5
-Don gia: 5
+Ten thuoc: 6
+Noi san xuat: 6
+Ngay san xuat: 6
+Han su dung: 6
+Tac dung: 6
+So luong: 6
+Don gia: 6
 ------------------------------------
-Ma so thuoc: 3456
-Ten thuoc: 3
-Noi san xuat: 3
-Ngay san xuat: 3
-Han su dung: 3
-Tac dung cua thuoc: 3
-So luong: 3
-Don gia: 3
+Ma so thuoc: 6666
+Ten thuoc: 6
+Noi san xuat: 6
+Ngay san xuat: 6
+Han su dung: 6
+Tac dung cua thuoc: 6
+So luong: 6
+Don gia: 6
 ------------------------------------

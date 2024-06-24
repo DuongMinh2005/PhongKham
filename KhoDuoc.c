@@ -190,9 +190,7 @@ int suaThongTinThuoc() {
 
            
             for (int i = 0; i < 8; ++i) {
-                if (fgets(line, sizeof(line), infile)) {
-                    fputs(line, tempfile);
-                }
+                fgets(line, sizeof(line), infile);
             }
         } else {
             fputs(line, tempfile); 
@@ -228,7 +226,7 @@ void timThongTinThuoc() {
     char line[256];
 
     char search_line[256]; 
-    int found = 0; 
+   
 
     printf(".______________________________.\n");
     printf("|   TIM KIEM THONG TIN THUOC   |\n");
@@ -248,7 +246,7 @@ void timThongTinThuoc() {
             printf("%s", line); 
 
             
-            for (int i = 0; i < 8; ++i) {
+            for (int i = 0; i < 7; ++i) {
                 if (fgets(line, sizeof(line), file)) {
                     printf("%s", line);
                 }
@@ -283,11 +281,11 @@ void inDanhSachTHUOC(){
 int main(){
 
     KhoDuoc k;
-    // nhapThongTinThuoc(&k);
-    //  inDanhSachTHUOC();
-    // suaThongTinThuoc();
-    // xoaThongTinThuoc();
-   
-    // timThongTinThuoc();
+    //nhapThongTinThuoc(&k);
+    //xoaThongTinThuoc();
+    //suaThongTinThuoc();
+    //inDanhSachTHUOC();
+    timThongTinThuoc();
+    
 }
 
