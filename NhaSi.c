@@ -181,7 +181,7 @@ void timThongTinBacSi(){
     int found = 0;
     printf("____TIM KIEM THONG TIN BAC SI____\n");
     printf("Nhap ten dang nhap: ");
-    getchar();
+    //getchar();
     gets(TenDangNhap);
     snprintf(search_line, sizeof(search_line),"Ten dang nhap: %s\n",TenDangNhap);
 
