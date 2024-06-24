@@ -37,12 +37,14 @@ class BacSi : public Person {
         };
         void nhapThongTinBacSi();
         void xoaThongTinBacSi();
-        bool suaThongTinBacSi();
+        void suaThongTinBacSi();
         void timThongTinBacSi();
 };
 
 void BacSi::nhapThongTinBacSi() {
-        cout << "____NHAP THONG TIN BAC SI____" << endl;
+    printf(".______________________________.\n");
+    printf("|     NHAP THONG TIN NHA SI    |\n");
+    printf(".______________________________.\n");
         cout << "Ten dang nhap: ";
         cin.ignore();
         getline(cin, tenDangNhap);
@@ -72,7 +74,7 @@ void BacSi::nhapThongTinBacSi() {
             file << "Chuc vu: " << chucvu << endl;
             file << "Chuyen khoa: "<< chuyenkhoa <<endl;
             file << "Kinh nghiem: "<< kinhnghiem << " nam"<<endl;
-            file << "--------------------------------------" << endl;
+            file << "--------------------------------\n";
             file.close();
             cout << "====NHAP THONG TIN THANH CONG===" << endl;
         } else 
@@ -80,7 +82,10 @@ void BacSi::nhapThongTinBacSi() {
 };
 
 void BacSi::xoaThongTinBacSi() {
-        cout<<"____NHAP TAI KHOAN MUON XOA____"<<endl;
+        printf(".______________________________.\n");
+        printf("|     XOA THONG TIN NHA SI     |\n");
+        printf(".______________________________.\n");
+        printf("Nhap ten tai khoan can xoa \n");
         cout << "Ten dang nhap: ";
         cin.ignore();
         getline(cin, tenDangNhap);
@@ -113,19 +118,21 @@ void BacSi::xoaThongTinBacSi() {
         if (found) {
             remove("thongtinbacsi.txt");
             rename("temp.txt", "thongtinbacsi.txt");
-            cout << "____XOA THONG TIN BAC SI THANH CONG____" << endl;
+            cout << "===XOA THONG TIN NHA SI THANH CONG===\n";
         } else
             cout << "____KHONG TIM THAY TAI KHOAN CAN XOA____" << endl;
 };
 
-bool BacSi::suaThongTinBacSi() {
+void BacSi::suaThongTinBacSi() {
     ifstream file("thongtinbacsi.txt");
     ofstream tempfile("temp.txt"); // Tep tam thoi cho du lieu de sua doi
 
     if (file.is_open() && tempfile.is_open()) {
         string line;
         bool found = false;
-        cout << "____SUA THONG TIN BAC SI____" << endl;
+        printf(".______________________________.\n");
+        printf("|     SUA THONG TIN NHA SI     |\n");
+        printf(".______________________________.\n");
         cout << "Vui long nhap ten dang nhap: ";
         cin.ignore();
         getline(cin, tenDangNhap);
@@ -174,16 +181,15 @@ bool BacSi::suaThongTinBacSi() {
         remove("thongtinbacsi.txt");
         rename("temp.txt", "thongtinbacsi.txt");
 
-        cout << "____SUA THONG TIN THANH CONG____" << endl;
+        cout << "====SUA THONG TIN THANH CONG====\n";
       } else {
         cout << "Khong tim thay bac si voi ten dang nhap: " << tenDangNhap << endl;
         remove("temp.txt");
       }
 
-      return found;
+      
     } else {
       cout << "____KHONG THE MO FILE THONG TIN____" << endl;
-      return false;
     }
 };
 
@@ -195,7 +201,9 @@ void BacSi::timThongTinBacSi() {
     string line;
     string search_line;
     bool found = false;
-    cout<<"____TIM KIEM THONG TIN BAC SI____"<<endl;
+    printf(".______________________________.\n");
+    printf("|   TIM KIEM THONG TIN NHA SI  |\n");
+    printf(".______________________________.\n");
     cout<<"Nhap ten dang nhap: ";
     cin.ignore();
     getline(cin,search_line);
@@ -210,7 +218,7 @@ void BacSi::timThongTinBacSi() {
         }
     }
     if (!found) {
-        cout<<"____KHONG TIM THAY THONG TIN BAC SI____"<<endl;
+        cout<<"____KHONG TIM THAY THONG TIN NHA SI____"<<endl;
     }
 };
 
@@ -237,7 +245,7 @@ class KhoDuoc {
         };
         void nhapThongTinThuoc();
         void xoaThongTinThuoc();
-        bool suaThongTinThuoc();
+        void suaThongTinThuoc();
         void timThongTinThuoc();
         
         void setMaSoThuoc(const string& MSThuoc) {
@@ -249,7 +257,9 @@ class KhoDuoc {
 };
 
 void KhoDuoc::nhapThongTinThuoc() {
-    cout<<"____NHAP THONG TIN THUOC____"<<endl;
+    printf(".______________________________.\n");
+    printf("|     NHAP THONG TIN THUOC     |\n");
+    printf(".______________________________.\n");
     cout<<"Ma so thuoc: ";
     cin.ignore();
     getline(cin,masothuoc);
@@ -261,7 +271,7 @@ void KhoDuoc::nhapThongTinThuoc() {
     getline(cin,ngaysanxuat);
     cout<<"Han su dung: ";
     getline(cin,hansudung);
-    cout<<"Tac dung: ";
+    cout<<"Tac dung cua thuoc: ";
     getline(cin,tacdung);
     cout<<"So luong: ";
     cin>>soluong;fflush(stdin);
@@ -276,19 +286,21 @@ void KhoDuoc::nhapThongTinThuoc() {
         file<<"Noi san xuat: "<< suatxu <<endl;
         file<<"Ngay san xuat: "<< ngaysanxuat <<endl;
         file<<"Han sau dung: "<< hansudung <<endl;
-        file<<"Tac dung: "<< hansudung <<endl;
+        file<<"Tac dung cua thuoc: "<< hansudung <<endl;
         file<<"So luong: "<< soluong <<endl;
         file<<"Don gia: "<< dongia <<" vnd"<<endl;
         file<<"--------------------------------"<<endl;
         file.close();
-        cout<<"____NHAP THONG TIN THANH CONG____"<<endl;
+        printf("====NHAP THONG TIN THANH CONG====\n");
     } else {
         cout<<"____KHONG THE MO FILE THONG TIN____"<<endl;
     }
 };
 
 void KhoDuoc::xoaThongTinThuoc() {
-    cout<<"____XOA THONG TIN THUOC____"<<endl;
+    printf(".______________________________.\n");
+    printf("|      XOA THONG TIN THUOC     |\n");
+    printf(".______________________________.\n");
     cout<<"Nhap ma so thuoc: ";
     cin.ignore();
     getline(cin,masothuoc);
@@ -317,20 +329,22 @@ void KhoDuoc::xoaThongTinThuoc() {
     if (found) {
         remove("thongtinkhoduoc.txt");
         rename("temp.txt","thongtinkhoduoc.txt");
-        cout<<"____XOA THONG TIN THUOC THANH CONG____"<<endl;
+        printf("===XOA THONG TIN THUOC THANH CONG===\n");
     } else {
         cout<<"____KHONG TIM THAY TAI KHOAN CAN XOA____"<<endl;
     }
 };
 
-bool KhoDuoc::suaThongTinThuoc() {
+void KhoDuoc::suaThongTinThuoc() {
     ifstream file("thongtinkhoduoc.txt");
     ofstream tempfile("temp.txt"); // Tep tam thoi cho du lieu de sua doi
 
     if (file.is_open() && tempfile.is_open()) {
         string line;
         bool found = false;
-        cout << "____SUA THONG TIN THUOC____" << endl;
+    printf(".______________________________.\n");
+    printf("|      SUA THONG TIN THUOC     |\n");
+    printf(".______________________________.\n");
         cout << "Vui long nhap ma so thuoc: ";
         cin.ignore();
         getline(cin, masothuoc);
@@ -338,7 +352,6 @@ bool KhoDuoc::suaThongTinThuoc() {
       while (getline(file, line)) {
         if (line == "Ma so thuoc: " + masothuoc) {   // Tim thay thong tin bac si
             cout << "____NHAP THONG TIN MOI____" << endl;
-            cout<<"____NHAP THONG TIN THUOC____"<<endl;
             cout<<"Ma so thuoc: ";
             getline(cin,masothuoc);
             cout<<"Ten thuoc: ";
@@ -363,7 +376,7 @@ bool KhoDuoc::suaThongTinThuoc() {
             tempfile<<"Tac dung: "<< hansudung <<endl;
             tempfile<<"So luong: "<< soluong <<endl;
             tempfile<<"Don gia: "<< dongia <<" vnd"<<endl;
-            tempfile<<"--------------------------------"<<endl;
+            tempfile<<"------------------------------------\n";
           found = true;
 
           for (int i = 0; i < 8; ++i) {      //Bo qua cac dong thong tin cu
@@ -382,16 +395,13 @@ bool KhoDuoc::suaThongTinThuoc() {
         remove("thongtinkhoduoc.txt");
         rename("temp.txt", "thongtinkhoduoc.txt");
 
-        cout << "____SUA THONG TIN THANH CONG____" << endl;
+        printf("====SUA THONG TIN THANH CONG====\n");
       } else {
         cout << "Khong tim thay thong tin thuoc voi ma so: " << masothuoc << endl;
         remove("temp.txt");
       }
-
-      return found;
     } else {
       cout << "____KHONG THE MO FILE THONG TIN____" << endl;
-      return false;
     }
 };
 
@@ -400,7 +410,9 @@ void KhoDuoc::timThongTinThuoc() {
     string line;
     string search_line;
     bool found = false;
-    cout<<"____TIM KIEM THONG TIN THUOC____"<<endl;
+    printf(".______________________________.\n");
+    printf("|   TIM KIEM THONG TIN THUOC   |\n");
+    printf(".______________________________.\n");
     cout<<"Nhap ma so thuoc: ";
     cin.ignore();
     getline(cin,search_line);
@@ -422,9 +434,6 @@ void KhoDuoc::timThongTinThuoc() {
     }
 };
 
-
-
-
 class BenhNhan : public Person {
 private:
     string loaiBenh;
@@ -440,11 +449,14 @@ public:
     }
     void xoaThongTinBenhNhan();
     void nhapThongTinBenhNhan();
-    bool suaThongTinBenhNhan();
+    void suaThongTinBenhNhan();
     void timThongTinBenhNhan();
 };
 
 void BenhNhan::xoaThongTinBenhNhan() {
+        printf(".______________________________.\n");
+        printf("|   XOA THONG TIN BENH NHAN    |\n");
+        printf(".______________________________.\n");
         cout<<"Nhap ten tai khoan can xoa."<<endl;
         cout << "Ten dang nhap: ";
         cin.ignore();
@@ -454,7 +466,7 @@ void BenhNhan::xoaThongTinBenhNhan() {
         ofstream outFile("temp.txt");
 
         if (!inFile.is_open()) {
-            cout << "Khong the mo file de doc." << endl;
+            cout << "____KHONG THE MO FILE THONG TIN____\n";
             return;
         }
 
@@ -480,14 +492,16 @@ void BenhNhan::xoaThongTinBenhNhan() {
         if (found) {
             remove("thongtinbenhnhan.txt");
             rename("temp.txt", "thongtinbenhnhan.txt");
-            cout << "Da xoa thong tin cua benh nhan khoi file." << endl;
+            cout << "====XOA THONG TIN BENH NHAN THANH CONG====\n";
         } else {
-            cout << "Khong tim thay thong tin cua benh nhan trong file." << endl;
+            cout << "____KHONG TIM THAY TAI KHOAN BENH NHAN____\n";
         }
 };
 
 void BenhNhan::nhapThongTinBenhNhan() {
-        cout << "____NHAP THONG TIN BENH NHAN____" << endl;
+    printf(".______________________________.\n");
+    printf("|   NHAP THONG TIN BENH NHAN   |\n");
+    printf(".______________________________.\n");
         cout << "Ten dang nhap: ";
         cin.ignore();
         getline(cin, tenDangNhap);
@@ -513,18 +527,20 @@ void BenhNhan::nhapThongTinBenhNhan() {
             file << "Vien phi: " << vienPhi <<" vnd"<< endl;
             file << "--------------------------------------" << endl;
             file.close();
-            cout << "____NHAP THONG TIN THANH CONG____" << endl;
+            cout << "====NHAP THONG TIN THANH CONG====\n";
         } else {
             cout << "___KHONG THE MO FILE THONG TIN___" << endl;
         }
 };
 
-bool BenhNhan::suaThongTinBenhNhan() {
+void BenhNhan::suaThongTinBenhNhan() {
     ifstream file("thongtinbenhnhan.txt");
     ofstream tempFile("temp.txt"); // T?p t?m th?i cho d? li?u d� s?a d?i
 
     if (file.is_open() && tempFile.is_open()) {
-        cout<<"____SUA THONG TIN BENH NHAN____"<<endl;
+        printf(".______________________________.\n");
+        printf("|    SUA THONG TIN BENH NHAN   |\n");
+        printf(".______________________________.\n");
         string line;
         bool found = false;
         cout << "Vui long nhap ten dang nhap: ";
@@ -558,7 +574,7 @@ bool BenhNhan::suaThongTinBenhNhan() {
             tempFile << "Dia chi: " << diachi << endl;
             tempFile << "Loai benh: " << loaiBenh << endl;
             tempFile << "Vien phi: " << vienPhi << endl;
-            tempFile << "--------------------------------------" << endl;
+            tempFile << "--------------------------------\n";
             found = true;
 
             // B? qua c�c d�ng cu
@@ -578,16 +594,15 @@ bool BenhNhan::suaThongTinBenhNhan() {
         remove("thongtinbenhnhan.txt");
         rename("temp.txt", "thongtinbenhnhan.txt");
 
-        cout << "Thong tin benh nhan da duoc sua thanh cong." << endl;
+        cout << "====SUA THONG TIN BENH NHAN THANH CONG====\n";
       } else {
         cout << "Khong tim thay benh nhan voi ten dang nhap: " << tenDangNhap << endl;
         remove("temp.txt");
       }
 
-      return found;
+      
     } else {
-      cout << "Loi mo file de sua thong tin." << endl;
-      return false;
+      cout << "____KHONG THE MO FILE THONG TIN____\n";
     }
 };
 
@@ -599,7 +614,9 @@ void BenhNhan::timThongTinBenhNhan() {
     string line;
     string search_line;
     bool found = false;
-    cout<<"____TIM KIEM THONG TIN BENH NHAN____"<<endl;
+    printf(".______________________________.\n");
+    printf("| TIM KIEM THONG TIN BENH NHAN |\n");
+    printf(".______________________________.\n");
     cout<<"Nhap ten dang nhap: ";
     cin.ignore();
     getline(cin,search_line);
