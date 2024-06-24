@@ -1,0 +1,18 @@
+Ten dang nhap: Duong
+Ten: Duong Minh Tien
+Tuoi: 50
+Dia chi: Ha Noi
+Ma so : 2023
+Chuc vu: Truong Khoa
+Chuyen khoa: Rang Ham Mat
+Kinh nghiem: 19 nam
+--------------------------------------
+Ten dang nhap: d
+Ten: Huy Le
+Tuoi: 50
+Ma so: 20237788
+Dia chi: Viet Nam
+Chuc vu: Truong Khoa
+Chuyen khoa: Rang
+Kinh nghiem: 20
+------------------------------------
