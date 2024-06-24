@@ -1,7 +1,7 @@
-Ten dang nhap: thao
-Ten: Thao
+Ten dang nhap: huyle
+Ten: Huy Le
 Tuoi: 30
-Dia chi: Da Nang
-Loai benh: Hiem gap
-Vien phi: 1e+08
---------------------------------------
+Dia chi: Lang Son
+Loai benh: Sau Rang
+Vien phi: 500000
+------------------------------------
