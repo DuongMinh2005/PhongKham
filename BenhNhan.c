@@ -50,7 +50,7 @@ void xoaThongTinBenhNhan(){
         printf("____XOA THONG TIN BENH NHAN____\n");
         printf("Nhap ten tai khoan can xoa: \n");
         printf("Ten dang nhap: ");
-        fgets(TenDangNhap,sizeof(TenDangNhap),stdin);
+        gets(TenDangNhap);
 
     FILE *infile = fopen("thongtinbenhnhan.txt","r");
     FILE *outfile = fopen("tempt.txt","w");
@@ -61,7 +61,7 @@ void xoaThongTinBenhNhan(){
         char line[256];
         int found=0;
         char search_line[150];
-        snprintf(search_line, sizeof(search_line),"Ten dang nhap: %s", TenDangNhap);
+        snprintf(search_line, sizeof(search_line),"Ten dang nhap: %s\n", TenDangNhap);
 
         while(fgets(line,sizeof(line),infile)){
             if(strcmp(line, search_line)==0){
