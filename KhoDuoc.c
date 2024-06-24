@@ -17,7 +17,7 @@ void nhapThongTinThuoc(KhoDuoc *thuoc){
     printf(".______________________________.\n");
     printf("|     NHAP THONG TIN THUOC     |\n");
     printf(".______________________________.\n");
-
+    fflush(stdin);
     printf("Ma so thuoc: ");
     fgets(thuoc->masothuoc, sizeof(thuoc->masothuoc), stdin);
     thuoc->masothuoc[strcspn(thuoc->masothuoc, "\n")] = 0;
@@ -45,7 +45,6 @@ void nhapThongTinThuoc(KhoDuoc *thuoc){
     printf("So luong: ");
     scanf("%d", &thuoc->soluong);
     getchar(); 
-
     printf("Don gia: ");
     fgets(thuoc->dongia, sizeof(thuoc->dongia), stdin);
     thuoc->dongia[strcspn(thuoc->dongia, "\n")] = 0;
@@ -187,6 +186,7 @@ int suaThongTinThuoc() {
             fprintf(tempfile, "Tac dung: %s\n", thuoc.tacdung);
             fprintf(tempfile, "So luong: %d\n", thuoc.soluong);
             fprintf(tempfile, "Don gia: %s\n", thuoc.dongia);
+            fprintf(tempfile, "------------------------------------\n");
 
            
             for (int i = 0; i < 8; ++i) {
@@ -265,7 +265,7 @@ void timThongTinThuoc() {
 
 void inDanhSachTHUOC(){
     printf(".______________________________.\n");
-    printf("|        DANH SACH THUOC       |\n");
+    printf("|       DANH SACH THUOC        |\n");
     printf(".______________________________.\n");
     FILE *file = fopen("thongtinkhoduoc.txt","r");
     if( file == NULL){
@@ -281,10 +281,11 @@ void inDanhSachTHUOC(){
 int main(){
 
     KhoDuoc k;
-    //nhapThongTinThuoc(&k);
-    //xoaThongTinThuoc();
-    //suaThongTinThuoc();
-    //inDanhSachTHUOC();
+    nhapThongTinThuoc(&k);
+    inDanhSachTHUOC();
+    xoaThongTinThuoc();
+    suaThongTinThuoc();
+    inDanhSachTHUOC();
     timThongTinThuoc();
     
 }
