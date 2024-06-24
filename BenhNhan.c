@@ -12,21 +12,24 @@ typedef struct{
 }BenhNhan;
 
 void nhapThongTinBenhNhan(BenhNhan* nhap){
-        printf("____NHAP THONG TIN BENH NHAN____\n");
-        printf("Ten dang nhap: ");
-        gets(nhap->tenDangNhap);
-        printf("Ten: ");
-        gets(nhap->ten);
-        printf("Tuoi: ");
-        scanf("%d",&nhap->tuoi);
-        printf("Dia chi: ");
-        getchar();
-        gets(nhap->diachi);
-        printf("Loai benh :");
-        gets(nhap->loaiBenh);
-        printf("Vien phi: ");
-        scanf("%ld",&nhap->vienPhi);
-        getchar();
+    printf(".______________________________.\n");
+    printf("|   NHAP THONG TIN BENH NHAN   |\n");
+    printf(".______________________________.\n");
+    getchar();
+    printf("Ten dang nhap: ");
+    gets(nhap->tenDangNhap);
+    printf("Ten: ");
+    gets(nhap->ten);
+    printf("Tuoi: ");
+    scanf("%d",&nhap->tuoi);
+    printf("Dia chi: ");
+    getchar();
+    gets(nhap->diachi);
+    printf("Loai benh: ");
+    gets(nhap->loaiBenh);
+    printf("Vien phi: ");
+    scanf("%ld",&nhap->vienPhi);
+    getchar();
 
     FILE *file = fopen ("thongtinbenhnhan.txt","a");
         if(file != NULL){
@@ -36,26 +39,29 @@ void nhapThongTinBenhNhan(BenhNhan* nhap){
             fprintf(file, "Dia chi: %s\n", nhap->diachi);
             fprintf(file, "Loai benh: %s\n", nhap->loaiBenh);
             fprintf(file, "Vien phi: %ld\n", nhap->vienPhi);
-            fprintf(file, "------------------------------------\n");
+            fprintf(file, "--------------------------------\n");
             fclose(file);
-            printf("____NHAP THONG TIN BENH NHAN THANH CONG____\n");
+            printf("====NHAP THONG TIN THANH CONG====\n");
         }
         else {
-            printf("____KHONG THE MO FILE THONG TIN BENH NHAN____\n");
+            printf("___KHONG THE MO FILE THONG TIN___\n");
         }
 }
 
 void xoaThongTinBenhNhan(){
         char TenDangNhap[100];
-        printf("____XOA THONG TIN BENH NHAN____\n");
+        printf(".______________________________.\n");
+        printf("|   XOA THONG TIN BENH NHAN    |\n");
+        printf(".______________________________.\n");
         printf("Nhap ten tai khoan can xoa: \n");
+        getchar();
         printf("Ten dang nhap: ");
         gets(TenDangNhap);
 
     FILE *infile = fopen("thongtinbenhnhan.txt","r");
     FILE *outfile = fopen("tempt.txt","w");
         if( infile == NULL || outfile == NULL){
-            printf("____KHONG THE MO FILE THONG TIN BENH NHAN____\n");
+            printf("____KHONG THE MO FILE THONG TIN____\n");
             return;
         }
         char line[256];
@@ -79,10 +85,10 @@ void xoaThongTinBenhNhan(){
         if(found){
             remove("thongtinbenhnhan.txt");
             rename("tempt.txt","thongtinbenhnhan.txt");
-            printf("____XOA THONG TIN BENH NHAN THANH CONG____\n");
+            printf("====XOA THONG TIN BENH NHAN THANH CONG====\n");
         }
         else{
-            printf("____KHONG TIM THAY TAI KHOAN BENH NHAN CAN XOA____\n");
+            printf("____KHONG TIM THAY TAI KHOAN BENH NHAN____\n");
             remove("tempt.txt");
         }
 }
@@ -90,9 +96,11 @@ void xoaThongTinBenhNhan(){
 void suaThongTinBenhNhan(){
         char TenDangNhap[100];
         BenhNhan nhap;
-        printf("____SUA THONG TIN BENH NHAN____\n");
+        printf(".______________________________.\n");
+        printf("|    SUA THONG TIN BENH NHAN   |\n");
+        printf(".______________________________.\n");
         printf("Vui long nhap ten dang nhap: ");
-        //fflush(stdin);
+        getchar();
         gets(TenDangNhap);
 
     FILE *infile = fopen("thongtinbenhnhan.txt","r");
@@ -130,7 +138,7 @@ void suaThongTinBenhNhan(){
                 fprintf(tempfile, "Dia chi: %s\n", nhap.diachi);
                 fprintf(tempfile, "Loai benh: %s\n", nhap.loaiBenh);
                 fprintf(tempfile, "Vien phi: %ld\n", nhap.vienPhi);
-                fprintf(tempfile, "------------------------------------\n");
+                fprintf(tempfile, "--------------------------------\n");
                 for( int i=0; i<6; ++i){
                     fgets(line, sizeof(line),infile);
                 }
@@ -144,7 +152,7 @@ void suaThongTinBenhNhan(){
         if(found){
             remove("thongtinbenhnhan.txt");
             rename("tempt.txt","thongtinbenhnhan.txt");
-            printf("____SUA THONG TIN BENH NHAN THANH CONG____\n");
+            printf("====SUA THONG TIN BENH NHAN THANH CONG====\n");
         }
         else {
             printf("Khong tim thay thong tin benh nhan voi ten dang nhap: %s\n", TenDangNhap);
@@ -155,17 +163,18 @@ void suaThongTinBenhNhan(){
 void timThongTinBenhNhan(){
     FILE* file = fopen("thongtinbenhnhan.txt","r");
     if(file == NULL){
-        printf("____KHONG THE MO FILE THONG TIN BENH NHAN____\n");
+        printf("____KHONG THE MO FILE THONG TIN____\n");
     }
 
     char TenDangNhap[100];
     char line[256];
     char search_line[150];
     int found =0;
-    printf("____TIM KIEM THONG TIN BENH NHAN____\n");
+    printf(".______________________________.\n");
+    printf("| TIM KIEM THONG TIN BENH NHAN |\n");
+    printf(".______________________________.\n");
+    getchar();
     printf("Nhap ten dang nhap: ");
-    //fflush(stdin);
-    //getchar();
     gets(TenDangNhap);
     snprintf(search_line, sizeof(search_line),"Ten dang nhap: %s\n",TenDangNhap);
 
@@ -187,9 +196,9 @@ void timThongTinBenhNhan(){
 }
 
 void inThongTinBenhNhan(){
-    printf("________________________________\n");
-    printf("|        DANH SACH BENH NHAN    |\n");
-    printf("________________________________\n");
+    printf(".______________________________.\n");
+    printf("|      DANH SACH BENH NHAN     |\n");
+    printf(".______________________________.\n");
     FILE *file = fopen("thongtinbenhnhan.txt","r");
     if( file == NULL){
         printf("____KHONG THE MO FILE THONG TIN BENH NHAN____\n");
@@ -210,4 +219,5 @@ int main(){
     // xoaThongTinBenhNhan();
     // suaThongTinBenhNhan();
     timThongTinBenhNhan();
+    // inThongTinBenhNhan();
 }
