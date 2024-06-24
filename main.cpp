@@ -804,6 +804,7 @@ quanlikhoduoc:
                 return 0;
             default:
                 cout<<"!!!CHUC NANG KHONG PHU HOP!!!"<<endl;
+                cout<<"======VUI LONG CHON LAI======\n\n";
                 goto menu;
         }
     }
