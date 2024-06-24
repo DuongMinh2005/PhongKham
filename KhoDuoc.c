@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 typedef struct{
             char masothuoc[100];
             char tenthuoc[100];
@@ -12,12 +13,11 @@ typedef struct{
             char dongia[100];
 }KhoDuoc;
 
-
 void nhapThongTinThuoc(KhoDuoc *thuoc){
     printf(".______________________________.\n");
     printf("|     NHAP THONG TIN THUOC     |\n");
     printf(".______________________________.\n");
-    fflush(stdin);
+    getchar();
     printf("Ma so thuoc: ");
     fgets(thuoc->masothuoc, sizeof(thuoc->masothuoc), stdin);
     thuoc->masothuoc[strcspn(thuoc->masothuoc, "\n")] = 0;
@@ -61,21 +61,20 @@ void nhapThongTinThuoc(KhoDuoc *thuoc){
         fprintf(file, "Don gia: %s\n", thuoc->dongia);
         fprintf(file, "------------------------------------\n");
         fclose(file);
-        printf("____NHAP THONG TIN THANH CONG____\n");
+        printf("====NHAP THONG TIN THANH CONG====\n");
     } else {
         printf("____KHONG THE MO FILE THONG TIN____\n");
     }
 }
 
-
 void xoaThongTinThuoc(){
-            char masothuoc[100];
-            printf(".______________________________.\n");
-            printf("|      XOA THONG TIN THUOC     |\n");
-            printf(".______________________________.\n");
-            printf("Nhap ma so thuoc: ");
-            fflush(stdin);
-            fgets(masothuoc,sizeof(masothuoc),stdin);
+    char masothuoc[100];
+    printf(".______________________________.\n");
+    printf("|      XOA THONG TIN THUOC     |\n");
+    printf(".______________________________.\n");
+    printf("Nhap ma so thuoc: ");
+    getchar();
+    fgets(masothuoc,sizeof(masothuoc),stdin);
 
     FILE *infile = fopen("thongtinkhoduoc.txt","r");
     FILE *outfile = fopen("tempt.txt","w");
@@ -104,17 +103,15 @@ void xoaThongTinThuoc(){
         if( found){
             remove("thongtinkhoduoc.txt");
             rename("tempt.txt","thongtinkhoduoc.txt");
-            printf("____XOA THONG TIN THUOC THANH CONG____\n");
+            printf("===XOA THONG TIN THUOC THANH CONG===\n");
         }
         else{
-            printf("____KHONG TIM THAY THONG TIN CAN XOA____\n");
+            printf("____KHONG TIM THAY TAI KHOAN CAN XOA____\n");
             remove("tempt.txt");
         }
 }
 
-
-
-int suaThongTinThuoc() {
+void suaThongTinThuoc() {
     char masothuoc[100];
     KhoDuoc thuoc;
     
@@ -122,7 +119,7 @@ int suaThongTinThuoc() {
     printf("|      SUA THONG TIN THUOC     |\n");
     printf(".______________________________.\n");
     printf("Vui long nhap ma so thuoc: ");
-    fflush(stdin);
+    getchar();
     fgets(masothuoc, sizeof(masothuoc), stdin);
     masothuoc[strcspn(masothuoc, "\n")] = 0; 
 
@@ -187,8 +184,7 @@ int suaThongTinThuoc() {
             fprintf(tempfile, "So luong: %d\n", thuoc.soluong);
             fprintf(tempfile, "Don gia: %s\n", thuoc.dongia);
             fprintf(tempfile, "------------------------------------\n");
-
-           
+            
             for (int i = 0; i < 8; ++i) {
                 fgets(line, sizeof(line), infile);
             }
@@ -196,45 +192,35 @@ int suaThongTinThuoc() {
             fputs(line, tempfile); 
         }
     }
-
     fclose(infile);
     fclose(tempfile);
-
     if (found) {
         remove("thongtinkhoduoc.txt");
         rename("tempt.txt", "thongtinkhoduoc.txt");
-        printf("____SUA THONG TIN THANH CONG____\n");
+        printf("====SUA THONG TIN THANH CONG====\n");
     } else {
         printf("Khong tim thay thong tin thuoc voi ma so: %s\n", masothuoc);
         remove("tempt.txt");
     }
-
     return found;
 }
-
-
 
 void timThongTinThuoc() {
     FILE *file = fopen("thongtinkhoduoc.txt", "r");
     if (file == NULL) {
         printf("____KHONG THE MO FILE THONG TIN____\n");
         return;
-
     }
     int found = 0;
     char masothuoc[100];
     char line[256];
-
     char search_line[256]; 
-   
 
     printf(".______________________________.\n");
     printf("|   TIM KIEM THONG TIN THUOC   |\n");
     printf(".______________________________.\n");
     printf("Nhap ma so thuoc: ");
-    fflush(stdin);
-
-
+    getchar();
     fgets(masothuoc, sizeof(masothuoc), stdin);
     masothuoc[strcspn(masothuoc, "\n")] = 0; 
 
@@ -256,11 +242,8 @@ void timThongTinThuoc() {
     }
 
     fclose(file);
-
-
     if (!found) 
         printf("____KHONG TIM THAY THONG TIN THUOC____\n");
-
 }
 
 void inDanhSachTHUOC(){
@@ -278,6 +261,7 @@ void inDanhSachTHUOC(){
     }
     fclose(file);
 }
+
 int main(){
 
     KhoDuoc k;
