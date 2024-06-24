@@ -14,7 +14,9 @@ typedef struct{
 
 
 void nhapThongTinThuoc(KhoDuoc *thuoc){
-            printf("____NHAP THONG TIN THUOC____\n");
+            printf(".______________________________.\n");
+            printf("|     NHAP THONG TIN THUOC     |\n");
+            printf(".______________________________.\n");
             printf("Ma so thuoc: ");
             getchar();
             fgets(thuoc->masothuoc,sizeof(thuoc->masothuoc),stdin);
@@ -55,7 +57,9 @@ void nhapThongTinThuoc(KhoDuoc *thuoc){
 
 void xoaThongTinThuoc(){
             char masothuoc[100];
-            printf("____XOA THONG TIN THUOC____\n");
+            printf(".______________________________.\n");
+            printf("|      XOA THONG TIN THUOC     |\n");
+            printf(".______________________________.\n");
             printf("Nhap ma so thuoc: ");
             fflush(stdin);
             fgets(masothuoc,sizeof(masothuoc),stdin);
@@ -99,7 +103,9 @@ void xoaThongTinThuoc(){
 int suaThongTinThuoc(){
             char masothuoc[100];
             KhoDuoc thuoc;
-            printf("____SUA THONG TIN THUOC____\n");
+            printf(".______________________________.\n");
+            printf("|      SUA THONG TIN THUOC     |\n");
+            printf(".______________________________.\n");
             printf("Vui long nhap ma so thuoc: ");
             getchar();
             fgets(masothuoc,sizeof(masothuoc),stdin);
@@ -180,7 +186,9 @@ void timThongTinThuoc(){
     char line[256];
     char search_line[150];
     int found = 0;
-    printf("____TIM KIEM THONG TIN THUOC____\n");
+    printf(".______________________________.\n");
+    printf("|   TIM KIEM THONG TIN THUOC   |\n");
+    printf(".______________________________.\n");
     printf("Nhap ma so thuoc: ");
     getchar();
     fgets(masothuoc,sizeof(masothuoc),stdin);
