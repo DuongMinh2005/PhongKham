@@ -7,7 +7,7 @@ int main(){
     BenhNhan benhnhan;
     BacSi bacsi;
     KhoDuoc khoduoc;
-    {
+    
 menu:
         int a;
         printf(".______________________________.\n");
@@ -147,6 +147,6 @@ quanlikhoduoc:
                 printf("======VUI LONG CHON LAI======\n\n");
                 goto menu;
         }
+        return 0;
     }
-    return 0;
-} 
+    
