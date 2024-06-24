@@ -196,7 +196,6 @@ void inThongTinBenhNhan(){
     }
 
     char line[256];
-    printf("____DANH SACH BENH NHAN____\n");
 
     while(fgets(line,sizeof(line),file)){
         printf("%s", line);
