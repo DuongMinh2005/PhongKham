@@ -225,6 +225,6 @@ int main(){
     // NhapThongTinBacSi(&b2);
     // NhapThongTinBacSi(&b3);
     inThongTinBacSi();
-    suaThongTinBacSi();
+    // suaThongTinBacSi();
     timThongTinBacSi();
 }
