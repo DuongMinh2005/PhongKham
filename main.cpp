@@ -689,7 +689,7 @@ quanlibenhnhan:
                 cout<<"6.QUAY LAI"<<endl;
                 cout<<"VUI LONG CHON CHUC NANG: ";
                 int b;
-                cin>>b;fflush(stdin);
+                cin>>b;
                 switch (b){
                     case 1:
                         benhnhan.nhapThongTinBenhNhan();
@@ -711,7 +711,7 @@ quanlibenhnhan:
                         break;
                     default:
                         cout<<"!!!CHUC NANG KHONG PHU HOP!!!"<<endl;
-                        cout<<"      VUI LONG CHON LAI"<<endl;
+                        cout<<"======VUI LONG CHON LAI======\n\n";
                         goto quanlibenhnhan;
                         break;
                 }
@@ -730,7 +730,7 @@ quanlibacsi:
                 cout<<"6.QUAY LAI"<<endl;
                 cout<<"VUI LONG CHON CHUC NANG: ";
                 int c;
-                cin>>c;fflush(stdin);
+                cin>>c;
                 switch (c){
                     case 1:
                         bacsi.nhapThongTinBacSi();
@@ -752,7 +752,7 @@ quanlibacsi:
                         break;
                     default:
                         cout<<"!!!CHUC NANG KHONG PHU HOP!!!"<<endl;
-                        cout<<"VUI LONG CHON LAI"<<endl;
+                        cout<<"======VUI LONG CHON LAI======\n\n";
                         goto quanlibacsi;
                         break;
                 }
@@ -793,7 +793,7 @@ quanlikhoduoc:
                         break;
                     default:
                         cout<<"!!!CHUC NANG KHONG PHU HOP!!!"<<endl;
-                        cout<<"VUI LONG CHON LAI"<<endl;
+                        cout<<"======VUI LONG CHON LAI======\n\n";
                         goto quanlikhoduoc;
                         break;
                 }
@@ -801,7 +801,9 @@ quanlikhoduoc:
                 break;
             case 4:
                 cout<<"____DANG XUAT THANH CONG____"<<endl;
+                return 0;
             default:
                 cout<<"!!!CHUC NANG KHONG PHU HOP!!!"<<endl;
+                goto menu;
         }
     }
