@@ -1,25 +1,34 @@
-Ma so thuoc: 123
-Ten thuoc: Paracetamol
-Noi san xuat: Ha Noi
-Ngay san xuat: Ha Noi
-Han su dung: 1/1/2030
-Tac dung cua thuoc: Khong chet
-So luong: 100000
-Don gia: 1000000
-------------------------------------
-Ma so thuoc: 2345
+Ma so thuoc: 12345
+Ten thuoc: 2
+Noi san xuat: 2
+Ngay san xuat: 2
+Han su dung: 2
+Tac dung: 2
+So luong: 2
+Don gia: 2
 Ten thuoc: 1
 Noi san xuat: 1
-Han su dung: 1
-Tac dung cua thuoc: 
-So luong: 1
-Don gia: 1
-------------------------------------
-Ma so thuoc: 234
-Ten thuoc: 1
-Noi san xuat: 1
+Ngay san xuat: 1
 Han su dung: 1
 Tac dung cua thuoc: 1
 So luong: 1
 Don gia: 1
+------------------------------------
+Ma so thuoc: 4567
+Ten thuoc: 5
+Noi san xuat: 5
+Ngay san xuat: 5
+Han su dung: 5
+Tac dung cua thuoc: 5
+So luong: 5
+Don gia: 5
+------------------------------------
+Ma so thuoc: 3456
+Ten thuoc: 3
+Noi san xuat: 3
+Ngay san xuat: 3
+Han su dung: 3
+Tac dung cua thuoc: 3
+So luong: 3
+Don gia: 3
 ------------------------------------
