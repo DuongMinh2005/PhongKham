@@ -215,15 +215,18 @@ int suaThongTinThuoc() {
 }
 
 
+
 void timThongTinThuoc() {
     FILE *file = fopen("thongtinkhoduoc.txt", "r");
     if (file == NULL) {
         printf("____KHONG THE MO FILE THONG TIN____\n");
         return;
-    }
 
+    }
+    int found = 0;
     char masothuoc[100];
     char line[256];
+
     char search_line[256]; 
     int found = 0; 
 
@@ -232,6 +235,7 @@ void timThongTinThuoc() {
     printf(".______________________________.\n");
     printf("Nhap ma so thuoc: ");
     fflush(stdin);
+
 
     fgets(masothuoc, sizeof(masothuoc), stdin);
     masothuoc[strcspn(masothuoc, "\n")] = 0; 
@@ -255,8 +259,10 @@ void timThongTinThuoc() {
 
     fclose(file);
 
+
     if (!found) 
         printf("____KHONG TIM THAY THONG TIN THUOC____\n");
+
 }
 
 void inDanhSachTHUOC(){
@@ -275,6 +281,7 @@ void inDanhSachTHUOC(){
     fclose(file);
 }
 int main(){
+
     KhoDuoc k;
     // nhapThongTinThuoc(&k);
     //  inDanhSachTHUOC();
@@ -283,3 +290,4 @@ int main(){
    
     // timThongTinThuoc();
 }
+
