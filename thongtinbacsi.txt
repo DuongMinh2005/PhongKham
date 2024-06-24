@@ -8,11 +8,20 @@ Chuyen khoa: Rang Ham Mat
 Kinh nghiem: 19 nam
 --------------------------------------
 Ten dang nhap: d
-Ten: Huy Le
+Ten: siu
 Tuoi: 50
-Ma so: 20237788
-Dia chi: Viet Nam
-Chuc vu: Truong Khoa
-Chuyen khoa: Rang
-Kinh nghiem: 20
+Ma so: 23
+Dia chi: hn
+Chuc vu: t
+Chuyen khoa: t
+Kinh nghiem: 19
 ------------------------------------
+Ten dang nhap: duong
+Ten: Duong
+Tuoi: 19
+Ma so: 23
+Dia chi: hn
+Chuc vu: h
+Chuyen khoa: h
+Kinh nghiem: 19
+--------------------------------
