@@ -54,7 +54,7 @@ quanlibenhnhan:
                         goto menu;
                     default:
                         printf("!!!CHUC NANG KHONG PHU HOP!!!\n");
-                        printf("======VUI LONG CHON LAI======\n");
+                        printf("======VUI LONG CHON LAI======\n\n");
                         goto quanlibenhnhan;
                         break;
                 }
@@ -94,7 +94,7 @@ quanlibacsi:
                         break;
                     default:
                         printf("!!!CHUC NANG KHONG PHU HOP!!!\n");
-                        printf("======VUI LONG CHON LAI======\n");
+                        printf("======VUI LONG CHON LAI======\n\n");
                         goto quanlibacsi;
                 }
                 goto quanlibacsi;
