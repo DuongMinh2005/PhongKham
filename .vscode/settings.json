@@ -3,6 +3,9 @@
         "iostream": "cpp",
         "ostream": "cpp",
         "iosfwd": "c",
-        "source_location": "c"
+        "source_location": "c",
+        "stdbool.h": "c",
+        "fstream": "cpp",
+        "*.tcc": "cpp"
     }
 }
