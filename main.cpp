@@ -141,7 +141,7 @@ void BacSi::suaThongTinBacSi() {
         if (line == "Ten dang nhap: " + tenDangNhap) {   // Tim thay thong tin bac si
             cout << "____NHAP THONG TIN MOI____" << endl;
             cout << "Ten dang nhap: ";
-            cin.ignore();
+            cin.ignore();//Xoa bo nho dem
             getline(cin, tenDangNhap);
             cout << "Ten: "; getline(cin, ten);
             cout << "Tuoi: "; cin >> tuoi;
