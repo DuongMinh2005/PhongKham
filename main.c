@@ -566,7 +566,7 @@ void suaThongTinThuoc() {
     
     if (infile == NULL || tempfile == NULL) {
         printf("____KHONG THE MO FILE THONG TIN____\n");
-        return 0;
+        return ;
     }
 
     char line[256];
@@ -640,7 +640,7 @@ void suaThongTinThuoc() {
         printf("Khong tim thay thong tin thuoc voi ma so: %s\n", masothuoc);
         remove("tempt.txt");
     }
-    return found;
+    
 }
 
 void timThongTinThuoc() {
