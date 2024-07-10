@@ -7,21 +7,12 @@ Chuc vu: Truong Khoa
 Chuyen khoa: Rang Ham Mat
 Kinh nghiem: 19 nam
 --------------------------------------
-Ten dang nhap: d
-Ten: siu
-Tuoi: 50
-Ma so: 23
-Dia chi: hn
-Chuc vu: t
-Chuyen khoa: t
-Kinh nghiem: 19
-------------------------------------
-Ten dang nhap: duong
-Ten: Duong
+Ten dang nhap: iu
+Ten: duong
 Tuoi: 19
-Ma so: 23
-Dia chi: hn
-Chuc vu: h
-Chuyen khoa: h
-Kinh nghiem: 19
---------------------------------
+Dia chi: VN
+Ma so : 2023
+Chuc vu: ko co
+Chuyen khoa: rang
+Kinh nghiem: 19 nam
+--------------------------------------

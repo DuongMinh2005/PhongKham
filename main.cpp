@@ -274,7 +274,8 @@ void KhoDuoc::nhapThongTinThuoc() {
     cout<<"Tac dung cua thuoc: ";
     getline(cin,tacdung);
     cout<<"So luong: ";
-    cin>>soluong;fflush(stdin);
+    cin>>soluong;
+    cin.ignore();
     cout<<"Don gia: ";
     getline(cin,dongia);
 
@@ -550,8 +551,7 @@ void BenhNhan::suaThongTinBenhNhan() {
       while (getline(file, line)) {
         if (line == "Ten dang nhap: " + tenDangNhap) {
             // Tim thay thong tin benh nhan
-            cout << "Nhap thong tin moi cho benh nhan:" << endl;
-            cout << "Nhap thong tin benh nhan:" << endl;
+            cout << "____NHAP THONG TIN MOI____" << endl;
             cout << "Ten dang nhap: ";
             cin.ignore();
             getline(cin, tenDangNhap);
