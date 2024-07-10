@@ -1,9 +1,9 @@
-Ma so thuoc: #345
-Ten thuoc: Paracetamol
-Noi san xuat: Campuchia
-Ngay san xuat: 12/9/2030
-Han su dung: 12/5/2050
-Tac dung cua thuoc: giam dau
-So luong: 1000
-Don gia: 5000000000
+Ma so thuoc: 12345
+Ten thuoc: paracetamol
+Noi san xuat: nhan chinh
+Ngay san xuat: 23/02 2005
+Han su dung: 43
+Tac dung: 2
+So luong: 2
+Don gia: 34000
 ------------------------------------

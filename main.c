@@ -705,7 +705,7 @@ int main(){
     BacSi bacsi;
     KhoDuoc khoduoc;
 menu:
-        int a;
+        
         printf(".______________________________.\n");
         printf("|             MENU             |\n");
         printf(".______________________________.\n");
@@ -714,6 +714,7 @@ menu:
         printf("3.QUAN LY KHO DUOC\n");
         printf("4.DANG XUAT\n");
         printf("VUI LONG CHON CHUC NANG: ");
+        int a;
         scanf("%d",&a);
         switch (a) {
             case 1:
