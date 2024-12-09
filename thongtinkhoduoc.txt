@@ -1,9 +1,0 @@
-Ma so thuoc: 12345
-Ten thuoc: paracetamol
-Noi san xuat: nhan chinh
-Ngay san xuat: 23/02 2005
-Han su dung: 43
-Tac dung: 2
-So luong: 2
-Don gia: 34000
-------------------------------------

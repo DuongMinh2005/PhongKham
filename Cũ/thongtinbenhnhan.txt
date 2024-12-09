@@ -1,0 +1,14 @@
+Ten dang nhap: tuyet
+Ten: Mai
+Tuoi: 19
+Dia chi: vn
+Loai benh: ko
+Vien phi: 10000
+--------------------------------
+Ten dang nhap: 
+Ten: d
+Tuoi: 19
+Dia chi: Ha Noi
+Loai benh: ko co
+Vien phi: 1e+06
+--------------------------------
