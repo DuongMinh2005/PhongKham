@@ -7,6 +7,7 @@
 #include "Doctor.h"
 using namespace std;
 struct Appointment;
+struct AppointmentNode;
 struct Patient;
 struct Doctor;
 struct Schedule{
@@ -23,7 +24,6 @@ struct ScheduleNode{
     ScheduleNode* next;
 };
 
-    
     int scheduleIDCounter;
 
     ScheduleNode* initScheduleList();
