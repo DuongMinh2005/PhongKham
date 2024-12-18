@@ -27,7 +27,7 @@ struct ScheduleNode{
     int scheduleIDCounter;
 
     ScheduleNode* initScheduleList();
-    void addSchedule(ScheduleNode*& head,AppointmentNode*& appointmentList,int appointmentID, Doctor* doctor, Patient* patient, string date, string time);  
+    void addSchedule(ScheduleNode*& head,AppointmentNode*& appointmentList,int appointmentID, Doctor* doctor, string date, string time);  
     void deleteSchedule(ScheduleNode*& head, int id);
     // Kiểm tra lịch khám có hợp lệ không
     bool isScheduleValid(ScheduleNode*& head, AppointmentNode* appointment,Doctor* doctor, string date, string time);

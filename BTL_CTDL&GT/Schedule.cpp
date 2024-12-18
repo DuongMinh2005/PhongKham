@@ -55,7 +55,7 @@ ScheduleNode* initScheduleList(){
     }
 
 // Thêm lịch khám mới
-void addSchedule(ScheduleNode*& head, AppointmentNode*& appointmentList,int appointmentID, Doctor* doctor,Patient* patient, string date, string time) {
+void addSchedule(ScheduleNode*& head, AppointmentNode*& appointmentList,int appointmentID, Doctor* doctor, string date, string time) {
     
     // Tìm lịch hẹn trong danh sách lịch hẹn
     AppointmentNode* appointmentNode = findAppointmentByID(appointmentList,appointmentID);
