@@ -17,6 +17,5 @@ struct Doctor{
 struct DoctorNode{
     Doctor* doctor_info;
     DoctorNode* next;
-    
 };
 #endif // DOCTOR_H

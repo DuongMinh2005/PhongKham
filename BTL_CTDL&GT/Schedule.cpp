@@ -56,7 +56,7 @@ bool isTimeInRange(string time, string range) {
 
 // Thêm lịch khám mới
 void addSchedule(ScheduleNode*& head, AppointmentNode*& appointmentList,int appointmentID, Doctor* doctor, string date, string time) {
-    
+    cout <<"Nhap ma lich hen (appointment): "<<appointmentID<<endl;
     // Tìm lịch hẹn trong danh sách lịch hẹn
     AppointmentNode* appointmentNode = findAppointmentByID(appointmentList,appointmentID);
     if (appointmentNode == nullptr) {
@@ -92,6 +92,7 @@ void addSchedule(ScheduleNode*& head, AppointmentNode*& appointmentList,int appo
 
     // Xóa lịch hẹn khỏi danh sách lịch hẹn
     deleteAppointment(appointmentList,appointmentID);
+    
 
     cout << "Lich kham da duoc tao thanh cong!\n";
 
