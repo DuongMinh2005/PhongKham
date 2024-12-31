@@ -3,132 +3,172 @@
 #include "Medicine.h"
 using namespace std;
 
-MedicineNode* createMedicineNode(const Medicine& data){
+// Hàm tạo node mới
+MedicineNode* createMedicineNode(const Medicine& data) {
     MedicineNode* temp = new MedicineNode;
-    temp->next = NULL;
-    temp->a = data;
+    temp->data = data;
+    temp->next = nullptr;
     return temp;
-};
+}
 
-void Insert_Med(MedicineNode*& thuoc, Medicine duoc) {
-    cout<<"Ma so thuoc: ";
+// Thêm thuốc vào danh sách
+void AddMedicine(MedicineNode*& head, Medicine duoc) {
+    cout << "Ma so thuoc: ";
     cin.ignore();
-    getline(cin,duoc.masothuoc);
-    cout<<"Ten thuoc: ";
-    getline(cin,duoc.tenthuoc);
-    cout<<"Noi san xuat: ";
-    getline(cin,duoc.suatxu);
-    cout<<"Ngay san xuat: ";
-    getline(cin,duoc.ngaysanxuat);
-    cout<<"Han su dung: ";
-    getline(cin,duoc.hansudung);
-    cout<<"Tac dung cua thuoc: ";
-    getline(cin,duoc.tacdung);
-    cout<<"So luong: ";
+    getline(cin, duoc.masothuoc);
+    cout << "Ten thuoc: ";
+    getline(cin, duoc.tenthuoc);
+    cout << "Noi san xuat: ";
+    getline(cin, duoc.suatxu);
+    cout << "Ngay san xuat: ";
+    getline(cin, duoc.ngaysanxuat);
+    cout << "Han su dung: ";
+    getline(cin, duoc.hansudung);
+    cout << "Tac dung cua thuoc: ";
+    getline(cin, duoc.tacdung);
+    cout << "So luong: ";
     cin >> duoc.soluong;
     cin.ignore();
-    cout<<"Don gia: ";
-    getline(cin,duoc.dongia);
+    cout << "Don gia: ";
+    getline(cin, duoc.dongia);
+
     MedicineNode* temp = createMedicineNode(duoc);
-    if (thuoc == NULL)
-        thuoc->next = temp;
-    else {
-        while (thuoc == NULL)
-            thuoc = thuoc->next;
-        thuoc->next = temp;
-    }
-};
 
-void Delete_Med(MedicineNode*& thuoc) {
-    cout<<"Nhap ma so thuoc: ";
-    string maso;
-    getline(cin,maso);
-    cin.ignore();
-    MedicineNode* temp = new MedicineNode;
-    while (thuoc == NULL){
-        if (thuoc->next->a.masothuoc == maso){
-            temp = thuoc->next;
-            thuoc->next = NULL;
-            delete(temp);
+    if (head == nullptr) {
+        head = temp;
+    } else {
+        MedicineNode* current = head;
+        while (current->next != nullptr) {
+            current = current->next;
         }
-        thuoc = thuoc->next;
-    }
-};
-
-void Fix_Med(MedicineNode*& thuoc, Medicine duoc) {
-    printf(".______________________________.\n");
-    printf("|      SUA THONG TIN THUOC     |\n");
-    printf(".______________________________.\n");
-    cout << "Nhap ma so thuoc: ";
-    cin.ignore();
-    getline(cin,duoc.masothuoc);
-    while (thuoc == NULL){
-        if (thuoc->next->a.masothuoc == duoc.masothuoc){
-            temp = thuoc->next;
-            thuoc->next = NULL;
-            delete(temp);
-        }
-        thuoc = thuoc->next;
-    }
-};
-    cout << "____NHAP THONG TIN MOI____" << endl;
-    cout<<"Ma so thuoc: ";
-    getline(cin,duoc.masothuoc);
-    cout<<"Ten thuoc: ";
-    getline(cin,duoc.tenthuoc);
-    cout<<"Noi san xuat: ";
-    getline(cin,duoc.suatxu);
-    cout<<"Ngay san xuat: ";
-    getline(cin,duoc.ngaysanxuat);
-    cout<<"Han su dung: ";
-    getline(cin,duoc.hansudung);
-    cout<<"Tac dung: ";
-    getline(cin,duoc.tacdung);
-    cout<<"So luong: ";
-    cin>>duoc.soluong;
-    fflush(stdin);
-    cout<<"Don gia: ";
-    getline(cin,duoc.dongia);
-    MedicineNode* temp = new MedicineNode;
-    temp->a = duoc;
-
-};
-
-void Find_Med(MedicineNode* thuoc) {
-    cout<<"Nhap ma so thuoc: ";
-    string maso;
-    getline(cin,maso);
-    while (thuoc == NULL){
-        if (thuoc->a.masothuoc == maso)
-            {
-            cout<<"Ma so thuoc: " << thuoc->a.masothuoc;
-            cout<<"Ten thuoc: " << thuoc->a.tenthuoc;
-            cout<<"Noi san xuat: " << thuoc->a.suatxu;
-            cout<<"Ngay san xuat: " << thuoc->a.ngaysanxuat;
-            cout<<"Han su dung: " << thuoc->a.hansudung;
-            cout<<"Tac dung cua thuoc: " << thuoc->a.tacdung;
-            cout<<"So luong: " << thuoc->a.soluong;
-            cout<<"Don gia: " << thuoc->a.dongia;
-            }
-        thuoc = thuoc->next;
-    }
-};
-
-void List_Med(MedicineNode* thuoc){
-    while (thuoc == NULL){
-    cout << "------------------------------------------------------------\n";
-    cout<<"Ma so thuoc: " << thuoc->a.masothuoc;
-    cout<<"Ten thuoc: " << thuoc->a.tenthuoc;
-    cout<<"Noi san xuat: " << thuoc->a.suatxu;
-    cout<<"Ngay san xuat: " << thuoc->a.ngaysanxuat;
-    cout<<"Han su dung: " << thuoc->a.hansudung;
-    cout<<"Tac dung cua thuoc: " << thuoc->a.tacdung;
-    cout<<"So luong: " << thuoc->a.soluong;
-    cout<<"Don gia: " << thuoc->a.dongia;
-    thuoc = thuoc->next;    
-    cout << "------------------------------------------------------------\n";
+        current->next = temp;
     }
 }
-int main(){
 
+// Xóa thuốc khỏi danh sách
+void DeleteMedicine(MedicineNode*& head) {
+    cout << "Nhap ma so thuoc: ";
+    string maso;
+    cin.ignore();
+    getline(cin, maso);
+
+    MedicineNode* current = head;
+    MedicineNode* prev = nullptr;
+
+    while (current != nullptr) {
+        if (current->data.masothuoc == maso) {
+            if (prev == nullptr) {
+                head = current->next;
+            } else {
+                prev->next = current->next;
+            }
+            delete current;
+            cout << "Da xoa thuoc." << endl;
+            return;
+        }
+        prev = current;
+        current = current->next;
+    }
+
+    cout << "Khong tim thay thuoc voi ma so: " << maso << endl;
+}
+
+// Sửa thông tin thuốc
+void FixMedicine(MedicineNode* head) {
+    cout << "Nhap ma so thuoc: ";
+    string maso;
+    cin.ignore();
+    getline(cin, maso);
+
+    MedicineNode* current = head;
+    while (current != nullptr) {
+        if (current->data.masothuoc == maso) {
+            cout << "____NHAP THONG TIN MOI____" << endl;
+            cin.ignore();
+            cout << "Ma so thuoc: ";
+            getline(cin, current->data.masothuoc);
+            cout << "Ten thuoc: ";
+            getline(cin, current->data.tenthuoc);
+            cout << "Noi san xuat: ";
+            getline(cin, current->data.suatxu);
+            cout << "Ngay san xuat: ";
+            getline(cin, current->data.ngaysanxuat);
+            cout << "Han su dung: ";
+            getline(cin, current->data.hansudung);
+            cout << "Tac dung: ";
+            getline(cin, current->data.tacdung);
+            cout << "So luong: ";
+            cin >> current->data.soluong;
+            cin.ignore();
+            cout << "Don gia: ";
+            getline(cin, current->data.dongia);
+            cout << "Da sua thong tin thuoc." << endl;
+            return;
+        }
+        current = current->next;
+    }
+
+    cout << "Khong tim thay thuoc voi ma so: " << maso << endl;
+}
+
+// Tìm kiếm thuốc
+void FindMedicine(MedicineNode* head) {
+    cout << "Nhap ma so thuoc: ";
+    string maso;
+    cin.ignore();
+    getline(cin, maso);
+
+    MedicineNode* current = head;
+    while (current != nullptr) {
+        if (current->data.masothuoc == maso) {
+            cout << "Ma so thuoc: " << current->data.masothuoc << endl;
+            cout << "Ten thuoc: " << current->data.tenthuoc << endl;
+            cout << "Noi san xuat: " << current->data.suatxu << endl;
+            cout << "Ngay san xuat: " << current->data.ngaysanxuat << endl;
+            cout << "Han su dung: " << current->data.hansudung << endl;
+            cout << "Tac dung: " << current->data.tacdung << endl;
+            cout << "So luong: " << current->data.soluong << endl;
+            cout << "Don gia: " << current->data.dongia << endl;
+            return;
+        }
+        current = current->next;
+    }
+
+    cout << "Khong tim thay thuoc voi ma so: " << maso << endl;
+}
+
+// Liệt kê danh sách thuốc
+void DisplayMedicine(MedicineNode* head) {
+    if (head == nullptr) {
+        cout << "Danh sach rong." << endl;
+        return;
+    }
+
+    MedicineNode* current = head;
+    while (current != nullptr) {
+        cout << "------------------------------------------------------------\n";
+        cout << "Ma so thuoc: " << current->data.masothuoc << endl;
+        cout << "Ten thuoc: " << current->data.tenthuoc << endl;
+        cout << "Noi san xuat: " << current->data.suatxu << endl;
+        cout << "Ngay san xuat: " << current->data.ngaysanxuat << endl;
+        cout << "Han su dung: " << current->data.hansudung << endl;
+        cout << "Tac dung: " << current->data.tacdung << endl;
+        cout << "So luong: " << current->data.soluong << endl;
+        cout << "Don gia: " << current->data.dongia << endl;
+        current = current->next;
+    }
+    cout << "------------------------------------------------------------\n";
+}
+
+int main() {
+    MedicineNode* a;
+    Medicine thuoc;
+    InitailizeThuoc(a);
+    // Test các chức năng
+    (a, thuoc);
+    AddMedicine(a,thuoc);
+    AddMedicine(a,thuoc);
+    DeleteMedicine(a);
+    DisplayMedicine(a);
+    return 0;
 }
