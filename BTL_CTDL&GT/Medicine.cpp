@@ -30,7 +30,7 @@ void AddMedicine(MedicineNode*& head, Medicine duoc) {
     cin >> duoc.soluong;
     cin.ignore();
     cout << "Don gia: ";
-    getline(cin, duoc.dongia);
+    cin >> duoc.dongia;
 
     MedicineNode* temp = createMedicineNode(duoc);
 
@@ -101,7 +101,7 @@ void FixMedicine(MedicineNode* head) {
             cin >> current->data.soluong;
             cin.ignore();
             cout << "Don gia: ";
-            getline(cin, current->data.dongia);
+            cin >> current->data.dongia;
             cout << "Da sua thong tin thuoc." << endl;
             return;
         }

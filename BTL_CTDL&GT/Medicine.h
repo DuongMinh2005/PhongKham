@@ -10,7 +10,7 @@ struct Medicine{
     string hansudung;
     string tacdung;
     int soluong;
-    string dongia;
+    double dongia;
 };
 
 struct MedicineNode{
