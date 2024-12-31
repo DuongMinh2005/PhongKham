@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string.h>
+#include <string>
 #include "Medicine.h"
 using namespace std;
 
@@ -59,9 +59,18 @@ void Fix_Med(MedicineNode*& thuoc, Medicine duoc) {
     printf(".______________________________.\n");
     printf("|      SUA THONG TIN THUOC     |\n");
     printf(".______________________________.\n");
-    cout << "Vui long nhap ma so thuoc: ";
+    cout << "Nhap ma so thuoc: ";
     cin.ignore();
-    getline(cin, duoc.masothuoc);
+    getline(cin,duoc.masothuoc);
+    while (thuoc == NULL){
+        if (thuoc->next->a.masothuoc == duoc.masothuoc){
+            temp = thuoc->next;
+            thuoc->next = NULL;
+            delete(temp);
+        }
+        thuoc = thuoc->next;
+    }
+};
     cout << "____NHAP THONG TIN MOI____" << endl;
     cout<<"Ma so thuoc: ";
     getline(cin,duoc.masothuoc);

@@ -12,6 +12,7 @@ struct Medicine{
     int soluong;
     string dongia;
 };
+
 struct MedicineNode{
     Medicine a;
     MedicineNode* next;
