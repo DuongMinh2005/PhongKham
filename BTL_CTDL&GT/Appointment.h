@@ -17,7 +17,7 @@ struct Appointment {
 
 // Node của danh sách lịch hẹn
 struct AppointmentNode {
-    Appointment* appointment_info;    
+    Appointment appointment_info;    
     AppointmentNode* next;            
 };
 

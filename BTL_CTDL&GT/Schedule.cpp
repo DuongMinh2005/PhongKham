@@ -10,14 +10,14 @@ ScheduleNode* initScheduleList(){
 bool isTimeInRange(string time, string range);
 bool isScheduleValid(ScheduleNode*& head, AppointmentNode* appointment, Doctor* doctor, string date, string time) {
     // Kiểm tra chuyên khoa
-    if (doctor->specialization != appointment->appointment_info->requiredSpecialization) {
+    if (doctor->specialization != appointment->appointment_info.requiredSpecialization) {
         cout << "Loi: Bac si " << doctor->name 
                 << " khong phu hop voi chuyen khoa benh nhan yeu cau!\n";
         return false;
     }
 
     // Kiểm tra thời gian rảnh của bệnh nhân và bác sĩ
-    if (!isTimeInRange(time, appointment->appointment_info->availableTime)) {
+    if (!isTimeInRange(time, appointment->appointment_info.availableTime)) {
         cout << "Loi: Thoi gian kham khong nam trong thoi gian ranh cua benh nhan!\n";
         return false;
     }
@@ -25,14 +25,14 @@ bool isScheduleValid(ScheduleNode*& head, AppointmentNode* appointment, Doctor* 
     // Kiểm tra trùng lịch
     ScheduleNode* temp = head;
     while (temp != nullptr) {
-        if (temp->schedule_info->date == date) {
-            if (temp->schedule_info->doctor == doctor && temp->schedule_info->time == time) {
+        if (temp->schedule_info.date == date) {
+            if (temp->schedule_info.doctor == doctor && temp->schedule_info.time == time) {
                 cout << "Loi: Bac si " << doctor->name 
                         << " da co lich kham vao gio nay!\n";
                 return false;
             }
-            if (temp->schedule_info->patient == appointment->appointment_info->patient) {
-                cout << "Loi: Benh nhan " << appointment->appointment_info->patient->name 
+            if (temp->schedule_info.patient == appointment->appointment_info.patient) {
+                cout << "Loi: Benh nhan " << appointment->appointment_info.patient->name 
                         << " da co lich kham vao gio nay!\n";
                 return false;
             }
@@ -67,7 +67,7 @@ void addSchedule(ScheduleNode*& head, AppointmentNode*& appointmentList,int appo
     Schedule* newSchedule = new Schedule();
     newSchedule->scheduleID = scheduleIDCounter++;
     newSchedule->doctor = doctor;
-    newSchedule->patient = appointmentNode->appointment_info->patient;
+    newSchedule->patient = appointmentNode->appointment_info.patient;
     newSchedule->date = date;
     newSchedule->time = time;
 

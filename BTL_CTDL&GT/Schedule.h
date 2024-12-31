@@ -19,7 +19,7 @@ struct Schedule{
 };
 
 struct ScheduleNode{
-    Schedule* schedule_info;
+    Schedule schedule_info;
     ScheduleNode* next;
 };
 

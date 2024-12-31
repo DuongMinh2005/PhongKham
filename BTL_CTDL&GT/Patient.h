@@ -16,7 +16,7 @@ struct Patient{
 
 };
 struct PatientNode{
-    Patient *patient_info;
+    Patient patient_info;
     PatientNode *next;
 };
 
