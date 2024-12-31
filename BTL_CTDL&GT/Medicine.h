@@ -21,7 +21,7 @@ struct MedicineNode{
 void InitailizeThuoc(MedicineNode*& a){
     a = NULL;
 }
-
+typedef MedicineNode* LinkedListMedicine;
 void DeleteMedicine(MedicineNode*& thuoc);
 void AddMedicine(MedicineNode*& thuoc, Medicine duoc);
 void FixMedicine(MedicineNode*& thuoc, Medicine duoc);

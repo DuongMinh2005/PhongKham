@@ -33,7 +33,6 @@ void AddMedicine(MedicineNode*& head, Medicine duoc) {
     cin >> duoc.dongia;
 
     MedicineNode* temp = createMedicineNode(duoc);
-
     if (head == nullptr) {
         head = temp;
     } else {
