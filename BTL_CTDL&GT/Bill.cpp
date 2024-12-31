@@ -1,4 +1,4 @@
-#include "billheader.h"
+#include "Bill.h"
 #include <iomanip> // Thêm iomanip để định dạng đầu ra
 
 void initBill(BillNode& billList) {
@@ -13,7 +13,6 @@ void addBill(BillNode& billList) {
     while (true) {
         std::cout << "Nhap ID Hoa Don: ";
         std::cin >> billID;
-
         // Kiểm tra xem ID đã tồn tại chưa
         if (searchBill(billList, billID)) {
             std::cout << "ID Hoa Don da ton tai. Vui long nhap ID khac.\n";
@@ -22,7 +21,6 @@ void addBill(BillNode& billList) {
             break;
         }
     }
-
     std::cout << "Nhap ID Benh Nhan: ";
     std::cin >> patientID;
     std::cout << "Nhap ID Bac Si: ";
@@ -36,10 +34,10 @@ void addBill(BillNode& billList) {
     PatientNode BN = searchPatient(patientID);
     DoctorNode BS = searchDoctor(doctorID);
 
-    if (!BN || !BS) {
-        std::cout << "Khong tim thay Benh Nhan hoac Bac Si.\n";
-        return;
-    }
+    // if (!BN || !BS) {
+    //     std::cout << "Khong tim thay Benh Nhan hoac Bac Si.\n";
+    //     return;
+    // }
 
     // Tạo danh sách thuốc
     MedicineNode* medicineList = nullptr;
@@ -47,21 +45,13 @@ void addBill(BillNode& billList) {
     double totalAmount = 0;
 
     do {
-        std::cout << "Nhap ID Thuoc: ";
-        std::cin >> medicineID;
+        // Tìm kiếm thuốc
+        MedicineNode* newMedicine = searchMedicine(medicineList);
         std::cout << "Nhap So Luong Thuoc: ";
         std::cin >> quantity;
-
-        // Tìm kiếm thuốc
-        MedicineNode* newMedicine = new MedicineNode{ searchMedicine(medicineID), quantity, nullptr };
-        if (!newMedicine->medicine) {
-            std::cout << "Khong tim thay thuoc voi ID " << medicineID << ".\n";
-            delete newMedicine;
-        }
-        else {
+        
             // Tính tổng tiền cho loại thuốc này
-            totalAmount += newMedicine->medicine->price * quantity;
-
+            totalAmount += newMedicine->data.dongia * quantity;
             // Thêm thuốc vào danh sách thuốc
             if (!medicineList) {
                 medicineList = newMedicine;
@@ -73,9 +63,8 @@ void addBill(BillNode& billList) {
                 }
                 temp->next = newMedicine;
             }
-        }
 
-        std::cout << "Them them thuoc? (y/n): ";
+        std::cout << "Them thuoc? (y/n): ";
         std::cin >> addMore;
     } while (addMore == 'y' || addMore == 'Y');
 
@@ -107,7 +96,7 @@ void displayBills(BillNode billList) {
     while (billList) {
         std::cout << "\nHoa Don ID: " << billList->bill.id << "\n";
         std::cout << "Ngay Lap: " << billList->bill.date << "\n";
-        std::cout << "Ten BN: " << billList->BN->name << ", Ten BS: " << billList->BS->name << "\n";
+        std::cout << "Ten BN: " << billList->BN.patient_info.name << ", Ten BS: " << billList->BS.doctor_info.name << "\n";
         std::cout << "Danh Sach Thuoc:\n";
         std::cout << std::left
             << std::setw(10) << "ID Thuoc"
@@ -118,12 +107,12 @@ void displayBills(BillNode billList) {
             << "\n";
         MedicineNode* temp = billList->medicines;
         while (temp) {
-            double subTotal = temp->medicine->price * temp->quantity;
+            double subTotal = temp->data.dongia * temp->data.soluong;
             std::cout << std::left
-                << std::setw(10) << temp->medicine->id
-                << std::setw(20) << temp->medicine->name
-                << std::setw(10) << temp->medicine->price
-                << std::setw(10) << temp->quantity
+                << std::setw(10) << temp->data.masothuoc
+                << std::setw(20) << temp->data.tenthuoc
+                << std::setw(10) << temp->data.dongia
+                << std::setw(10) << temp->data.soluong
                 << std::setw(10) << subTotal
                 << "\n";
             temp = temp->next;
@@ -200,34 +189,34 @@ void billMenu(BillNode& billList) {
 
         switch (choice) {
         case 1: {
-            Patient* BN = new Patient{ 1, "Nguyen Van A", 30 };
-            Doctor* BS = new Doctor{ 1, "Dr. Tran", "Dentist" };
-            Medicine* medicine = new Medicine{ 1, "Paracetamol", 5000, 2 };
-            std::string date = "01/01/2024";
-            double amount = 10000;
+            // Patient* BN = new Patient{ 1, "Nguyen Van A", 30 };
+            // Doctor* BS = new Doctor{ 1, "Dr. Tran", "Dentist" };
+            // Medicine* medicine = new Medicine{ 1, "Paracetamol", 5000, 2 };
+            // std::string date = "01/01/2024";
+            // double amount = 10000;
 
-            addBill(billList, BN, BS, date, medicine, amount);
+            // addBill(billList, BN, BS, date, medicine, amount);
             break;
         }
         case 2:
             displayBills(billList);
             break;
         case 3: {
-            int id;
-            std::cout << "Nhap ID hoa don can tim: ";
-            std::cin >> id;
-            BillNode found = searchBill(billList, id);
-            if (found) {
-                std::cout << "Hoa don tim thay - ID: " << found->bill.id
-                    << ", Ten Benh Nhan: " << found->BN->name
-                    << ", Ten Bac Si: " << found->BS->name
-                    << ", Thuoc: " << found->medicine->name
-                    << ", Ngay: " << found->bill.date
-                    << ", Tong Tien: " << found->bill.amount << " VND\n";
-            }
-            else {
-                std::cout << "Khong tim thay hoa don voi ID " << id << ".\n";
-            }
+            // int id;
+            // std::cout << "Nhap ID hoa don can tim: ";
+            // std::cin >> id;
+            // BillNode found = searchBill(billList, id);
+            // if (found) {
+            //     std::cout << "Hoa don tim thay - ID: " << found->bill.id
+            //         << ", Ten Benh Nhan: " << found->BN->name
+            //         << ", Ten Bac Si: " << found->BS->name
+            //         << ", Thuoc: " << found->medicine->name
+            //         << ", Ngay: " << found->bill.date
+            //         << ", Tong Tien: " << found->bill.amount << " VND\n";
+            // }
+            // else {
+            //     std::cout << "Khong tim thay hoa don voi ID " << id << ".\n";
+            // }
             break;
         }
         case 4: {

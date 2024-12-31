@@ -25,5 +25,5 @@ typedef MedicineNode* LinkedListMedicine;
 void DeleteMedicine(MedicineNode*& thuoc);
 void AddMedicine(MedicineNode*& thuoc, Medicine duoc);
 void FixMedicine(MedicineNode*& thuoc, Medicine duoc);
-void FindMedicine(MedicineNode* thuoc);
+MedicineNode* searchMedicine(MedicineNode* thuoc);
 void DisplayMedicine(MedicineNode* thuoc);

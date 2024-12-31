@@ -111,7 +111,7 @@ void FixMedicine(MedicineNode* head) {
 }
 
 // Tìm kiếm thuốc
-void FindMedicine(MedicineNode* head) {
+MedicineNode* searchMedicine(MedicineNode* head) {
     cout << "Nhap ma so thuoc: ";
     string maso;
     cin.ignore();
@@ -128,12 +128,13 @@ void FindMedicine(MedicineNode* head) {
             cout << "Tac dung: " << current->data.tacdung << endl;
             cout << "So luong: " << current->data.soluong << endl;
             cout << "Don gia: " << current->data.dongia << endl;
-            return;
+            return current;
         }
         current = current->next;
     }
 
     cout << "Khong tim thay thuoc voi ma so: " << maso << endl;
+    return nullptr
 }
 
 // Liệt kê danh sách thuốc

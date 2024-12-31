@@ -2,7 +2,9 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-
+#include "Medicine.h"
+#include "Doctor.h"
+#include "Patient.h"
 
 struct Bill {
     int id;
