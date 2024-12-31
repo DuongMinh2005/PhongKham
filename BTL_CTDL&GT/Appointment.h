@@ -22,7 +22,6 @@ struct AppointmentNode {
 };
 
 
-            
     int appointmentIDCounter;     
 
     // Hàm khởi tạo danh sách
