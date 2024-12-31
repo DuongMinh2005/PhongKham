@@ -27,7 +27,6 @@ struct Doctor{
 struct DoctorNode{
     Doctor doctor_info;
     DoctorNode* next;
-    
 };
 
 typedef DoctorNode* PNodeDoctor;

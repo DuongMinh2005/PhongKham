@@ -7,56 +7,56 @@ ScheduleNode* initScheduleList(){
     return NULL;
 }
 // Kiểm tra điều kiện hợp lệ cho lịch khám
-    bool isTimeInRange(string time, string range);
-    bool isScheduleValid(ScheduleNode*& head, AppointmentNode* appointment, Doctor* doctor, string date, string time) {
-        // Kiểm tra chuyên khoa
-        if (doctor->specialization != appointment->appointment_info->requiredSpecialization) {
-            cout << "Loi: Bac si " << doctor->name 
-                 << " khong phu hop voi chuyen khoa benh nhan yeu cau!\n";
-            return false;
-        }
+bool isTimeInRange(string time, string range);
+bool isScheduleValid(ScheduleNode*& head, AppointmentNode* appointment, Doctor* doctor, string date, string time) {
+    // Kiểm tra chuyên khoa
+    if (doctor->specialization != appointment->appointment_info.requiredSpecialization) {
+        cout << "Loi: Bac si " << doctor->name 
+                << " khong phu hop voi chuyen khoa benh nhan yeu cau!\n";
+        return false;
+    }
 
-        // Kiểm tra thời gian rảnh của bệnh nhân và bác sĩ
-        if (!isTimeInRange(time, appointment->appointment_info->availableTime)) {
-            cout << "Loi: Thoi gian kham khong nam trong thoi gian ranh cua benh nhan!\n";
-            return false;
-        }
+    // Kiểm tra thời gian rảnh của bệnh nhân và bác sĩ
+    if (!isTimeInRange(time, appointment->appointment_info.availableTime)) {
+        cout << "Loi: Thoi gian kham khong nam trong thoi gian ranh cua benh nhan!\n";
+        return false;
+    }
 
-        // Kiểm tra trùng lịch
-        ScheduleNode* temp = head;
-        while (temp != nullptr) {
-            if (temp->schedule_info->date == date) {
-                if (temp->schedule_info->doctor == doctor && temp->schedule_info->time == time) {
-                    cout << "Loi: Bac si " << doctor->name 
-                         << " da co lich kham vao gio nay!\n";
-                    return false;
-                }
-                if (temp->schedule_info->patient == appointment->appointment_info->patient) {
-                    cout << "Loi: Benh nhan " << appointment->appointment_info->patient->name 
-                         << " da co lich kham vao gio nay!\n";
-                    return false;
-                }
+    // Kiểm tra trùng lịch
+    ScheduleNode* temp = head;
+    while (temp != nullptr) {
+        if (temp->schedule_info.date == date) {
+            if (temp->schedule_info.doctor == doctor && temp->schedule_info.time == time) {
+                cout << "Loi: Bac si " << doctor->name 
+                        << " da co lich kham vao gio nay!\n";
+                return false;
             }
-            temp = temp->next;
+            if (temp->schedule_info.patient == appointment->appointment_info.patient) {
+                cout << "Loi: Benh nhan " << appointment->appointment_info.patient->name 
+                        << " da co lich kham vao gio nay!\n";
+                return false;
+            }
         }
-        return true;
+        temp = temp->next;
     }
-    // Kiểm tra thời gian hợp lệ
-    bool isTimeInRange(string time, string range) {
-        int startHour, startMin, endHour, endMin, checkHour, checkMin;
-        sscanf(range.c_str(), "%d:%d - %d:%d", &startHour, &startMin, &endHour, &endMin);
-        sscanf(time.c_str(), "%d:%d", &checkHour, &checkMin);
+    return true;
+}
+// Kiểm tra thời gian hợp lệ
+bool isTimeInRange(string time, string range) {
+    int startHour, startMin, endHour, endMin, checkHour, checkMin;
+    sscanf(range.c_str(), "%d:%d - %d:%d", &startHour, &startMin, &endHour, &endMin);
+    sscanf(time.c_str(), "%d:%d", &checkHour, &checkMin);
 
-        int startTime = startHour * 60 + startMin;
-        int endTime = endHour * 60 + endMin;
-        int checkTime = checkHour * 60 + checkMin;
+    int startTime = startHour * 60 + startMin;
+    int endTime = endHour * 60 + endMin;
+    int checkTime = checkHour * 60 + checkMin;
 
-        return (checkTime >= startTime && checkTime <= endTime);
-    }
+    return (checkTime >= startTime && checkTime <= endTime);
+}
 
 // Thêm lịch khám mới
-void addSchedule(ScheduleNode*& head, AppointmentNode*& appointmentList,int appointmentID, Doctor* doctor,Patient* patient, string date, string time) {
-    
+void addSchedule(ScheduleNode*& head, AppointmentNode*& appointmentList,int appointmentID, Doctor* doctor, string date, string time) {
+    cout <<"Nhap ma lich hen (appointment): "<<appointmentID<<endl;
     // Tìm lịch hẹn trong danh sách lịch hẹn
     AppointmentNode* appointmentNode = findAppointmentByID(appointmentList,appointmentID);
     if (appointmentNode == nullptr) {
@@ -67,7 +67,7 @@ void addSchedule(ScheduleNode*& head, AppointmentNode*& appointmentList,int appo
     Schedule* newSchedule = new Schedule();
     newSchedule->scheduleID = scheduleIDCounter++;
     newSchedule->doctor = doctor;
-    newSchedule->patient = appointmentNode->appointment_info->patient;
+    newSchedule->patient = appointmentNode->appointment_info.patient;
     newSchedule->date = date;
     newSchedule->time = time;
 
@@ -92,6 +92,7 @@ void addSchedule(ScheduleNode*& head, AppointmentNode*& appointmentList,int appo
 
     // Xóa lịch hẹn khỏi danh sách lịch hẹn
     deleteAppointment(appointmentList,appointmentID);
+    
 
     cout << "Lich kham da duoc tao thanh cong!\n";
 
