@@ -16,3 +16,5 @@ PatientNode* createPatientNode(const Patient& data){
     newPatientNode->next = NULL;
     return newPatientNode;
 }
+
+void displayAppointment(LinkedListPatient &H)
