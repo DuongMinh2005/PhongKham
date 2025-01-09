@@ -10,20 +10,20 @@ struct Medicine{
     string hansudung;
     string tacdung;
     int soluong;
-    string dongia;
+    double dongia;
 };
+
 struct MedicineNode{
-    Medicine a;
+    Medicine data;
     MedicineNode* next;
 };
 
 void InitailizeThuoc(MedicineNode*& a){
     a = NULL;
 }
-
-bool is_Med_empty(MedicineNode*);
-void Delete_Med(MedicineNode*& thuoc);
-void Insert_Med(MedicineNode*& thuoc, Medicine duoc);
-void Fix_Med(MedicineNode*& thuoc, Medicine duoc);
-void Find_Med(MedicineNode* thuoc);
-void List_Med(MedicineNode* thuoc);
+typedef MedicineNode* LinkedListMedicine;
+void DeleteMedicine(MedicineNode*& thuoc);
+void AddMedicine(MedicineNode*& thuoc, Medicine duoc);
+void FixMedicine(MedicineNode*& thuoc, Medicine duoc);
+MedicineNode* searchMedicine(MedicineNode* thuoc);
+void DisplayMedicine(MedicineNode* thuoc);
