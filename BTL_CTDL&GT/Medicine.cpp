@@ -134,7 +134,7 @@ MedicineNode* searchMedicine(MedicineNode* head) {
     }
 
     cout << "Khong tim thay thuoc voi ma so: " << maso << endl;
-    return nullptr
+    return nullptr;
 }
 
 // Liệt kê danh sách thuốc
