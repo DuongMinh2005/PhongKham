@@ -3,14 +3,67 @@
 #include <string>
 using namespace std;
 struct Patient;
+struct PatientNode;
 struct Schedule;
 struct Bill;
+struct ScheduleNode;
+struct BillNode;
+struct Doctor;
+struct DoctorNode;
+struct Timetable;
+struct TimetableNode;
+struct Medicine;
+struct MedicineNode;
+struct Appointment;
+struct AppointmentNode;
+
+struct Schedule{
+    int scheduleID;
+    string date;
+    string time;
+    Patient* patient;
+    Doctor* doctor;
+    Appointment* appointment;
+};
+
+struct ScheduleNode{
+    Schedule schedule_info;
+    ScheduleNode* next;
+};
+typedef ScheduleNode* SCNode;
+typedef ScheduleNode* LinkedListSchedule;
+struct Medicine {
+    string medicineID;
+    string name;
+    string dosage;
+    double price;
+};
+struct MedicineNode{
+    Medicine medicine_info;
+    Medicine* next;
+};
+typedef MedicineNode* MDNode;
+typedef MedicineNode* LinkedListMedicine;
+
+struct Bill {
+    int billID;
+    double totalAmount;
+    string date;
+    Patient* patient;
+    Doctor* doctor;
+    Schedule* schedule;
+};
+struct BillNode {
+    Bill bill_info;
+    BillNode* next;
+};
 struct Appointment {
     int appointmentID;                
     string symptom;                   
     string date;
     string time;             
-    Patient* patient;                 
+    Patient* patient;         
+    bool isProcessed;        
 };
 struct AppointmentNode {
     Appointment appointment_info;    
@@ -40,6 +93,7 @@ typedef PatientNode* LinkedListPatient;
 struct Timetable{
     string date;
     string time;
+    Doctor* doctor;
 };
 struct TimetableNode{
     Timetable timetable_info;
@@ -66,47 +120,8 @@ struct DoctorNode{
 typedef DoctorNode* DTNode;
 typedef DoctorNode* LinkedListDoctor;
 
-struct Schedule{
-    int scheduleID;
-    string date;
-    string time;
-    Patient* patient;
-    Doctor* doctor;
-    Appointment* appointment;
-};
 
-struct ScheduleNode{
-    Schedule schedule_info;
-    ScheduleNode* next;
-};
-typedef ScheduleNode* SCNode;
-typedef ScheduleNode* LinkedListSchedule;
 
-struct Medicine {
-    string medicineID;
-    string name;
-    string dosage;
-    double price;
-};
-struct MedicineNode{
-    Medicine medicine_info;
-    Medicine* next;
-};
-typedef MedicineNode* MDNode;
-typedef MedicineNode* LinkedListMedicine;
-
-struct Bill {
-    int billID;
-    double totalAmount;
-    string date;
-    Patient* patient;
-    Doctor* doctor;
-    Schedule* schedule;
-};
-struct BillNode {
-    Bill bill_info;
-    BillNode* next;
-};
 typedef BillNode* BLNode;
 typedef BillNode* LinkedListBill;
 //Hàm tạo danh sách
@@ -455,7 +470,7 @@ void addAppointment(LinkedListAppointment& head,
                     const string& symptom, 
                     const string& date, 
                     const string& time, 
-                    Patient* patient) {
+                    Patient* patient, bool isProcessed = false) {
     // Tạo một nút mới
     APNode newAppointmentNode = new AppointmentNode;
     
@@ -465,6 +480,7 @@ void addAppointment(LinkedListAppointment& head,
     newAppointmentNode->appointment_info.date = date;
     newAppointmentNode->appointment_info.time = time;
     newAppointmentNode->appointment_info.patient = patient;
+    newAppointmentNode->appointment_info.isProcessed = false;
 
     // Đặt con trỏ tiếp theo của nút mới là nullptr
     newAppointmentNode->next = nullptr;
@@ -671,6 +687,45 @@ void deleteDoctor(LinkedListDoctor &doctorlist, const string &doctorID) {
     }
     cout << "Doctor not found!\n";
 }
+
+//hàm hiển thị danh sách bệnh nhân
+void viewPatientList(LinkedListPatient patientList) {
+    cout << left << setw(10) << "ID" 
+         << setw(20) << "Name" 
+         << setw(10) << "Age" 
+         << setw(15) << "Phone" << endl;
+    cout << string(55, '-') << endl;
+
+    PTNode current = patientList;
+    while (current != nullptr) {
+        cout << left << setw(10) << current->patient_info.patientID
+             << setw(20) << current->patient_info.name
+             << setw(10) << current->patient_info.age
+             << setw(15) << current->patient_info.phone << endl;
+        current = current->next;
+    }
+    cout << string(55, '-') << endl;
+}
+//hàm hiển thị danh sách bác sĩ
+void viewDoctorList(LinkedListDoctor doctorList) {
+    cout << left << setw(10) << "ID" 
+         << setw(20) << "Name" 
+         << setw(10) << "Age" 
+         << setw(15) << "Phone" << endl;
+    cout << string(55, '-') << endl;
+
+    DTNode current = doctorList;
+    while (current != nullptr) {
+        cout << left << setw(10) << current->doctor_info.doctorID
+             << setw(20) << current->doctor_info.name
+             << setw(10) << current->doctor_info.age
+             << setw(15) << current->doctor_info.phone << endl;
+        current = current->next;
+    }
+    cout << string(55, '-') << endl;
+}
+
+
 //hàm book appointment
 void bookAppointment(LinkedListAppointment& head, Patient& patient) {
     int appointmentID;
@@ -691,12 +746,14 @@ void bookAppointment(LinkedListAppointment& head, Patient& patient) {
     cin >> time;
 
     // Gọi hàm addAppointment để thêm lịch hẹn vào danh sách
-    addAppointment(head, appointmentID, symptom, date, time, &patient);
+    addAppointment(head, appointmentID, symptom, date, time, &patient, false);
 
     cout << "\nAppointment booked successfully for Patient: " 
          << patient.name << " (ID: " << patient.patientID << ")!\n";
     cout << "Appointment ID: " << appointmentID << "\n";
     cout << "Date: " << date << ", Time: " << time << "\n";
+    cout << "Symptom/Reason: " << symptom << "\n";
+    cout << "Appointment Status: Pending\n";
 }
 
 //hàm view all appointment
@@ -711,31 +768,31 @@ void viewAllAppointments(LinkedListAppointment head) {
     int count = 0;         // Biến đếm số lượng lịch hẹn
 
     // Tiêu đề bảng
-    cout << "\n+-------------------------------------------------------------------------------------+\n";
+    cout << "\n+-----------------------------------------------------------------------------------------------+\n";
     cout << "| " << setw(5) << "No."
-         << " | " << setw(15) << "Appointment ID"
-         << " | " << setw(25) << "Symptom/Reason"
-         << " | " << setw(12) << "Date"
-         << " | " << setw(8) << "Time"
-         << " | " << setw(12) << "Patient ID"
-         << " |\n";
-    cout << "+-------------------------------------------------------------------------------------+\n";
+        << " | " << setw(15) << "Appointment ID"
+        << " | " << setw(25) << "Symptom/Reason"
+        << " | " << setw(12) << "Date"
+        << " | " << setw(8) << "Time"
+        << " | " << setw(12) << "Patient ID"
+        << " | " << setw(10) << "Status"
+        << " |\n";
+    cout << "+-----------------------------------------------------------------------------------------------+\n";
 
     // Duyệt danh sách liên kết
     while (current != nullptr) {
         count++;
         cout << "| " << setw(5) << count
-             << " | " << setw(15) << current->appointment_info.appointmentID
-             << " | " << setw(25) << current->appointment_info.symptom
-             << " | " << setw(12) << current->appointment_info.date
-             << " | " << setw(8) << current->appointment_info.time
-             << " | " << setw(12) << current->appointment_info.patient->patientID
-             << " |\n";
+            << " | " << setw(15) << current->appointment_info.appointmentID
+            << " | " << setw(25) << current->appointment_info.symptom
+            << " | " << setw(12) << current->appointment_info.date
+            << " | " << setw(8) << current->appointment_info.time
+            << " | " << setw(12) << current->appointment_info.patient->patientID
+            << " | " << setw(10) << (current->appointment_info.isProcessed ? "Processed" : "Pending")
+            << " |\n";
         current = current->next;
     }
-
-    // Kết thúc bảng
-    cout << "+-------------------------------------------------------------------------------------+\n";
+    cout << "+-----------------------------------------------------------------------------------------------+\n";
     cout << "\nTotal Appointments: " << count << "\n";
 }
 //Hàm view appointment by patient
@@ -751,14 +808,15 @@ void viewAppointmentsByPatient(LinkedListAppointment head, Patient &patient) {
     int count = 0;         // Biến đếm số lượng lịch hẹn của bệnh nhân
 
     // Tiêu đề bảng
-    cout << "\n+-------------------------------------------------------------------------------------+\n";
+    cout << "\n+-----------------------------------------------------------------------------------------------+\n";
     cout << "| " << setw(5) << "No."
-         << " | " << setw(15) << "Appointment ID"
-         << " | " << setw(25) << "Symptom/Reason"
-         << " | " << setw(12) << "Date"
-         << " | " << setw(8) << "Time"
-         << " |\n";
-    cout << "+-------------------------------------------------------------------------------------+\n";
+        << " | " << setw(15) << "Appointment ID"
+        << " | " << setw(25) << "Symptom/Reason"
+        << " | " << setw(12) << "Date"
+        << " | " << setw(8) << "Time"
+        << " | " << setw(10) << "Status"
+        << " |\n";
+    cout << "+-----------------------------------------------------------------------------------------------+\n";
 
     // Duyệt danh sách liên kết
     while (current != nullptr) {
@@ -766,17 +824,15 @@ void viewAppointmentsByPatient(LinkedListAppointment head, Patient &patient) {
         if (current->appointment_info.patient->name == patient.name) {
             count++;
             cout << "| " << setw(5) << count
-                 << " | " << setw(15) << current->appointment_info.appointmentID
-                 << " | " << setw(25) << current->appointment_info.symptom
-                 << " | " << setw(12) << current->appointment_info.date
-                 << " | " << setw(8) << current->appointment_info.time
-                 << " |\n";
+                << " | " << setw(15) << current->appointment_info.appointmentID
+                << " | " << setw(25) << current->appointment_info.symptom
+                << " | " << setw(12) << current->appointment_info.date
+                << " | " << setw(8) << current->appointment_info.time
+                << " | " << setw(10) << (current->appointment_info.isProcessed ? "Processed" : "Pending")
+                << " |\n";
         }
-        // Di chuyển tới lịch hẹn tiếp theo
         current = current->next;
     }
-
-    // Kết thúc bảng
     cout << "+-------------------------------------------------------------------------------------+\n";
 
     // Thông báo nếu bệnh nhân không có lịch hẹn
@@ -881,7 +937,7 @@ void viewSchedulesByDoctor(LinkedListSchedule head, Doctor &doctor) {
     }
 }
 //Hàm view all timetable
-void viewDoctorTimetables(LinkedListTimetable head) {
+void viewDoctorTimetables(LinkedListTimetable head, Doctor &doctor) {
     // Kiểm tra nếu danh sách timetable rỗng
     if (head == nullptr) {
         cout << "No timetables available.\n";
@@ -889,10 +945,11 @@ void viewDoctorTimetables(LinkedListTimetable head) {
     }
 
     TTNode current = head; // Con trỏ duyệt danh sách
-    int count = 0;         // Biến đếm số lượng timetable
+    int count = 0;         // Biến đếm số lượng timetable của bác sĩ
 
     // Tiêu đề bảng
-    cout << "\n+----------------------------------+\n";
+    cout << "\nTimetables for Doctor: " << doctor.name << " (ID: " << doctor.doctorID << ")\n";
+    cout << "+----------------------------------+\n";
     cout << "| " << setw(5) << "No."
          << " | " << setw(12) << "Date"
          << " | " << setw(8) << "Time"
@@ -901,18 +958,28 @@ void viewDoctorTimetables(LinkedListTimetable head) {
 
     // Duyệt danh sách liên kết
     while (current != nullptr) {
-        count++;
-        cout << "| " << setw(5) << count
-             << " | " << setw(12) << current->timetable_info.date
-             << " | " << setw(8) << current->timetable_info.time
-             << " |\n";
+        // Kiểm tra nếu lịch trình thuộc về bác sĩ
+        if (current->timetable_info.doctor->doctorID == doctor.doctorID) {
+            count++;
+            cout << "| " << setw(5) << count
+                 << " | " << setw(12) << current->timetable_info.date
+                 << " | " << setw(8) << current->timetable_info.time
+                 << " |\n";
+        }
         current = current->next;
     }
 
     // Kết thúc bảng
     cout << "+----------------------------------+\n";
-    cout << "\nTotal Timetables: " << count << "\n";
+
+    // Thông báo nếu không có timetable nào cho bác sĩ
+    if (count == 0) {
+        cout << "No timetables found for this doctor.\n";
+    } else {
+        cout << "\nTotal Timetables: " << count << "\n";
+    }
 }
+
 //hàm view all schedule
 void viewAllSchedules(LinkedListSchedule head) {
     // Kiểm tra nếu danh sách lịch khám rỗng
@@ -994,15 +1061,51 @@ void addScheduleNode(LinkedListSchedule &schedulelist, int scheduleID, const str
         temp->next = newScheduleNode;
     }
 }
+//hàm split time
+void splitTimeRange(const string& time, string& startTime, string& endTime) {
+    size_t dashPos = time.find(" - ");
+    if (dashPos != string::npos) {
+        startTime = time.substr(0, dashPos);
+        endTime = time.substr(dashPos + 3); // Bỏ qua " - "
+    } else {
+        startTime = "";
+        endTime = "";
+    }
+}
+
+//hàm check time
+bool isTimeConflictWithDoctorTimetable(Doctor& doctor, const string& date, const string& time, 
+                                       LinkedListTimetable& timetableList) {
+    string newStartTime, newEndTime;
+    splitTimeRange(time, newStartTime, newEndTime); // Tách thời gian mới nhập vào
+
+    TTNode current = timetableList;
+    while (current != nullptr) {
+        if (current->timetable_info.doctor == &doctor && current->timetable_info.date == date) {
+            string existingTime = current->timetable_info.time;
+            string existingStartTime, existingEndTime;
+
+            splitTimeRange(existingTime, existingStartTime, existingEndTime); // Tách thời gian đã lưu
+
+            // Kiểm tra trùng khoảng thời gian
+            if (newStartTime < existingEndTime && newEndTime > existingStartTime) {
+                return true; // Trùng thời gian
+            }
+        }
+        current = current->next;
+    }
+    return false; // Không trùng
+}
+
 //Hàm tạo lịch khám
-void createSchedule(LinkedListSchedule &scheduleList, LinkedListAppointment &appointmentList, 
-                    LinkedListDoctor &doctorList, LinkedListPatient &patientList) {
+void createSchedule(LinkedListSchedule& scheduleList, LinkedListAppointment& appointmentList,
+                    LinkedListDoctor& doctorList, LinkedListPatient& patientList,
+                    LinkedListTimetable& timetableList) {
 
     int appointmentID, scheduleID;
     string date, time;
     Doctor* doctor = nullptr;
     Patient* patient = nullptr;
-    AppointmentNode* appointment = nullptr;
 
     // Nhập Appointment ID để xử lý
     cout << "Enter Appointment ID to process: ";
@@ -1015,44 +1118,61 @@ void createSchedule(LinkedListSchedule &scheduleList, LinkedListAppointment &app
         return;
     }
 
-    appointment = &appNode->appointment_info;
-    patient = &(appointment->patient_info);
+    // Lấy thông tin bệnh nhân từ lịch hẹn
+    Appointment* appointment = &(appNode->appointment_info);
+    patient = appointment->patient;
+
+    if (patient == nullptr) {
+        cout << "Patient information is missing in the appointment.\n";
+        return;
+    }
 
     // Nhập thông tin lịch khám
     cout << "Enter Schedule ID: ";
     cin >> scheduleID;
-    cout << "Enter Date (YYYY-MM-DD): ";
-    cin >> date;
-    cout << "Enter Time (HH:MM): ";
-    cin >> time;
+
+    bool timeConflict = false;
 
     // Hiển thị danh sách bác sĩ
     cout << "Available Doctors:\n";
     viewDoctorList(doctorList);
+    do {
+        cout << "Enter Date (YYYY-MM-DD): ";
+        cin >> date;
+        cin.ignore(); // Bỏ qua ký tự xuống dòng còn sót trong bộ đệm
+        cout << "Enter Time (HH:MM - HH:MM): ";
+        getline(cin, time);
+        DTNode doctorNode = nullptr;
+        string doctorID;
 
-    string doctorID;
-    cout << "Enter Doctor ID: ";
-    cin >> doctorID;
+        do {
+            cout << "Enter Doctor ID: ";
+            cin >> doctorID;
 
-    DTNode doctorNode = findDoctorByID(doctorList, doctorID);
-    if (doctorNode == nullptr) {
-        cout << "Doctor ID not found.\n";
-        return;
-    }
+            // Tìm bác sĩ theo ID
+            doctorNode = findDoctorByID(doctorList, doctorID);
+            if (doctorNode == nullptr) {
+                cout << "Doctor ID not found. Please try again.\n";
+            }
+        } while (doctorNode == nullptr);
+        doctor = &(doctorNode->doctor_info);
 
-    doctor = &(doctorNode->doctor_info);
+        // Kiểm tra trùng thời gian
+        timeConflict = isTimeConflictWithDoctorTimetable(*doctor, date, time, timetableList);
+        if (timeConflict) {
+            cout << "The selected date and time conflict with the doctor's timetable. "
+                    "Please choose another time or doctor.\n";
+        }
+    } while (timeConflict);
 
-    // Tạo một nút lịch khám mới
-    SCNode newScheduleNode = new ScheduleNode;
-    newScheduleNode->schedule_info = {scheduleID, date, time, patient, doctor, appointment};
-    newScheduleNode->next = nullptr;  // Đặt next là nullptr vì đây là nút cuối
+    // Tạo một node lịch khám mới
+    SCNode newScheduleNode = new ScheduleNode{
+        {scheduleID, date, time, patient, doctor, appointment}, nullptr};
 
-    // Thêm lịch khám mới vào danh sách lịch khám
+    // Thêm lịch khám vào danh sách lịch khám
     if (scheduleList == nullptr) {
-        // Nếu danh sách rỗng, nút mới trở thành nút đầu tiên
         scheduleList = newScheduleNode;
     } else {
-        // Duyệt đến cuối danh sách và thêm vào cuối
         SCNode temp = scheduleList;
         while (temp->next != nullptr) {
             temp = temp->next;
@@ -1061,22 +1181,47 @@ void createSchedule(LinkedListSchedule &scheduleList, LinkedListAppointment &app
     }
 
     // Cập nhật lịch khám cho bệnh nhân
-    SCNode patientSchedule = &(patient->schedule);
-    if (patientSchedule->next == nullptr) {
-        patientSchedule->next = newScheduleNode;
+    if (patient->schedule.next == nullptr) {
+        patient->schedule.next = newScheduleNode;
+    } else {
+        SCNode temp = patient->schedule.next;
+        while (temp->next != nullptr) {
+            temp = temp->next;
+        }
+        temp->next = newScheduleNode;
     }
 
     // Cập nhật lịch khám cho bác sĩ
-    SCNode doctorSchedule = &(doctor->schedule);
-    if (doctorSchedule->next == nullptr) {
-        doctorSchedule->next = newScheduleNode;
+    if (doctor->schedule.next == nullptr) {
+        doctor->schedule.next = newScheduleNode;
+    } else {
+        SCNode temp = doctor->schedule.next;
+        while (temp->next != nullptr) {
+            temp = temp->next;
+        }
+        temp->next = newScheduleNode;
     }
 
-    // Xóa lịch hẹn khỏi danh sách chưa xử lý
-    deleteAppointment(appointmentList, appointmentID);
+    // Cập nhật trạng thái của lịch hẹn
+    appointment->isProcessed = true;
+
+    // Cập nhật Timetable của bác sĩ
+    TTNode newTimetableNode = new TimetableNode{
+        {date, time, doctor}, nullptr};
+
+    if (timetableList == nullptr) {
+        timetableList = newTimetableNode;
+    } else {
+        TTNode temp = timetableList;
+        while (temp->next != nullptr) {
+            temp = temp->next;
+        }
+        temp->next = newTimetableNode;
+    }
 
     cout << "Schedule created successfully!\n";
 }
+
 
 
 // Hàm tạo bệnh nhân
@@ -1114,76 +1259,6 @@ Doctor createDoctor(int id) {
 
     return doctor;
 }
-
-
-
-//hàm hiển thị danh sách bệnh nhân
-void viewPatientList(LinkedListPatient patientList) {
-    cout << left << setw(10) << "ID" 
-         << setw(20) << "Name" 
-         << setw(10) << "Age" 
-         << setw(15) << "Phone" << endl;
-    cout << string(55, '-') << endl;
-
-    PTNode current = patientList;
-    while (current != nullptr) {
-        cout << left << setw(10) << current->patient_info.patientID
-             << setw(20) << current->patient_info.name
-             << setw(10) << current->patient_info.age
-             << setw(15) << current->patient_info.phone << endl;
-        current = current->next;
-    }
-    cout << string(55, '-') << endl;
-}
-//hàm hiển thị danh sách bác sĩ
-void viewDoctorList(LinkedListDoctor doctorList) {
-    cout << left << setw(10) << "ID" 
-         << setw(20) << "Name" 
-         << setw(10) << "Age" 
-         << setw(15) << "Phone" << endl;
-    cout << string(55, '-') << endl;
-
-    DTNode current = doctorList;
-    while (current != nullptr) {
-        cout << left << setw(10) << current->doctor_info.doctorID
-             << setw(20) << current->doctor_info.name
-             << setw(10) << current->doctor_info.age
-             << setw(15) << current->doctor_info.phone << endl;
-        current = current->next;
-    }
-    cout << string(55, '-') << endl;
-}
-// Hàm kiểm tra và hiển thị tất cả lịch hẹn chưa được xử lý
-void viewPendingAppointments(LinkedListAppointment appointmentList) {
-    cout << left << setw(15) << "Appointment ID"
-         << setw(20) << "Symptom"
-         << setw(15) << "Date"
-         << setw(10) << "Time"
-         << setw(20) << "Patient Name" << endl;
-    cout << string(80, '-') << endl;
-
-    APNode current = appointmentList;
-    bool hasPending = false; // Kiểm tra có lịch hẹn chưa xử lý không
-
-    while (current != nullptr) {
-        // Kiểm tra bệnh nhân có lịch khám hay chưa
-        if (current->appointment_info.patient->schedule.schedule_info.scheduleID == 0) { // Chưa có lịch khám
-            cout << left << setw(15) << current->appointment_info.appointmentID
-                 << setw(20) << current->appointment_info.symptom
-                 << setw(15) << current->appointment_info.date
-                 << setw(10) << current->appointment_info.time
-                 << setw(20) << current->appointment_info.patient->name << endl;
-            hasPending = true;
-        }
-        current = current->next;
-    }
-
-    if (!hasPending) {
-        cout << "No pending appointments found.\n";
-    }
-    cout << string(80, '-') << endl;
-}
-
 
 
 // Menu bệnh nhân
@@ -1308,7 +1383,7 @@ void doctorMenu(LinkedListDoctor& doctorlist) {
             default:
                 cout << "Invalid choice! Please try again.\n";
         }
-    } while (choice != 4);
+    } while (choice != 6);
 }
 
 // Menu quản lý
@@ -1411,14 +1486,102 @@ void managePatient(LinkedListPatient &patientlist, LinkedListAppointment &appoin
     } while (choice != 3);
 
 }
-void manageDoctor(LinkedListDoctor &doctorlist){}
+void manageDoctor(LinkedListDoctor &doctorlist, LinkedListSchedule &schedulelist, LinkedListTimetable &timetablelist) {
+    int choice;
+    do {
+        cout << "\nManage Doctors:\n";
+        cout << "1. View doctor list\n";
+        cout << "2. Select a doctor\n";
+        cout << "3. Go back\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: // Hiển thị danh sách bác sĩ
+                viewDoctorList(doctorlist);
+                break;
+
+            case 2: {
+                string doctorID;
+                cout << "Enter the doctor ID to select: ";
+                cin >> doctorID;
+
+                DTNode selectedNode = findDoctorByID(doctorlist, doctorID); // Tìm bác sĩ
+                if (selectedNode != nullptr) {
+                    Doctor* selectedDoctor = &selectedNode->doctor_info;
+
+                    int subChoice;
+                    do {
+                        cout << "\nSelected Doctor: " << selectedDoctor->name << "\n";
+                        cout << "1. View doctor information\n";
+                        cout << "2. Edit doctor information\n";
+                        cout << "3. Delete doctor\n";
+                        cout << "4. View schedules for this doctor\n";
+                        cout << "5. View timetable for this doctor\n";
+                        cout << "6. Go back\n";
+                        cout << "Enter your choice: ";
+                        cin >> subChoice;
+
+                        switch (subChoice) {
+                            case 1: // Xem thông tin bác sĩ
+                                cout << "Doctor Information:\n";
+                                cout << "ID: " << selectedDoctor->doctorID
+                                     << ", Name: " << selectedDoctor->name
+                                     << ", Age: " << selectedDoctor->age
+                                     << ", Phone: " << selectedDoctor->phone << "\n";
+                                break;
+
+                            case 2: // Sửa thông tin bác sĩ
+                                editDoctorInfo(*selectedDoctor);
+                                break;
+
+                            case 3: // Xóa bác sĩ
+                                deleteDoctor(doctorlist, doctorID);
+                                cout << "Doctor deleted successfully.\n";
+                                subChoice = 6; // Thoát menu con sau khi xóa
+                                break;
+
+                            case 4: // Xem lịch khám của bác sĩ
+                                viewSchedulesByDoctor(schedulelist, *selectedDoctor);
+                                break;
+
+                            case 5: // Xem thời khóa biểu của bác sĩ
+                                viewDoctorTimetables(timetablelist, *selectedDoctor);
+                                break;
+
+                            case 6: // Quay lại menu chính
+                                cout << "Returning to the doctor management menu...\n";
+                                break;
+
+                            default:
+                                cout << "Invalid choice. Please try again.\n";
+                                break;
+                        }
+                    } while (subChoice != 6);
+
+                } else {
+                    cout << "Doctor not found. Please try again.\n";
+                }
+                break;
+            }
+
+            case 3: // Quay lại menu chính
+                cout << "Returning to the main menu...\n";
+                break;
+
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 3);
+}
+
 void manageBill(LinkedListBill &billlist){}
 void manageMedicine(LinkedListMedicine &medicinelist){}
-void manageAppointment(LinkedListAppointment &appointmentlist){
+void manageAppointment(LinkedListAppointment &appointmentlist, LinkedListPatient &patientList) {
     int choice;
     do {
         cout << "\nAppointment Management Menu:\n";
-        cout << "1. View all pending appointments\n";
+        cout << "1. View all appointments\n";
         cout << "2. Add a new appointment\n";
         cout << "3. Delete an appointment\n";
         cout << "4. Back to main menu\n";
@@ -1427,7 +1590,7 @@ void manageAppointment(LinkedListAppointment &appointmentlist){
 
         switch (choice) {
             case 1:
-                viewPendingAppointments(appointmentlist);
+                viewAllAppointments(appointmentlist);
                 break;
             case 2: {
                 int appointmentID;
@@ -1444,9 +1607,22 @@ void manageAppointment(LinkedListAppointment &appointmentlist){
                 cin >> time;
 
                 // Cần gán thông tin cho bệnh nhân
-                cout << "Enter Patient Name: ";
-                cin.ignore();
-                getline(cin, patient->name);
+                string patientName;
+                string patientID;
+                PTNode patient1 = nullptr;
+                do {
+                    cout << "Enter Patient Name: ";
+                    cin.ignore();
+                    getline(cin, patientName);
+                    cout << "Enter Patient ID: ";
+                    cin >> patientID;
+
+                    patient1 = findPatientByID(patientList, patientID);
+
+                    if (patient == nullptr) {
+                        cout << "Patient not found. Please try again.\n";
+                    }
+                } while (patient == nullptr);
                 addAppointment(appointmentlist, appointmentID, symptom, date, time, patient);
                 break;
             }
@@ -1466,8 +1642,43 @@ void manageAppointment(LinkedListAppointment &appointmentlist){
     } while (choice != 4);
 
 }
-void manageSchedule(LinkedListSchedule &schedulelist, LinkedListAppointment &appointmentlist, LinkedListDoctor &doctorlist, LinkedListPatient &patientlistpatientlist){}
-void managerMenu(LinkedListPatient &patientlist, LinkedListDoctor &doctorlist, LinkedListAppointment &appointmentlist, LinkedListSchedule &schedulelist, LinkedListBill &billlist, LinkedListMedicine &medicinelist){
+void manageSchedule(LinkedListSchedule &schedulelist, LinkedListAppointment &appointmentlist, LinkedListDoctor &doctorlist, 
+                    LinkedListPatient &patientlist, LinkedListTimetable &timetablelist) {
+    int choice;
+    do {
+        cout << "\nSchedule Management Menu:\n";
+        cout << "1. View all schedules\n";
+        cout << "2. Add a new schedule\n";
+        cout << "3. Delete a schedule\n";
+        cout << "4. Back to main menu\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                viewAllSchedules(schedulelist);
+                break;
+            case 2:
+                createSchedule(schedulelist, appointmentlist, doctorlist, patientlist, timetablelist);
+                break;
+            case 3: {
+                int scheduleID;
+                cout << "Enter the Schedule ID to delete: ";
+                cin >> scheduleID;
+                deleteSchedule(schedulelist, scheduleID);
+                break;
+            }
+            case 4:
+                cout << "Returning to main menu...\n";
+                break;
+            default:
+                cout << "Invalid choice. Please try again.\n";
+        }
+    } while (choice != 4);
+}
+void managerMenu(LinkedListPatient &patientlist, LinkedListDoctor &doctorlist, LinkedListAppointment &appointmentlist,
+                 LinkedListSchedule &schedulelist, LinkedListBill &billlist, LinkedListMedicine &medicinelist,
+                 LinkedListTimetable &timetablelist) {
     bool isLoggedIn = false;
 
     // Vòng lặp để đảm bảo đăng nhập thành công trước khi vào menu
@@ -1494,7 +1705,7 @@ void managerMenu(LinkedListPatient &patientlist, LinkedListDoctor &doctorlist, L
                 managePatient(patientlist,appointmentlist);
                 break;
             case 2:
-                manageDoctor(doctorlist);
+                manageDoctor(doctorlist, schedulelist, timetablelist);
                 break;
             case 3:
                 manageBill(billlist);
@@ -1503,10 +1714,10 @@ void managerMenu(LinkedListPatient &patientlist, LinkedListDoctor &doctorlist, L
                 manageMedicine(medicinelist);
                 break;
             case 5:
-                manageSchedule(schedulelist ,appointmentlist, doctorlist, patientlist);
+                manageSchedule(schedulelist ,appointmentlist, doctorlist, patientlist, timetablelist);
                 break;
             case 6:
-                manageAppointment(appointmentlist);
+                manageAppointment(appointmentlist, patientlist);
                 break;
             case 7:
                 cout << "Exiting the system.\n";
@@ -1567,7 +1778,7 @@ int main(){
                 doctorMenu(doctorlist);
                 break;
             case 3:
-                managerMenu(patientlist, doctorlist, appointmentlist, schedulelist, billlist, medicinelist);
+                managerMenu(patientlist, doctorlist, appointmentlist, schedulelist, billlist, medicinelist, timetablelist);
                 break;
             case 4:
                 cout << "Exiting...\n";
