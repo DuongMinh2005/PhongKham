@@ -18,7 +18,6 @@ struct Doctor{
     string name;
     string age;
     string phone;
-    string specialization;
     string address;
     string experience;
     TimeTable* timetable;

@@ -24,17 +24,19 @@ struct PatientNode{
 typedef PatientNode* PNodePatient;
 typedef PatientNode* LinkedListPatient;
 
+int appointmentIDCounter = 1;
 void initPatient(LinkedListPatient &H);
 
 bool EMPTY(LinkedListPatient &H);
 
 PatientNode* createPatientNode(const Patient& data);
 
-bool isExit_doctorID_BS(LinkedListPatient &H, string PatientID);
+bool isExist_doctorID_BS(LinkedListPatient &H, string PatientID);
 
 Patient inputPatientinfo(LinkedListPatient &H);
 
 void insert(LinkedListPatient &H, Patient &t1);
 
 void display(LinkedListPatient &H);
+void displayAppointment(LinkedListPatient &H);
 #endif // PATIENT_H

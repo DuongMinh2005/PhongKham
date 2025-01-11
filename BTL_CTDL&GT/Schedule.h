@@ -23,8 +23,8 @@ struct ScheduleNode{
     Schedule schedule_info;
     ScheduleNode* next;
 };
-
-    int scheduleIDCounter;
+typedef ScheduleNode* SDNode;
+typedef ScheduleNode* LinkedListSchedule;
 
     ScheduleNode* initScheduleList();
     void addSchedule(ScheduleNode*& head,AppointmentNode*& appointmentList,int appointmentID, Doctor* doctor, string date, string time);  

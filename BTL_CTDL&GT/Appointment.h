@@ -10,8 +10,7 @@ using namespace std;
 struct Appointment {
     int appointmentID;                
     string symptom;                   
-    string availableTime;             
-    string requiredSpecialization;    
+    string availableTime;               
     Patient* patient;                 
 };
 
@@ -20,23 +19,26 @@ struct AppointmentNode {
     Appointment appointment_info;    
     AppointmentNode* next;            
 };
-
-
+typedef AppointmentNode* APNode;
+typedef AppointmentNode* LinkedListAppointment;
     int appointmentIDCounter;     
 
     // Hàm khởi tạo danh sách
-    AppointmentNode* initAppointmentList();
+    void initAppointmentList(LinkedListAppointment& head);
 
+    //Hàm kiểm tra danh sách rỗng
+    bool isEmpty(LinkedListAppointment& head);
+    
     // Hàm thêm lịch hẹn mới
-    void addAppointment(AppointmentNode*& head, Patient* patient);
+    void addAppointment(LinkedListAppointment& head, Patient* patient);
 
     // Hàm hiển thị danh sách lịch hẹn
-    void displayAppointments(AppointmentNode* head);
+    void displayAppointment(LinkedListAppointment head);
 
     // Hàm xóa một lịch hẹn theo ID
-    void deleteAppointment(AppointmentNode*& head,int id);
+    void deleteAppointment(LinkedListAppointment& head,int id);
     // Hàm tìm lịch hẹn theo ID
-    AppointmentNode* findAppointmentByID(AppointmentNode*& head, int id);
+    APNode findAppointmentByID(LinkedListAppointment& head, int id);
 
 
 #endif // APPOINTMENT_H
