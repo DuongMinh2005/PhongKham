@@ -146,5 +146,5 @@ quanlikhoduoc:
                 cout<<"!!!CHUC NANG KHONG PHU HOP!!!"<<endl;
                 cout<<"======VUI LONG CHON LAI======\n\n";
                 goto menu;
-        }
     }
+}
