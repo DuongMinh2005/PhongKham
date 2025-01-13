@@ -317,7 +317,17 @@ SCNode findScheduleByID(LinkedListSchedule schedulelist, int scheduleID) {
 
     return scheduleNode;  // Trả về nút tìm thấy hoặc nullptr nếu không tìm thấy
 }
+//hàm tìm bill theo id
+BLNode findBillByID(LinkedListBill billlist, int billID) {
+    BLNode billNode = billlist;
 
+    // Duyệt qua danh sách để tìm bill theo billID
+    while (billNode != nullptr && billNode->bill_info.billID != billID) {
+        billNode = billNode->next;
+    }
+
+    return billNode;  // Trả về nút tìm thấy hoặc nullptr nếu không tìm thấy
+}
 
 //Hàm hiển thị thông tin bệnh nhân
 void displayPatientInfo(Patient& patient) {
@@ -1134,7 +1144,7 @@ void viewSchedulesByDoctor(LinkedListSchedule head, const Doctor& doctor) {
 void viewDoctorTimetables(LinkedListTimetable head, Doctor &doctor) {
     // Kiểm tra nếu danh sách timetable rỗng
     if (head == nullptr) {
-        cout << "No patients found for this doctor.\n";
+        cout << "No timetables found for this doctor.\n";
         return;
     }
 
@@ -1177,7 +1187,7 @@ void viewDoctorTimetables(LinkedListTimetable head, Doctor &doctor) {
 void viewPatientsByDoctor(LinkedListSchedule head, Doctor &doctor) {
     // Kiểm tra nếu danh sách lịch khám rỗng
     if (head == nullptr) {
-        cout << "No schedules available.\n";
+        cout << "No patients for this doctor.\n";
         return;
     }
 
@@ -1300,15 +1310,25 @@ void viewAllBills(LinkedListBill head) {
     cout << "+--------------------------------------------------------------------------------------------------+\n";
     cout << "\nTotal Bills: " << count << "\n";
 }
-// Hàm hủy lịch hẹn theo ID
+//hàm cancel appointment
 void cancelAppointment(LinkedListAppointment& appointmentList, Patient& patient) {
     int appointmentID;
-    cout << "Nhập ID của lịch hẹn muốn hủy: ";
-    cin >> appointmentID;
+    AppointmentNode* selectedAppointment = nullptr;
 
+    do {
+        cout << "Enter the ID of the appointment you want to cancel: ";
+        cin >> appointmentID;
+
+        selectedAppointment = findAppointmentByID(appointmentList, appointmentID); // Tìm lịch hẹn
+
+        if (selectedAppointment == nullptr) {
+            cout << "No appointment found with ID " << appointmentID << ". Please try again.\n";
+        }
+    } while (selectedAppointment == nullptr);
+
+    // Nếu tìm thấy lịch hẹn, thực hiện hủy
     deleteAppointment(appointmentList, appointmentID);
-
-    cout << "Không tìm thấy lịch hẹn với ID " << appointmentID << " của bạn.\n";
+    cout << "Appointment with ID " << appointmentID << " has been successfully canceled.\n";
 }
 
 //hàm split time
@@ -1785,10 +1805,18 @@ void managePatient(LinkedListPatient &patientlist, LinkedListAppointment &appoin
 
             case 2: {
                 string patientID;
-                cout << "Enter the patient ID to select: ";
-                cin >> patientID;
+                PTNode selectedNode = nullptr;
 
-                PTNode selectedNode = findPatientByID(patientlist, patientID); // Gọi hàm trả về PTNode
+                do {
+                    cout << "Enter the patient ID to select: ";
+                    cin >> patientID;
+
+                    selectedNode = findPatientByID(patientlist, patientID); // Gọi hàm trả về PTNode
+
+                    if (selectedNode == nullptr) {
+                        cout << "No patient found with ID " << patientID << ". Please try again.\n";
+                    }
+                } while (selectedNode == nullptr);
 
                 // Lấy con trỏ đến thông tin bệnh nhân
                 Patient* selectedPatient = &selectedNode->patient_info;
@@ -1880,10 +1908,18 @@ void manageDoctor(LinkedListDoctor &doctorlist, LinkedListSchedule &schedulelist
 
             case 2: {
                 string doctorID;
-                cout << "Enter the doctor ID to select: ";
-                cin >> doctorID;
+                DTNode selectedNode = nullptr;
 
-                DTNode selectedNode = findDoctorByID(doctorlist, doctorID); // Tìm bác sĩ
+                do {
+                    cout << "Enter the doctor ID to select: ";
+                    cin >> doctorID;
+
+                    selectedNode = findDoctorByID(doctorlist, doctorID); // Gọi hàm trả về DTNode
+
+                    if (selectedNode == nullptr) {
+                        cout << "No doctor found with ID " << doctorID << ". Please try again.\n";
+                    }
+                } while (selectedNode == nullptr);
                 if (selectedNode != nullptr) {
                     Doctor* selectedDoctor = &selectedNode->doctor_info;
 
@@ -1974,8 +2010,18 @@ void manageBill(LinkedListBill &billlist, LinkedListMedicine &medicinelist, Link
                 break;
             case 3: {
                 int billID;
-                cout << "Enter the Bill ID to delete: ";
-                cin >> billID;
+                BillNode* selectedBill = nullptr;
+
+                do {
+                    cout << "Enter the Bill ID to delete: ";
+                    cin >> billID;
+
+                    selectedBill = findBillByID(billlist, billID); // Tìm hóa đơn trong danh sách
+
+                    if (selectedBill == nullptr) {
+                        cout << "No bill found with ID " << billID << ". Please try again.\n";
+                    }
+                } while (selectedBill == nullptr);
                 deleteBill(billlist, billID);
                 break;
             }
@@ -2028,8 +2074,19 @@ void manageMedicine(LinkedListMedicine &medicinelist){
             }
             case 3: {
                 int medicineID;
-                cout << "Enter the Medicine ID to delete: ";
-                cin >> medicineID;
+                MedicineNode* selectedMedicine = nullptr;
+
+                do {
+                    cout << "Enter the Medicine ID to delete: ";
+                    cin >> medicineID;
+
+                    selectedMedicine = findMedicineByID(medicinelist, medicineID); // Tìm thuốc
+
+                    if (selectedMedicine == nullptr) {
+                        cout << "No medicine found with ID " << medicineID << ". Please try again.\n";
+                    }
+                } while (selectedMedicine == nullptr);
+
                 deleteMedicine(medicinelist, medicineID);
                 break;
             }
@@ -2059,41 +2116,56 @@ void manageAppointment(LinkedListAppointment &appointmentlist, LinkedListPatient
             case 2: {
                 int appointmentID;
                 string symptom, date, time;
-                Patient* patient = new Patient; // Giả sử đã có thông tin bệnh nhân
                 cout << "Enter Appointment ID: ";
                 cin >> appointmentID;
+                cin.ignore(); // Clear buffer
+                
                 cout << "Enter Symptom: ";
-                cin.ignore();
                 getline(cin, symptom);
+                
                 cout << "Enter Date (YYYY-MM-DD): ";
                 cin >> date;
+                
                 cout << "Enter Time (HH:MM): ";
                 cin >> time;
 
-                // Cần gán thông tin cho bệnh nhân
-                string patientName;
-                string patientID;
-                PTNode patient1 = nullptr;
+                // Lấy thông tin bệnh nhân
+                string patientName, patientID;
+                PTNode patientNode = nullptr; // Giả sử PTNode là kiểu struct hoặc class chứa thông tin bệnh nhân
+
                 do {
                     cout << "Enter Patient Name: ";
                     cin.ignore();
                     getline(cin, patientName);
+                    
                     cout << "Enter Patient ID: ";
                     cin >> patientID;
 
-                    patient1 = findPatientByID(patientList, patientID);
-
-                    if (patient == nullptr) {
+                    patientNode = findPatientByID(patientList, patientID);
+                    if (patientNode == nullptr) {
                         cout << "Patient not found. Please try again.\n";
                     }
-                } while (patient == nullptr);
-                addAppointment(appointmentlist, appointmentID, symptom, date, time, patient);
+                } while (patientNode == nullptr);
+
+                Patient* patient1 = &patientNode->patient_info;
+
+                addAppointment(appointmentlist, appointmentID, symptom, date, time, patient1, false);
                 break;
             }
             case 3: {
                 int appointmentID;
-                cout << "Enter the Appointment ID to delete: ";
-                cin >> appointmentID;
+                AppointmentNode* selectedAppointment = nullptr;
+
+                do {
+                    cout << "Enter the Appointment ID to delete: ";
+                    cin >> appointmentID;
+
+                    selectedAppointment = findAppointmentByID(appointmentlist, appointmentID); // Tìm lịch hẹn
+
+                    if (selectedAppointment == nullptr) {
+                        cout << "No appointment found with ID " << appointmentID << ". Please try again.\n";
+                    }
+                } while (selectedAppointment == nullptr);
                 deleteAppointment(appointmentlist, appointmentID);
                 break;
             }
@@ -2128,8 +2200,18 @@ void manageSchedule(LinkedListSchedule &schedulelist, LinkedListAppointment &app
                 break;
             case 3: {
                 int scheduleID;
-                cout << "Enter the Schedule ID to delete: ";
-                cin >> scheduleID;
+                ScheduleNode* selectedSchedule = nullptr;
+
+                do {
+                    cout << "Enter the Schedule ID to delete: ";
+                    cin >> scheduleID;
+
+                    selectedSchedule = findScheduleByID(schedulelist, scheduleID); // Tìm lịch trình
+
+                    if (selectedSchedule == nullptr) {
+                        cout << "No schedule found with ID " << scheduleID << ". Please try again.\n";
+                    }
+                } while (selectedSchedule == nullptr);
                 deleteSchedule(schedulelist, scheduleID);
                 break;
             }
