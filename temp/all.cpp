@@ -4,16 +4,22 @@
 using namespace std;
 struct Patient;
 struct PatientNode;
+
 struct Schedule;
-struct Bill;
 struct ScheduleNode;
+
+struct Bill;
 struct BillNode;
+
 struct Doctor;
 struct DoctorNode;
+
 struct Timetable;
 struct TimetableNode;
+
 struct Medicine;
 struct MedicineNode;
+
 struct Appointment;
 struct AppointmentNode;
 
@@ -1603,6 +1609,17 @@ Patient createPatient(int id) {
     return patient;
 }
 
+// Hàm tạo cuộc hẹn
+Appointment createAppointment(int id, Patient& patient) {
+    Appointment appointment;
+    appointment.appointmentID = id;
+    appointment.symptom = "Symptom " + to_string(id);
+    appointment.date = "01/01/2025";
+    appointment.time = "10:00 AM";
+    appointment.patient = &patient;
+    appointment.isProcessed = false;
+    return appointment;
+}
 
 // Hàm tạo bác sĩ
 Doctor createDoctor(int id) {
@@ -2186,7 +2203,6 @@ int main(){
     LinkedListBill billlist;
     LinkedListMedicine medicinelist;
     LinkedListTimetable timetablelist;
-
     initPatientList(patientlist);
     initDoctorList(doctorlist);
     initAppointmentList(appointmentlist);
@@ -2194,14 +2210,19 @@ int main(){
     initScheduleList(schedulelist);
     initMedicineList(medicinelist);
     initTimetableList(timetablelist);
+
      // Tạo danh sách 10 bệnh nhân
     Patient patients[10];
+    LinkedListAppointment appointmentList = nullptr;
     for (int i = 0; i < 10; ++i) {
         patients[i] = createPatient(i + 1);
         cout << "Patient " << i + 1 << ": " << patients[i].name << ", " << patients[i].phone << endl;
         addPatient(patientlist, patients[i].username, patients[i].password, patients[i].patientID, patients[i].name, patients[i].age, patients[i].phone);
+        addAppointment(appointmentList, i + 1, "Symptom " + to_string(i + 1), "01/01/2025", "10:00 AM", &patients[i]);
     }
 
+    //tạo danh sách 1- appointment ứng với 10 bệnh nhân đó
+    viewAllAppointments(appointmentList); 
     // Tạo danh sách 10 bác sĩ
     Doctor doctors[10];
     for (int i = 0; i < 10; ++i) {
@@ -2220,13 +2241,13 @@ int main(){
 
         switch (choice) {
             case 1:
-                patientMenu(patientlist, appointmentlist, schedulelist, billlist);
+                patientMenu(patientlist, appointmentList, schedulelist, billlist);
                 break;
             case 2:
                 doctorMenu(doctorlist);
                 break;
             case 3:
-                managerMenu(patientlist, doctorlist, appointmentlist, schedulelist, billlist, medicinelist, timetablelist);
+                managerMenu(patientlist, doctorlist, appointmentList, schedulelist, billlist, medicinelist, timetablelist);
                 break;
             case 4:
                 cout << "Exiting...\n";
