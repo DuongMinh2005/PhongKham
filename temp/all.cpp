@@ -5,23 +5,38 @@ using namespace std;
 struct Patient;
 struct PatientNode;
 
-struct Schedule;
-struct ScheduleNode;
-
-struct Bill;
-struct BillNode;
-
 struct Doctor;
 struct DoctorNode;
 
 struct Timetable;
 struct TimetableNode;
 
+struct Appointment;
+struct AppointmentNode;
+
+struct Schedule;
+struct ScheduleNode;
+
+struct Bill;
+struct BillNode;
+
 struct Medicine;
 struct MedicineNode;
 
-struct Appointment;
-struct AppointmentNode;
+struct Appointment {
+    int appointmentID;                
+    string symptom;                   
+    string date;
+    string time;             
+    Patient* patient;         
+    bool isProcessed;        
+};
+struct AppointmentNode {
+    Appointment appointment_info;    
+    AppointmentNode* next;            
+};
+typedef AppointmentNode* APNode;
+typedef AppointmentNode* LinkedListAppointment;
 
 struct Schedule{
     int scheduleID;
@@ -39,6 +54,7 @@ struct ScheduleNode{
 };
 typedef ScheduleNode* SCNode;
 typedef ScheduleNode* LinkedListSchedule;
+
 struct Medicine {
     int medicineID;        
     string name;            
@@ -72,20 +88,6 @@ struct BillNode {
 typedef BillNode* BLNode;
 typedef BillNode* LinkedListBill;
 
-struct Appointment {
-    int appointmentID;                
-    string symptom;                   
-    string date;
-    string time;             
-    Patient* patient;         
-    bool isProcessed;        
-};
-struct AppointmentNode {
-    Appointment appointment_info;    
-    AppointmentNode* next;            
-};
-typedef AppointmentNode* APNode;
-typedef AppointmentNode* LinkedListAppointment;
 
 struct Patient{
     string username;
@@ -510,8 +512,7 @@ void addBill(LinkedListBill& head, int billID, const string& date, double consul
     }
 }
 //hàm thêm thuốc vào danh sách( chỉ thực hiện nhiệm vụ thêm vào cuối danh sách)
-void addMedicine(LinkedListMedicine& head, int medicineID, const string& name, const string& unit, const string& usage, 
-double price, int stockQuantity, const string& expiryDate) {
+void addMedicine(LinkedListMedicine& head, int medicineID, const string& name, const string& unit, const string& usage, double price, int stockQuantity, const string& expiryDate) {
     // Tạo một nút mới cho thuốc
     MDNode newMedicineNode = new MedicineNode;
     newMedicineNode->medicine_info = {medicineID, name, unit, usage, price, stockQuantity, expiryDate};
@@ -591,7 +592,7 @@ void addAppointment(LinkedListAppointment& head,
     cout << "Appointment added successfully!\n";
 }
 //Hàm thêm timetable vào sau( chỉ thực hiện nhiệm vụ thêm vào cuối danh sách)
-void addTimetable(LinkedListTimetable &head, const string &date, const string &time) {
+void addTimetable(LinkedListTimetable &head, const string &date, const string &time, Doctor *doctor) {
     // Tạo một nút mới cho timetable
     TTNode newTimetableNode = new TimetableNode;
     newTimetableNode->timetable_info = {date, time};
@@ -1631,16 +1632,16 @@ Patient createPatient(int id) {
 }
 
 // Hàm tạo cuộc hẹn
-Appointment createAppointment(int id, Patient& patient) {
-    Appointment appointment;
-    appointment.appointmentID = id;
-    appointment.symptom = "Symptom " + to_string(id);
-    appointment.date = "01/01/2025";
-    appointment.time = "10:00 AM";
-    appointment.patient = &patient;
-    appointment.isProcessed = false;
-    return appointment;
-}
+// Appointment createAppointment(int id, Patient& patient) {
+//     Appointment appointment;
+//     appointment.appointmentID = id;
+//     appointment.symptom = "Symptom " + to_string(id);
+//     appointment.date = "01/01/2025";
+//     appointment.time = "10:00 AM";
+//     appointment.patient = &patient;
+//     appointment.isProcessed = false;
+//     return appointment;
+// }
 
 // Hàm tạo bác sĩ
 Doctor createDoctor(int id) {
@@ -2301,11 +2302,9 @@ int main(){
         patients[i] = createPatient(i + 1);
         cout << "Patient " << i + 1 << ": " << patients[i].name << ", " << patients[i].phone << endl;
         addPatient(patientlist, patients[i].username, patients[i].password, patients[i].patientID, patients[i].name, patients[i].age, patients[i].phone);
-        addAppointment(appointmentList, i + 1, "Symptom " + to_string(i + 1), "01/01/2025", "10:00 AM", &patients[i]);
+        // addAppointment(appointmentList, i + 1, "Symptom " + to_string(i + 1), "01/01/2025", "10:00 AM", &patients[i]);
     }
 
-    //tạo danh sách 1- appointment ứng với 10 bệnh nhân đó
-    viewAllAppointments(appointmentList); 
     // Tạo danh sách 10 bác sĩ
     Doctor doctors[10];
     for (int i = 0; i < 10; ++i) {
