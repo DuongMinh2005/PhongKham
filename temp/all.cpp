@@ -510,7 +510,8 @@ void addBill(LinkedListBill& head, int billID, const string& date, double consul
     }
 }
 //hàm thêm thuốc vào danh sách( chỉ thực hiện nhiệm vụ thêm vào cuối danh sách)
-void addMedicine(LinkedListMedicine& head, int medicineID, const string& name, const string& unit, const string& usage, double price, int stockQuantity, const string& expiryDate) {
+void addMedicine(LinkedListMedicine& head, int medicineID, const string& name, const string& unit, const string& usage, 
+double price, int stockQuantity, const string& expiryDate) {
     // Tạo một nút mới cho thuốc
     MDNode newMedicineNode = new MedicineNode;
     newMedicineNode->medicine_info = {medicineID, name, unit, usage, price, stockQuantity, expiryDate};
