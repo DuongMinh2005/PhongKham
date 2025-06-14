@@ -2294,7 +2294,11 @@ int main(){
     initScheduleList(schedulelist);
     initMedicineList(medicinelist);
     initTimetableList(timetablelist);
-
+    addMedicine(medicinelist, 1, "Lidocaine", "Vial", "Local anesthetic", 30000, 50, "2025-08-15");
+    addMedicine(medicinelist, 2, "Amoxicillin", "Capsule", "Antibiotic for infection prevention", 15000, 100, "2024-12-01");
+    addMedicine(medicinelist, 3, "Ibuprofen", "Tablet", "Pain reliever", 7000, 200, "2025-05-20");
+    addMedicine(medicinelist, 4, "Chlorhexidine", "Bottle", "Mouthwash for disinfection", 25000, 30, "2025-03-10");
+    addMedicine(medicinelist, 5, "Paracetamol", "Tablet", "Pain and fever reducer", 5000, 300, "2025-11-25");
      // Tạo danh sách 10 bệnh nhân
     Patient patients[10];
     LinkedListAppointment appointmentList = nullptr;
