@@ -5,3 +5,10 @@ Dia chi: Da Nang
 Loai benh: Hiem gap
 Vien phi: 1e+08
 --------------------------------------
+Ten dang nhap: hi
+Ten: Tien
+Tuoi: 18
+Dia chi: Hanoi
+Loai benh: ahihi
+Vien phi: 100000 vnd
+--------------------------------------
